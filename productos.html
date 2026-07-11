@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Productos | CJ COIMPORT S.A.S.</title>
+<meta name="description" content="Catálogo mayorista de CJ Coimport: CJ Housewares (hogar), Chicago (patines) y Línea Deportiva. Filtra por categoría, busca productos y solicita cotización.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23E31E24%22/><text x=%2250%22 y=%2268%22 font-size=%2258%22 font-family=%22Arial%22 font-weight=%22900%22 fill=%22white%22 text-anchor=%22middle%22>CJ</text></svg>">
+
+<link rel="stylesheet" href="style.css">
+--white<style>
+  .page-hero { background: var(--black); color: var(); padding: 170px 0 60px; position: relative; overflow: hidden; }
+  .page-hero::before { content:''; position:absolute; top:-30%; right:-10%; width:55%; height:90%; background: radial-gradient(circle, rgba(227,30,36,.32), transparent 70%); filter: blur(60px); }
+  .page-hero-inner { position: relative; z-index: 1; max-width: 720px; }
+  .page-breadcrumb { font-size: 13px; color: rgba(255,255,255,.5); margin-bottom: 18px; display: flex; gap: 8px; align-items: center; }
+  .page-breadcrumb a { color: rgba(255,255,255,.7); transition: color .2s; }
+  .page-breadcrumb a:hover { color: var(--white); }
+  .page-title { font-size: clamp(32px, 4.6vw, 50px); color: var(--white); margin-top: 6px; }
+  .page-lead { font-size: 16px; color: rgba(255,255,255,.68); margin-top: 18px; max-width: 560px; }
+
+  /* Toolbar: search + filters */
+  .catalog-toolbar {
+    position: sticky; top: 76px; z-index: 50; background: rgba(255,255,255,.92); backdrop-filter: blur(10px);
+    padding: 20px 0; border-bottom: 1px solid var(--gray-100);
+  }
+  .toolbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .search-box { position: relative; flex: 1; min-width: 240px; max-width: 380px; }
+  .search-box input {
+    width: 100%; padding: 12px 16px 12px 42px; border: 1.5px solid var(--gray-100); border-radius: 100px;
+    background: var(--gray-50); font-size: 14px; transition: border-color .25s, background .25s;
+  }
+  .search-box input:focus { outline: none; border-color: var(--red); background: var(--white); }
+  .search-box svg { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--gray-500); }
+  .filter-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .filter-chip {
+    font-size: 13.5px; font-weight: 600; padding: 10px 18px; border-radius: 100px;
+    border: 1.5px solid var(--gray-100); color: var(--gray-700); transition: all .25s var(--ease);
+    white-space: nowrap;
+  }
+  .filter-chip:hover { border-color: var(--gray-300); }
+  .filter-chip.active { background: var(--red); border-color: var(--red); color: var(--white); }
+  .results-count { font-size: 13px; color: var(--gray-500); margin: 20px 0; }
+  .no-results { text-align: center; padding: 80px 20px; display: none; }
+  .no-results.show { display: block; }
+  .no-results h3 { font-size: 20px; margin-bottom: 8px; }
+  .no-results p { color: var(--gray-500); font-size: 14.5px; }
+
+  .catalog-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+  .catalog-grid .product-card { cursor: pointer; }
+  .catalog-grid .product-card.hidden { display: none; }
+
+  .category-anchor-block { padding-top: 96px; margin-top: -96px; }
+  .subcat-title { font-family: var(--font-display); font-weight: 800; font-size: 22px; margin: 56px 0 24px; padding-top: 8px; }
+  .subcat-title:first-of-type { margin-top: 0; }
+
+  /* Modal detail */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(10,10,10,.6); backdrop-filter: blur(4px);
+    z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 24px;
+    opacity: 0; visibility: hidden; transition: opacity .3s var(--ease), visibility .3s;
+  }
+  .modal-overlay.open { opacity: 1; visibility: visible; }
+  .modal-box {
+    background: var(--white); border-radius: var(--radius-lg); max-width: 760px; width: 100%;
+    max-height: 88vh; overflow-y: auto; display: grid; grid-template-columns: 1fr 1fr;
+    transform: scale(.94) translateY(10px); transition: transform .35s var(--ease); box-shadow: var(--shadow-lg);
+  }
+  .modal-overlay.open .modal-box { transform: scale(1) translateY(0); }
+  .modal-media { min-height: 280px; }
+  .modal-body { padding: 36px; position: relative; }
+  .modal-close {
+    position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; border-radius: 50%;
+    background: var(--gray-50); display: flex; align-items: center; justify-content: center; transition: background .25s;
+  }
+  .modal-close:hover { background: var(--gray-100); }
+  .modal-body .product-badge { position: static; display: inline-block; margin-bottom: 16px; background: var(--gray-50); }
+  .modal-body h2 { font-size: 24px; margin-bottom: 14px; }
+  .modal-body p.desc { font-size: 14.5px; color: var(--gray-500); line-height: 1.75; margin-bottom: 20px; }
+  .modal-specs { list-style: none; margin-bottom: 26px; display: flex; flex-direction: column; gap: 10px; }
+  .modal-specs li { display: flex; justify-content: space-between; font-size: 13.5px; padding-bottom: 10px; border-bottom: 1px solid var(--gray-100); }
+  .modal-specs li span:first-child { color: var(--gray-500); }
+  .modal-specs li span:last-child { font-weight: 600; }
+
+  @media (max-width: 900px) {
+    .catalog-grid { grid-template-columns: 1fr 1fr; }
+    .catalog-toolbar { top: 0; }
+    .modal-box { grid-template-columns: 1fr; }
+    .modal-media { min-height: 200px; }
+  }
+  @media (max-width: 560px) {
+    .catalog-grid { grid-template-columns: 1fr; }
+    .toolbar-inner { flex-direction: column; align-items: stretch; }
+    .search-box { max-width: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="loader" id="loader">
+  <div class="loader-mark"><span class="loader-letter">C</span><span class="loader-letter">J</span></div>
+  <div class="loader-bar"><span></span></div>
+</div>
+
+<!-- ===================== NAVBAR ===================== -->
+<header class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-mark">CJ</span>
+      <span class="logo-text">COIMPORT</span>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html" class="nav-link">Inicio</a>
+      <a href="nosotros.html" class="nav-link">Nosotros</a>
+
+      <div class="nav-dropdown">
+        <button class="nav-link nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+          Productos <svg class="chev" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <div class="mega-menu">
+          <div class="mega-col">
+            <span class="mega-title">CJ Housewares</span>
+            <a href="productos.html#hogar-cocina">Cocina y menaje</a>
+            <a href="productos.html#hogar-organizacion">Organización del hogar</a>
+            <a href="productos.html#hogar-plasticos">Plásticos y contenedores</a>
+            <a href="productos.html#hogar-electro">Pequeños electrodomésticos</a>
+          </div>
+          <div class="mega-col">
+            <span class="mega-title">Chicago Skates</span>
+            <a href="productos.html#patines-linea">Patines línea recreativa</a>
+            <a href="productos.html#patines-fitness">Patines fitness</a>
+            <a href="productos.html#patines-proteccion">Protecciones y accesorios</a>
+          </div>
+          <div class="mega-col">
+            <span class="mega-title">Línea Deportiva</span>
+            <a href="productos.html#deporte-implementos">Implementos deportivos</a>
+            <a href="productos.html#deporte-ropa">Indumentaria y calzado</a>
+            <a href="productos.html#deporte-outdoor">Recreación y outdoor</a>
+          </div>
+          <div class="mega-col mega-col-feature">
+            <span class="mega-title">Catálogo</span>
+            <p>Consulta nuestro catálogo completo con fichas técnicas y precios por volumen.</p>
+            <a href="catalogo.html" class="mega-cta">Ver catálogo completo →</a>
+          </div>
+        </div>
+      </div>
+
+      <a href="catalogo.html" class="nav-link">Categorías</a>
+      <a href="distribuidores.html" class="nav-link">Distribuidores</a>
+      <a href="blog.html" class="nav-link">Novedades</a>
+      <a href="contacto.html" class="nav-link">Contacto</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="contacto.html" class="btn btn-primary btn-sm">Solicitar cotización</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" class="mobile-link">Inicio</a>
+    <a href="nosotros.html" class="mobile-link">Nosotros</a>
+    <div class="mobile-accordion">
+      <button class="mobile-accordion-trigger">Productos <span>+</span></button>
+      <div class="mobile-accordion-panel">
+        <a href="productos.html#hogar-cocina">CJ Housewares</a>
+        <a href="productos.html#patines-linea">Chicago Skates</a>
+        <a href="productos.html#deporte-implementos">Línea Deportiva</a>
+      </div>
+    </div>
+    <a href="catalogo.html" class="mobile-link">Categorías</a>
+    <a href="distribuidores.html" class="mobile-link">Distribuidores</a>
+    <a href="blog.html" class="mobile-link">Novedades</a>
+    <a href="contacto.html" class="mobile-link">Contacto</a>
+    <a href="contacto.html" class="btn btn-primary" style="margin-top:20px;width:100%;text-align:center;">Solicitar cotización</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ===================== PAGE HERO ===================== -->
+<section class="page-hero">
+  <div class="container page-hero-inner" data-reveal>
+    <div class="page-breadcrumb"><a href="index.html">Inicio</a> / <span>Productos</span></div>
+    <h1 class="page-title">Catálogo de productos</h1>
+    <p class="page-lead">Explora nuestras tres líneas: CJ Housewares, Chicago y Línea Deportiva. Filtra, busca y solicita cotización por volumen.</p>
+  </div>
+</section>
+
+<!-- ===================== TOOLBAR ===================== -->
+<div class="catalog-toolbar">
+  <div class="container toolbar-inner">
+    <div class="search-box">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M21 21l-4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <input type="text" id="productSearch" placeholder="Buscar producto...">
+    </div>
+    <div class="filter-chips" id="filterChips">
+      <button class="filter-chip active" data-filter="todos">Todos</button>
+      <button class="filter-chip" data-filter="hogar">CJ Housewares</button>
+      <button class="filter-chip" data-filter="patines">Chicago</button>
+      <button class="filter-chip" data-filter="deporte">Línea Deportiva</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== GRID DE PRODUCTOS ===================== -->
+<section class="section" style="padding-top:56px;">
+  <div class="container">
+
+    <p class="results-count"><span id="resultsCount">0</span> productos encontrados</p>
+
+    <div class="catalog-grid" id="catalogGrid">
+
+      <!-- HOGAR -->
+      <article class="product-card" data-category="hogar" data-name="set de organizadores modulares cocina despensa"
+        data-desc="Contenedores apilables de alta resistencia para cocina y despensa. Diseñados para optimizar espacio en punto de venta y hogar."
+        data-tag="CJ Housewares" data-sub="Organización">
+        <div class="product-media hw-1"><span class="product-badge">CJ Housewares</span></div>
+        <div class="product-body">
+          <h3>Set de organizadores modulares</h3>
+          <p>Contenedores apilables para cocina y despensa, alta resistencia.</p>
+          <div class="product-footer"><span class="product-tag">Por mayor</span><a href="contacto.html" class="product-quote">Cotizar →</a></div>
+        </div>
+      </article>
+
+      <article class="product-card" data-category="hogar" data-name="linea de menaje de cocina ollas utensilios"
+        data-desc="Utensilios y ollería de uso diario, con acabados resistentes al uso constante y diseñados para alta rotación."
+        data-tag="CJ Housewares" data-sub="Cocina">
+        <div class="product-media hw-2"><span class="product-badge">CJ Housewares</span></div>
+        <div class="product-body">
+          <h3>Línea de menaje de cocina</h3>
+          <p>Utensilios y ollería de uso diario, alta rotación en punto de venta.</p>
+          <div class="product-footer"><span class="product-tag">Por mayor</span><a href="contacto.html" class="product-quote">Cotizar →</a></div>
+        </div>
+      </article>
+
+      <article class="product-card" data-category="hogar" data-name="contenedores plasticos herméticos"
+        data-desc="Línea de plásticos herméticos aptos para alimentos, resistentes a impacto y con tapa de cierre seguro."
+        data-tag="CJ Housewares" data-sub="Plásticos">
+        <div class="product-media" style="background:linear-gradient(140deg,#F0F0F0,#737373);"><span class="product-badge">CJ Housewares</span></div>
+        <div class="product-body">
+          <h3>Contenedores plásticos herméticos</h3>
+          <p>Aptos para alimentos, resistentes a impacto, tapa de cierre seguro.</p>
+          <div class="product-footer"><span class="product-tag">Por mayor</span><a href="contacto.html" class="product-quote">Cotizar →</a></div>
+        </div>
+      </article>
+
+      <article class="product-card" data-category="hogar" data-name="pequeños electrodomesticos cocina hogar"
+        data-desc="Selección de pequeños electrodomésticos para el hogar, con garantía y ficha técnica disponible."
+        data-tag="CJ Housewares" data-sub="Electrodomésticos">
+        <div class="product-media" style="background:linear-gradient(140deg,#1A1A1A,#B8151A 160%);"><span class="product-badge">CJ Housewares</span></div>
+        <div class="product-body">
+          <h3>Pequeños electrodomésticos</h3>
+          <p>Selección práctica para el hogar, con garantía y ficha técnica.</p>
+          <div class="product-footer"><span class="product-tag">Por mayor</span><a href="contacto.html" class="product-quote">Cotizar →</a></div>
+        </div>
+      </article>
+
+      <!-- PATINES -->
+      <article class="product-card" data-category="patines" data-name="patines linea recreativa urbana chicago"
+        data-desc="Estructura reforzada, ruedas de alto rendimiento y sistema de frenado seguro para uso urbano y recreativo."
+        data-tag="Chicago" data-sub="Línea recreativa">
+        <div class="product-media sk-1"><span class="product-badge">Chicago</span></div>
+        <div class="product-body">
+          <h3>Patines línea recreativa</h3>
+          <p>Estructura reforzada y ruedas de alto rendimiento para uso urbano.</p>
+          <div class="product-footer"><span class="product-tag">Por mayor</span><a href="contacto.html" class="product-quote">Cotizar →</a></div>
+        </div>
+      </article>
+
+      <article class="product-card" data-category="patines" data-name="patines fitness entrenamiento chicago"
+        data-desc="Diseñados para entrenamiento y fitness, con ajuste ergonómico y mayor estabilidad en velocidad."
+        data-tag="Chicago" data-sub="Fitness">
+        <div class="product-media" style="background:linear-gradient(140deg,#0A0A0A,#E31E24 140%);"><span class="product-badge">Chicago</span></div>
+        <div class="product-body">
+          <h3>Patines fitness</h3>
+          <p>Ajuste ergonómico y mayor estabilidad para entrenamiento.</p>
+          <div class="product-footer"><span class="product-tag">Por mayor</span><a href="contacto.html" class="product-quote">Cotizar →</a></div>
+        </div>
+      </article>
+
+      <article class="product-card" data-category="patines" data-name="kit protecciones casco rodilleras coderas"
+        data-desc="Kit de protección con casco, rodilleras, coderas y muñequeras. Material resistente a impacto."
+        data-tag="Chicago" data-sub="Protecciones">
+        <div class="product-media" style="background:linear-gradient(140deg,#3D3D3D,#0A0A0A);"><span class="product-badge">Chicago</span></div>
+        <div class="product-body">
+          <h3>Kit de protecciones</h3>
+          <p>Casco, rodilleras, coderas y muñequeras, material resistente.</p>
+          <div class="product-footer"><span class="product-tag">Por mayor</span><a href="contacto.html" class="product-quote">Cotizar →</a></div>
+        </div>
+      </article>
+
+      <article class="product-card" data-category="patines" data-name="ruedas repuesto rodamientos patines"
+        data-desc="Ruedas de repuesto y rodamientos compatibles con la mayoría de líneas de patines recreativos."
+        data-tag="Chicago" data-sub="Accesorios">
+        <div class="product-media" style="background:linear-gradient(140deg,#B8151A,#1A1A1A 150%);"><span class="product-badge">Chicago</span></div>
+        <div class="product-body">
+          <h3>Ruedas y rodamientos</h3>
+          <p>Repuestos compatibles con la mayoría de líneas de patines.</p>
+          <div class="product-footer"><span class="product-tag">Por mayor</span><a href="contacto.html" class="product-quote">Cotizar →</a></div>
+        </div>
+      </article>
+
+      <!-- DEPORTE -->
+      <article class="product-card" data-category="deporte" data-name="kit implementos multideporte balones cuerdas"
+        data-desc="Balones, cuerdas de salto y accesorios para entrenamiento funcional. Ideal para tiendas deportivas."
+        data-tag="Línea Deportiva" data-sub="Implementos">
+        <div class="product-media dp-1"><span class="product-badge">Línea Deportiva</span></div>
+        <div class="product-body">
+          <h3>Kit de implementos multideporte</h3>
+          <p>Balones, cuerdas y accesorios para entrenamiento funcional.</p>
+          <div class="product-footer"><span class="product-tag">Por mayor</span><a href="contacto.html" class="product-quote">Cotizar →</a></div>
+        </div>
+      </article>
+
+      <article class="product-card" data-category="deporte" data-name="indumentaria deportiva camisetas calzado"
+        data-desc="Línea de indumentaria y calzado deportivo con variedad de tallas para comercio minorista."
+        data-tag="Línea Deportiva" data-sub="Indumentaria">
+        <div class="product-media" style="background:linear-gradient(140deg,#737373,#1A1A1A);"><span class="product-badge">Línea Deportiva</span></div>
+        <div class="product-body">
+          <h3>Indumentaria deportiva</h3>
+          <p>Variedad de tallas y referencias para comercio minorista.</p>
+          <div class="product-footer"><span class="product-tag">Por mayor</span><a href="contacto.html" class="product-quote">Cotizar →</a></div>
+        </div>
+      </article>
+
+      <article class="product-card" data-category="deporte" data-name="equipo outdoor recreacion camping"
+        data-desc="Equipo de recreación y outdoor pensado para comercios especializados en actividades al aire libre."
+        data-tag="Línea Deportiva" data-sub="Outdoor">
+        <div class="product-media" style="background:linear-gradient(140deg,#B8151A,#3D3D3D 150%);"><span class="product-badge">Línea Deportiva</span></div>
+        <div class="product-body">
+          <h3>Equipo de recreación outdoor</h3>
+          <p>Pensado para comercios especializados en actividades al aire libre.</p>
+          <div class="product-footer"><span class="product-tag">Por mayor</span><a href="contacto.html" class="product-quote">Cotizar →</a></div>
+        </div>
+      </article>
+
+      <article class="product-card" data-category="deporte" data-name="accesorios entrenamiento funcional bandas"
+        data-desc="Bandas elásticas, conos y accesorios de entrenamiento funcional para tiendas deportivas y gimnasios."
+        data-tag="Línea Deportiva" data-sub="Accesorios">
+        <div class="product-media" style="background:linear-gradient(140deg,#1A1A1A,#737373 160%);"><span class="product-badge">Línea Deportiva</span></div>
+        <div class="product-body">
+          <h3>Accesorios de entrenamiento</h3>
+          <p>Bandas, conos y accesorios para tiendas deportivas y gimnasios.</p>
+          <div class="product-footer"><span class="product-tag">Por mayor</span><a href="contacto.html" class="product-quote">Cotizar →</a></div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="no-results" id="noResults">
+      <h3>No encontramos resultados</h3>
+      <p>Prueba con otra palabra clave o revisa otra categoría.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA COTIZACIÓN ===================== -->
+<section class="section contact-cta" style="padding:80px 0;">
+  <div class="container" style="text-align:center;" data-reveal>
+    <span class="eyebrow eyebrow-light">¿No encuentras lo que buscas?</span>
+    <h2 class="section-title text-white" style="margin-top:14px;">Solicita una cotización personalizada</h2>
+    <p class="section-desc text-muted-light" style="margin:16px auto 32px;">Contamos con un catálogo más amplio disponible directamente con nuestro equipo comercial.</p>
+    <a href="contacto.html" class="btn btn-primary btn-lg">Solicitar cotización</a>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== MODAL DETALLE ===================== -->
+<div class="modal-overlay" id="productModal">
+  <div class="modal-box">
+    <div class="modal-media" id="modalMedia"></div>
+    <div class="modal-body">
+      <button class="modal-close" id="modalClose" aria-label="Cerrar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <span class="product-badge" id="modalTag"></span>
+      <h2 id="modalTitle"></h2>
+      <p class="desc" id="modalDesc"></p>
+      <ul class="modal-specs">
+        <li><span>Subcategoría</span><span id="modalSub"></span></li>
+        <li><span>Disponibilidad</span><span>Por volumen mayorista</span></li>
+        <li><span>Ficha técnica</span><span>Disponible a solicitud</span></li>
+      </ul>
+      <a href="contacto.html" class="btn btn-primary btn-full">Solicitar cotización</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo footer-logo">
+          <span class="logo-mark">CJ</span>
+          <span class="logo-text">COIMPORT</span>
+        </a>
+        <p>Distribución mayorista de artículos para el hogar y el deporte en Colombia. Calidad en productos por un precio asequible.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram" class="social-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook" class="social-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 8h2V5h-2a4 4 0 00-4 4v2H9v3h2v7h3v-7h2.5l.5-3H14V9a1 1 0 011-1z" fill="currentColor"/></svg>
+          </a>
+          <a href="#" aria-label="WhatsApp" class="social-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 12a8 8 0 10-14.5 4.6L4 21l4.6-1.4A8 8 0 0020 12z" stroke="currentColor" stroke-width="1.6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <a href="index.html">Inicio</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="productos.html">Productos</a>
+        <a href="catalogo.html">Categorías</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Categorías</h4>
+        <a href="productos.html#hogar-cocina">CJ Housewares</a>
+        <a href="productos.html#patines-linea">Chicago Skates</a>
+        <a href="productos.html#deporte-implementos">Línea Deportiva</a>
+        <a href="distribuidores.html">Sé distribuidor</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <a href="mailto:cj.coimport@hotmail.com">cj.coimport@hotmail.com</a>
+        <a href="tel:+573142444580">(57) 314 244 4580</a>
+        <span>Bogotá, Colombia</span>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; <span id="year"></span> CJ Coimport S.A.S. Todos los derechos reservados.</p>
+      <div class="footer-legal">
+        <a href="#">Términos y condiciones</a>
+        <a href="#">Política de privacidad</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/573142444580" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Escríbenos por WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M20 12a8 8 0 10-14.5 4.6L4 21l4.6-1.4A8 8 0 0020 12z" stroke="white" stroke-width="1.7"/><path d="M8.5 9.5c0 3.5 2.5 6 6 6l.7-1.4-2-1-1 1c-1-.5-2-1.5-2.5-2.5l1-1-1-2z" fill="white"/></svg>
+</a>
+
+<button class="back-to-top" id="backToTop" aria-label="Volver arriba">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script src="script.js"></script>
+<script>
+/* ===================== LÓGICA DE PRODUCTOS (filtros, buscador, modal) ===================== */
+document.addEventListener('DOMContentLoaded', () => {
+  const grid = document.getElementById('catalogGrid');
+  const cards = grid ? Array.from(grid.querySelectorAll('.product-card')) : [];
+  const searchInput = document.getElementById('productSearch');
+  const chips = document.querySelectorAll('.filter-chip');
+  const resultsCount = document.getElementById('resultsCount');
+  const noResults = document.getElementById('noResults');
+  let activeFilter = 'todos';
+
+  function applyFilters() {
+    const query = (searchInput.value || '').trim().toLowerCase();
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const matchesCategory = activeFilter === 'todos' || card.dataset.category === activeFilter;
+      const matchesSearch = card.dataset.name.includes(query);
+      const visible = matchesCategory && matchesSearch;
+      card.classList.toggle('hidden', !visible);
+      if (visible) visibleCount++;
+    });
+
+    resultsCount.textContent = visibleCount;
+    noResults.classList.toggle('show', visibleCount === 0);
+  }
+
+  if (searchInput) searchInput.addEventListener('input', applyFilters);
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      activeFilter = chip.dataset.filter;
+      applyFilters();
+    });
+  });
+
+  applyFilters();
+
+  /* ===== Modal de detalle ===== */
+  const modal = document.getElementById('productModal');
+  const modalMedia = document.getElementById('modalMedia');
+  const modalTag = document.getElementById('modalTag');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDesc = document.getElementById('modalDesc');
+  const modalSub = document.getElementById('modalSub');
+  const modalClose = document.getElementById('modalClose');
+
+  cards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('.product-quote')) return; // let quote link work normally
+      const mediaEl = card.querySelector('.product-media');
+      modalMedia.style.background = getComputedStyle(mediaEl).backgroundImage !== 'none'
+        ? getComputedStyle(mediaEl).backgroundImage
+        : getComputedStyle(mediaEl).background;
+      modalMedia.className = 'modal-media ' + Array.from(mediaEl.classList).filter(c => c !== 'product-media').join(' ');
+      modalTag.textContent = card.dataset.tag;
+      modalTitle.textContent = card.querySelector('h3').textContent;
+      modalDesc.textContent = card.dataset.desc;
+      modalSub.textContent = card.dataset.sub;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  if (modalClose) modalClose.addEventListener('click', closeModal);
+  if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+});
+</script>
+</body>
+</html>

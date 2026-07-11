@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nosotros | CJ COIMPORT S.A.S.</title>
+<meta name="description" content="Conoce a CJ Coimport S.A.S., distribuidor mayorista de artículos para el hogar (CJ Housewares) y deporte (Chicago) en Colombia. Nuestra historia, misión y equipo.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23E31E24%22/><text x=%2250%22 y=%2268%22 font-size=%2258%22 font-family=%22Arial%22 font-weight=%22900%22 fill=%22white%22 text-anchor=%22middle%22>CJ</text></svg>">
+
+<link rel="stylesheet" href="style.css">
+<style>
+  /* ===== Estilos específicos de Nosotros ===== */
+  .page-hero {
+    background: var(--black); color: var(--white);
+    padding: 180px 0 90px; position: relative; overflow: hidden;
+  }
+  .page-hero::before {
+    content: ''; position: absolute; top: -30%; right: -10%; width: 55%; height: 90%;
+    background: radial-gradient(circle, rgba(227,30,36,.32), transparent 70%); filter: blur(60px);
+  }
+  .page-hero-inner { position: relative; z-index: 1; max-width: 720px; }
+  .page-breadcrumb { font-size: 13px; color: rgba(255,255,255,.5); margin-bottom: 18px; display: flex; gap: 8px; align-items: center; }
+  .page-breadcrumb a { color: rgba(255,255,255,.7); transition: color .2s; }
+  .page-breadcrumb a:hover { color: var(--white); }
+  .page-title { font-size: clamp(34px, 5vw, 56px); color: var(--white); margin-top: 6px; }
+  .page-lead { font-size: 17px; color: rgba(255,255,255,.68); margin-top: 20px; max-width: 560px; }
+
+  .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .mv-card {
+    padding: 40px; border-radius: var(--radius-lg); position: relative; overflow: hidden;
+  }
+  .mv-card.mission { background: var(--black); color: var(--white); }
+  .mv-card.vision { background: var(--gray-50); border: 1px solid var(--gray-100); }
+  .mv-icon {
+    width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px; background: var(--red); color: var(--white);
+  }
+  .mv-card.vision .mv-icon { background: rgba(227,30,36,.1); color: var(--red); }
+  .mv-card h3 { font-size: 22px; margin-bottom: 14px; }
+  .mv-card.mission h3 { color: var(--white); }
+  .mv-card p { font-size: 15px; line-height: 1.75; color: var(--gray-500); }
+  .mv-card.mission p { color: rgba(255,255,255,.72); }
+
+  .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .value-card { text-align: center; padding: 36px 24px; }
+  .value-number { font-family: var(--font-display); font-size: 46px; font-weight: 900; color: var(--gray-100); display: block; margin-bottom: 4px; }
+  .value-card h3 { font-size: 17px; margin-bottom: 10px; }
+  .value-card p { font-size: 13.5px; color: var(--gray-500); }
+
+  /* Línea de tiempo */
+  .timeline { position: relative; max-width: 780px; margin: 0 auto; }
+  .timeline::before { content: ''; position: absolute; top: 0; bottom: 0; left: 20px; width: 2px; background: var(--gray-100); }
+  .timeline-item { position: relative; padding-left: 60px; margin-bottom: 44px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot {
+    position: absolute; left: 11px; top: 4px; width: 18px; height: 18px; border-radius: 50%;
+    background: var(--red); border: 4px solid var(--white); box-shadow: 0 0 0 2px var(--gray-100);
+  }
+  .timeline-year { font-family: var(--font-display); font-weight: 800; font-size: 13px; color: var(--red); letter-spacing: .04em; text-transform: uppercase; }
+  .timeline-item h3 { font-size: 19px; margin: 6px 0 8px; }
+  .timeline-item p { font-size: 14.5px; color: var(--gray-500); max-width: 520px; }
+
+  /* Equipo */
+  .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+  .team-card { text-align: center; }
+  .team-photo {
+    width: 100%; aspect-ratio: 1; border-radius: var(--radius-md); margin-bottom: 18px;
+    background: linear-gradient(150deg, var(--gray-900), var(--red-dark));
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-weight: 800; font-size: 30px; color: rgba(255,255,255,.85);
+  }
+  .team-card h4 { font-size: 15.5px; margin-bottom: 4px; }
+  .team-card span { font-size: 13px; color: var(--gray-500); }
+
+  @media (max-width: 900px) {
+    .mv-grid { grid-template-columns: 1fr; }
+    .values-grid { grid-template-columns: 1fr 1fr; }
+    .team-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) {
+    .values-grid, .team-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="loader" id="loader">
+  <div class="loader-mark"><span class="loader-letter">C</span><span class="loader-letter">J</span></div>
+  <div class="loader-bar"><span></span></div>
+</div>
+
+<!-- ===================== NAVBAR ===================== -->
+<header class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-mark">CJ</span>
+      <span class="logo-text">COIMPORT</span>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html" class="nav-link">Inicio</a>
+      <a href="nosotros.html" class="nav-link active">Nosotros</a>
+
+      <div class="nav-dropdown">
+        <button class="nav-link nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+          Productos <svg class="chev" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <div class="mega-menu">
+          <div class="mega-col">
+            <span class="mega-title">CJ Housewares</span>
+            <a href="productos.html#hogar-cocina">Cocina y menaje</a>
+            <a href="productos.html#hogar-organizacion">Organización del hogar</a>
+            <a href="productos.html#hogar-plasticos">Plásticos y contenedores</a>
+            <a href="productos.html#hogar-electro">Pequeños electrodomésticos</a>
+          </div>
+          <div class="mega-col">
+            <span class="mega-title">Chicago Skates</span>
+            <a href="productos.html#patines-linea">Patines línea recreativa</a>
+            <a href="productos.html#patines-fitness">Patines fitness</a>
+            <a href="productos.html#patines-proteccion">Protecciones y accesorios</a>
+          </div>
+          <div class="mega-col">
+            <span class="mega-title">Línea Deportiva</span>
+            <a href="productos.html#deporte-implementos">Implementos deportivos</a>
+            <a href="productos.html#deporte-ropa">Indumentaria y calzado</a>
+            <a href="productos.html#deporte-outdoor">Recreación y outdoor</a>
+          </div>
+          <div class="mega-col mega-col-feature">
+            <span class="mega-title">Catálogo</span>
+            <p>Consulta nuestro catálogo completo con fichas técnicas y precios por volumen.</p>
+            <a href="catalogo.html" class="mega-cta">Ver catálogo completo →</a>
+          </div>
+        </div>
+      </div>
+
+      <a href="catalogo.html" class="nav-link">Categorías</a>
+      <a href="distribuidores.html" class="nav-link">Distribuidores</a>
+      <a href="blog.html" class="nav-link">Novedades</a>
+      <a href="contacto.html" class="nav-link">Contacto</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="contacto.html" class="btn btn-primary btn-sm">Solicitar cotización</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" class="mobile-link">Inicio</a>
+    <a href="nosotros.html" class="mobile-link">Nosotros</a>
+    <div class="mobile-accordion">
+      <button class="mobile-accordion-trigger">Productos <span>+</span></button>
+      <div class="mobile-accordion-panel">
+        <a href="productos.html#hogar-cocina">CJ Housewares</a>
+        <a href="productos.html#patines-linea">Chicago Skates</a>
+        <a href="productos.html#deporte-implementos">Línea Deportiva</a>
+      </div>
+    </div>
+    <a href="catalogo.html" class="mobile-link">Categorías</a>
+    <a href="distribuidores.html" class="mobile-link">Distribuidores</a>
+    <a href="blog.html" class="mobile-link">Novedades</a>
+    <a href="contacto.html" class="mobile-link">Contacto</a>
+    <a href="contacto.html" class="btn btn-primary" style="margin-top:20px;width:100%;text-align:center;">Solicitar cotización</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ===================== PAGE HERO ===================== -->
+<section class="page-hero">
+  <div class="container page-hero-inner" data-reveal>
+    <div class="page-breadcrumb"><a href="index.html">Inicio</a> / <span>Nosotros</span></div>
+    <h1 class="page-title">Un solo estándar de calidad, dos categorías de confianza.</h1>
+    <p class="page-lead">CJ Coimport S.A.S. distribuye al por mayor artículos para el hogar y el deporte en Colombia, con la propuesta de siempre: calidad en productos por un precio asequible.</p>
+  </div>
+</section>
+
+<!-- ===================== HISTORIA ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Nuestra historia</span>
+      <h2 class="section-title">Del punto de venta a la distribución nacional</h2>
+      <p class="section-desc">Construimos CJ Coimport sobre una idea simple: un comercio o distribuidor no necesita un catálogo interminable, necesita el catálogo correcto, con calidad consistente y precio justo.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item" data-reveal>
+        <span class="timeline-dot"></span>
+        <span class="timeline-year">Origen</span>
+        <h3>Nace CJ Coimport S.A.S.</h3>
+        <p>La compañía inicia operaciones en Bogotá enfocada en la venta al por mayor de artículos de hogar y deporte, atendiendo relaciones comerciales directas y presenciales con comercios de la ciudad.</p>
+      </div>
+      <div class="timeline-item" data-reveal data-reveal-delay="100">
+        <span class="timeline-dot"></span>
+        <span class="timeline-year">Consolidación</span>
+        <h3>Se estructura la marca CJ Housewares</h3>
+        <p>La línea de hogar toma identidad propia bajo CJ Housewares, agrupando cocina, organización y menaje en un catálogo pensado para alta rotación en punto de venta.</p>
+      </div>
+      <div class="timeline-item" data-reveal data-reveal-delay="200">
+        <span class="timeline-dot"></span>
+        <span class="timeline-year">Expansión</span>
+        <h3>Llega Chicago al portafolio deportivo</h3>
+        <p>Se incorpora la marca Chicago para patines, junto con una Línea Deportiva de implementos e indumentaria, ampliando la propuesta hacia distribuidores especializados en deporte.</p>
+      </div>
+      <div class="timeline-item" data-reveal data-reveal-delay="300">
+        <span class="timeline-dot"></span>
+        <span class="timeline-year">Hoy</span>
+        <h3>Un catálogo enfocado, con presencia digital</h3>
+        <p>Damos el salto al mundo digital para acercarnos a más distribuidores y comercios minoristas en todo el país, manteniendo el mismo trato directo que nos ha caracterizado desde el inicio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MISIÓN / VISIÓN ===================== -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="mv-grid">
+      <div class="mv-card mission" data-reveal>
+        <div class="mv-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Misión</h3>
+        <p>Distribuir artículos para el hogar y el deporte con calidad verificable y precios accesibles, ofreciendo a distribuidores mayoristas y comercios minoristas un respaldo comercial directo y confiable para hacer crecer su negocio.</p>
+      </div>
+      <div class="mv-card vision" data-reveal data-reveal-delay="100">
+        <div class="mv-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.7"/><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z" stroke="currentColor" stroke-width="1.7"/></svg>
+        </div>
+        <h3>Visión</h3>
+        <p>Ser reconocidos en Colombia como el distribuidor mayorista de referencia en hogar y deporte, consolidando a CJ Housewares y Chicago como marcas de confianza para comercios de todo el país.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VALORES ===================== -->
+<section class="section benefits">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Lo que nos guía</span>
+      <h2 class="section-title">Nuestros valores</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card" data-reveal>
+        <span class="value-number">01</span>
+        <h3>Calidad real</h3>
+        <p>Cada referencia pasa por verificación antes de llegar a tu negocio.</p>
+      </div>
+      <div class="value-card" data-reveal data-reveal-delay="80">
+        <span class="value-number">02</span>
+        <h3>Precio justo</h3>
+        <p>Escalas de precio pensadas para que el mayorista y el minorista ganen margen.</p>
+      </div>
+      <div class="value-card" data-reveal data-reveal-delay="160">
+        <span class="value-number">03</span>
+        <h3>Trato directo</h3>
+        <p>Relación comercial cercana, sin intermediarios ni letra pequeña.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EQUIPO ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Nuestro equipo</span>
+      <h2 class="section-title">Las personas detrás de CJ Coimport</h2>
+      <p class="section-desc">Un equipo pequeño y especializado, enfocado en dar respuesta comercial rápida a cada distribuidor y comercio.</p>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-card" data-reveal>
+        <div class="team-photo">CG</div>
+        <h4>César A. González</h4>
+        <span>Dirección general</span>
+      </div>
+      <div class="team-card" data-reveal data-reveal-delay="80">
+        <div class="team-photo">EC</div>
+        <h4>Equipo comercial</h4>
+        <span>Atención a distribuidores</span>
+      </div>
+      <div class="team-card" data-reveal data-reveal-delay="160">
+        <div class="team-photo">EL</div>
+        <h4>Equipo logístico</h4>
+        <span>Despachos y bodega</span>
+      </div>
+      <div class="team-card" data-reveal data-reveal-delay="240">
+        <div class="team-photo">MK</div>
+        <h4>Marketing digital</h4>
+        <span>Marca y comunicación</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA FINAL ===================== -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="category-card cat-hogar" style="min-height:auto;" data-reveal>
+      <div class="category-card-inner" style="align-items:center;flex-direction:row;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+        <div>
+          <h3 style="margin-bottom:6px;">¿Quieres trabajar con nosotros?</h3>
+          <p style="max-width:420px;margin-bottom:0;">Escríbenos y cuéntanos qué categoría te interesa distribuir.</p>
+        </div>
+        <a href="contacto.html" class="btn btn-primary btn-lg">Contactar ahora</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo footer-logo">
+          <span class="logo-mark">CJ</span>
+          <span class="logo-text">COIMPORT</span>
+        </a>
+        <p>Distribución mayorista de artículos para el hogar y el deporte en Colombia. Calidad en productos por un precio asequible.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram" class="social-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook" class="social-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 8h2V5h-2a4 4 0 00-4 4v2H9v3h2v7h3v-7h2.5l.5-3H14V9a1 1 0 011-1z" fill="currentColor"/></svg>
+          </a>
+          <a href="#" aria-label="WhatsApp" class="social-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 12a8 8 0 10-14.5 4.6L4 21l4.6-1.4A8 8 0 0020 12z" stroke="currentColor" stroke-width="1.6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <a href="index.html">Inicio</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="productos.html">Productos</a>
+        <a href="catalogo.html">Categorías</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Categorías</h4>
+        <a href="productos.html#hogar-cocina">CJ Housewares</a>
+        <a href="productos.html#patines-linea">Chicago Skates</a>
+        <a href="productos.html#deporte-implementos">Línea Deportiva</a>
+        <a href="distribuidores.html">Sé distribuidor</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <a href="mailto:cj.coimport@hotmail.com">cj.coimport@hotmail.com</a>
+        <a href="tel:+573142444580">(57) 314 244 4580</a>
+        <span>Bogotá, Colombia</span>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; <span id="year"></span> CJ Coimport S.A.S. Todos los derechos reservados.</p>
+      <div class="footer-legal">
+        <a href="#">Términos y condiciones</a>
+        <a href="#">Política de privacidad</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/573142444580" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Escríbenos por WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M20 12a8 8 0 10-14.5 4.6L4 21l4.6-1.4A8 8 0 0020 12z" stroke="white" stroke-width="1.7"/><path d="M8.5 9.5c0 3.5 2.5 6 6 6l.7-1.4-2-1-1 1c-1-.5-2-1.5-2.5-2.5l1-1-1-2z" fill="white"/></svg>
+</a>
+
+<button class="back-to-top" id="backToTop" aria-label="Volver arriba">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script src="script.js"></script>
+</body>
+</html>

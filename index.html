@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CJ COIMPORT S.A.S. | Distribución Mayorista de Hogar y Deportes</title>
+<meta name="description" content="CJ COIMPORT S.A.S. — Distribuidor mayorista en Colombia de artículos para el hogar (CJ Housewares) y artículos deportivos y patines (Chicago). Calidad al mejor precio para distribuidores y comercios.">
+<meta name="keywords" content="mayorista hogar Colombia, distribuidor patines Colombia, CJ Housewares, patines Chicago, artículos deportivos al por mayor, CJ Coimport Bogotá">
+<meta property="og:title" content="CJ COIMPORT S.A.S. | Hogar & Deportes al por mayor">
+<meta property="og:description" content="Calidad en productos por un precio asequible. Distribución mayorista de Hogar y Deportes en Colombia.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23E31E24%22/><text x=%2250%22 y=%2268%22 font-size=%2258%22 font-family=%22Arial%22 font-weight=%22900%22 fill=%22white%22 text-anchor=%22middle%22>CJ</text></svg>">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===================== LOADER ===================== -->
+<div class="loader" id="loader">
+  <div class="loader-mark">
+    <span class="loader-letter">C</span><span class="loader-letter">J</span>
+  </div>
+  <div class="loader-bar"><span></span></div>
+</div>
+
+<!-- ===================== NAVBAR ===================== -->
+<header class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-mark">CJ</span>
+      <span class="logo-text">COIMPORT</span>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html" class="nav-link active">Inicio</a>
+      <a href="nosotros.html" class="nav-link">Nosotros</a>
+
+      <div class="nav-dropdown">
+        <button class="nav-link nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+          Productos <svg class="chev" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <div class="mega-menu">
+          <div class="mega-col">
+            <span class="mega-title">CJ Housewares</span>
+            <a href="productos.html#hogar-cocina">Cocina y menaje</a>
+            <a href="productos.html#hogar-organizacion">Organización del hogar</a>
+            <a href="productos.html#hogar-plasticos">Plásticos y contenedores</a>
+            <a href="productos.html#hogar-electro">Pequeños electrodomésticos</a>
+          </div>
+          <div class="mega-col">
+            <span class="mega-title">Chicago Skates</span>
+            <a href="productos.html#patines-linea">Patines línea recreativa</a>
+            <a href="productos.html#patines-fitness">Patines fitness</a>
+            <a href="productos.html#patines-proteccion">Protecciones y accesorios</a>
+          </div>
+          <div class="mega-col">
+            <span class="mega-title">Línea Deportiva</span>
+            <a href="productos.html#deporte-implementos">Implementos deportivos</a>
+            <a href="productos.html#deporte-ropa">Indumentaria y calzado</a>
+            <a href="productos.html#deporte-outdoor">Recreación y outdoor</a>
+          </div>
+          <div class="mega-col mega-col-feature">
+            <span class="mega-title">Catálogo</span>
+            <p>Consulta nuestro catálogo completo con fichas técnicas y precios por volumen.</p>
+            <a href="catalogo.html" class="mega-cta">Ver catálogo completo →</a>
+          </div>
+        </div>
+      </div>
+
+      <a href="catalogo.html" class="nav-link">Categorías</a>
+      <a href="distribuidores.html" class="nav-link">Distribuidores</a>
+      <a href="blog.html" class="nav-link">Novedades</a>
+      <a href="contacto.html" class="nav-link">Contacto</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="contacto.html" class="btn btn-primary btn-sm">Solicitar cotización</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" class="mobile-link">Inicio</a>
+    <a href="nosotros.html" class="mobile-link">Nosotros</a>
+    <div class="mobile-accordion">
+      <button class="mobile-accordion-trigger">Productos <span>+</span></button>
+      <div class="mobile-accordion-panel">
+        <a href="productos.html#hogar-cocina">CJ Housewares</a>
+        <a href="productos.html#patines-linea">Chicago Skates</a>
+        <a href="productos.html#deporte-implementos">Línea Deportiva</a>
+      </div>
+    </div>
+    <a href="catalogo.html" class="mobile-link">Categorías</a>
+    <a href="distribuidores.html" class="mobile-link">Distribuidores</a>
+    <a href="blog.html" class="mobile-link">Novedades</a>
+    <a href="contacto.html" class="mobile-link">Contacto</a>
+    <a href="contacto.html" class="btn btn-primary" style="margin-top:20px;width:100%;text-align:center;">Solicitar cotización</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+  </div>
+
+  <div class="hero-container">
+    <div class="hero-content" data-reveal>
+      <span class="eyebrow">Mayoristas · Bogotá, Colombia</span>
+      <h1 class="hero-title">
+        Dos mundos.<br>
+        <span class="text-outline">Un mismo</span><br>
+        estándar de calidad.
+      </h1>
+      <p class="hero-subtitle">
+        En CJ Coimport distribuimos artículos para el hogar con <strong>CJ Housewares</strong>
+        y patines y deporte con <strong>Chicago</strong>. Precio justo, calidad real,
+        respaldo para tu negocio.
+      </p>
+      <div class="hero-actions">
+        <a href="contacto.html" class="btn btn-primary btn-lg">
+          Solicitar información y precios
+          <svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="catalogo.html" class="btn btn-ghost btn-lg">Ver categorías</a>
+      </div>
+
+      <div class="hero-mini-stats">
+        <div class="mini-stat">
+          <span class="mini-stat-number" data-counter data-target="2">0</span>
+          <span class="mini-stat-label">Líneas de producto</span>
+        </div>
+        <div class="mini-stat">
+          <span class="mini-stat-number" data-counter data-target="100">0</span><span class="mini-stat-suffix">%</span>
+          <span class="mini-stat-label">Enfoque mayorista</span>
+        </div>
+        <div class="mini-stat">
+          <span class="mini-stat-number" data-counter data-target="1">0</span>
+          <span class="mini-stat-label">Precio, un solo estándar</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual" data-reveal data-reveal-delay="150">
+      <div class="hero-slider" id="heroSlider">
+        <div class="hero-slide active">
+          <div class="hero-card-tag">CJ Housewares</div>
+          <div class="hero-card-visual hw"></div>
+          <p class="hero-card-caption">Cocina, organización y menaje para el hogar</p>
+        </div>
+        <div class="hero-slide">
+          <div class="hero-card-tag">Chicago Skates</div>
+          <div class="hero-card-visual sk"></div>
+          <p class="hero-card-caption">Patines recreativos y fitness</p>
+        </div>
+        <div class="hero-slide">
+          <div class="hero-card-tag">Línea Deportiva</div>
+          <div class="hero-card-visual dp"></div>
+          <p class="hero-card-caption">Implementos e indumentaria deportiva</p>
+        </div>
+      </div>
+      <div class="hero-slider-dots" id="heroDots"></div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator"><span></span></div>
+</section>
+
+<!-- ===================== MARCAS ===================== -->
+<section class="brands-strip" data-reveal>
+  <div class="container">
+    <p class="brands-strip-label">Marcas que representamos</p>
+    <div class="brands-strip-row">
+      <span class="brand-chip">CJ HOUSEWARES</span>
+      <span class="brand-chip">CHICAGO SKATES</span>
+      <span class="brand-chip">CJ LÍNEA DEPORTIVA</span>
+      <span class="brand-chip">CJ COIMPORT</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CATEGORÍAS ===================== -->
+<section class="section categories" id="categorias">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Catálogo</span>
+      <h2 class="section-title">Un catálogo robusto,<br>sin dispersarse.</h2>
+      <p class="section-desc">Trabajamos dos categorías con foco: hogar y deporte. Todo con el mismo criterio de calidad y precio competitivo.</p>
+    </div>
+
+    <div class="category-grid">
+      <a href="productos.html#hogar-cocina" class="category-card cat-hogar" data-reveal>
+        <div class="category-card-inner">
+          <span class="category-number">01</span>
+          <h3>Hogar</h3>
+          <p>CJ Housewares — cocina, organización, plásticos y pequeños electrodomésticos.</p>
+          <span class="category-link">Explorar categoría <svg width="14" height="14" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+      <a href="productos.html#patines-linea" class="category-card cat-patines" data-reveal data-reveal-delay="100">
+        <div class="category-card-inner">
+          <span class="category-number">02</span>
+          <h3>Patines</h3>
+          <p>Chicago — patines de línea recreativa, fitness y protecciones.</p>
+          <span class="category-link">Explorar categoría <svg width="14" height="14" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+      <a href="productos.html#deporte-implementos" class="category-card cat-deporte" data-reveal data-reveal-delay="200">
+        <div class="category-card-inner">
+          <span class="category-number">03</span>
+          <h3>Deportes</h3>
+          <p>Línea Deportiva — implementos, indumentaria y recreación outdoor.</p>
+          <span class="category-link">Explorar categoría <svg width="14" height="14" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PRODUCTOS DESTACADOS ===================== -->
+<section class="section featured" id="destacados">
+  <div class="container">
+    <div class="section-head split" data-reveal>
+      <div>
+        <span class="eyebrow">Selección</span>
+        <h2 class="section-title">Productos destacados</h2>
+      </div>
+      <a href="productos.html" class="link-arrow">Ver todo el catálogo →</a>
+    </div>
+
+    <div class="product-grid">
+
+      <article class="product-card" data-reveal>
+        <div class="product-media hw-1">
+          <span class="product-badge">CJ Housewares</span>
+        </div>
+        <div class="product-body">
+          <h3>Set de organizadores modulares</h3>
+          <p>Contenedores apilables para cocina y despensa, alta resistencia.</p>
+          <div class="product-footer">
+            <span class="product-tag">Por mayor</span>
+            <a href="contacto.html" class="product-quote">Cotizar →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-reveal data-reveal-delay="100">
+        <div class="product-media hw-2">
+          <span class="product-badge">CJ Housewares</span>
+        </div>
+        <div class="product-body">
+          <h3>Línea de menaje de cocina</h3>
+          <p>Utensilios y ollería de uso diario, diseñados para alta rotación en punto de venta.</p>
+          <div class="product-footer">
+            <span class="product-tag">Por mayor</span>
+            <a href="contacto.html" class="product-quote">Cotizar →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-reveal>
+        <div class="product-media sk-1">
+          <span class="product-badge">Chicago</span>
+        </div>
+        <div class="product-body">
+          <h3>Patines línea recreativa</h3>
+          <p>Estructura reforzada y ruedas de alto rendimiento para uso urbano.</p>
+          <div class="product-footer">
+            <span class="product-tag">Por mayor</span>
+            <a href="contacto.html" class="product-quote">Cotizar →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-reveal data-reveal-delay="100">
+        <div class="product-media dp-1">
+          <span class="product-badge">Línea Deportiva</span>
+        </div>
+        <div class="product-body">
+          <h3>Kit de implementos multideporte</h3>
+          <p>Balones, cuerdas y accesorios para entrenamiento funcional.</p>
+          <div class="product-footer">
+            <span class="product-tag">Por mayor</span>
+            <a href="contacto.html" class="product-quote">Cotizar →</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BENEFICIOS ===================== -->
+<section class="section benefits" id="beneficios">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Por qué CJ Coimport</span>
+      <h2 class="section-title">Calidad en productos<br>por un precio asequible.</h2>
+    </div>
+
+    <div class="benefits-grid">
+      <div class="benefit-card" data-reveal>
+        <div class="benefit-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 12l6 6L20 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Calidad verificada</h3>
+        <p>Productos seleccionados con control de calidad antes de cada despacho.</p>
+      </div>
+      <div class="benefit-card" data-reveal data-reveal-delay="80">
+        <div class="benefit-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Precio mayorista</h3>
+        <p>Escalas de precio por volumen pensadas para distribuidores y comercios.</p>
+      </div>
+      <div class="benefit-card" data-reveal data-reveal-delay="160">
+        <div class="benefit-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="13" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2" stroke="currentColor" stroke-width="2"/></svg>
+        </div>
+        <h3>Catálogo enfocado</h3>
+        <p>Sin dispersión: hogar y deporte, con referencias que realmente rotan.</p>
+      </div>
+      <div class="benefit-card" data-reveal data-reveal-delay="240">
+        <div class="benefit-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Atención directa</h3>
+        <p>Acompañamiento comercial personalizado para tu negocio, sin intermediarios.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROCESO ===================== -->
+<section class="section process" id="proceso">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Cómo comprar</span>
+      <h2 class="section-title">De la consulta al despacho</h2>
+    </div>
+
+    <div class="process-track">
+      <div class="process-step" data-reveal>
+        <span class="process-num">01</span>
+        <h3>Cuéntanos qué necesitas</h3>
+        <p>Escríbenos por el formulario o WhatsApp indicando categoría y cantidades aproximadas.</p>
+      </div>
+      <div class="process-step" data-reveal data-reveal-delay="100">
+        <span class="process-num">02</span>
+        <h3>Recibe tu cotización</h3>
+        <p>Te enviamos precios por volumen, fichas técnicas y disponibilidad.</p>
+      </div>
+      <div class="process-step" data-reveal data-reveal-delay="200">
+        <span class="process-num">03</span>
+        <h3>Confirmamos el pedido</h3>
+        <p>Acordamos condiciones comerciales y forma de despacho para tu negocio.</p>
+      </div>
+      <div class="process-step" data-reveal data-reveal-delay="300">
+        <span class="process-num">04</span>
+        <h3>Recibes tu mercancía</h3>
+        <p>Coordinamos entrega y seguimiento postventa a tu punto de distribución.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ESTADÍSTICAS ===================== -->
+<section class="section stats" id="estadisticas">
+  <div class="stats-bg"></div>
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item" data-reveal>
+        <span class="stat-number"><span data-counter data-target="2">0</span></span>
+        <span class="stat-label">Marcas propias</span>
+      </div>
+      <div class="stat-item" data-reveal data-reveal-delay="80">
+        <span class="stat-number"><span data-counter data-target="3">0</span></span>
+        <span class="stat-label">Líneas de categoría</span>
+      </div>
+      <div class="stat-item" data-reveal data-reveal-delay="160">
+        <span class="stat-number"><span data-counter data-target="100">0</span>%</span>
+        <span class="stat-label">Foco en distribución mayorista</span>
+      </div>
+      <div class="stat-item" data-reveal data-reveal-delay="240">
+        <span class="stat-number"><span data-counter data-target="1">0</span></span>
+        <span class="stat-label">Bogotá, sede central</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIOS ===================== -->
+<section class="section testimonials" id="testimonios">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Distribuidores y comercios</span>
+      <h2 class="section-title">Lo que dicen quienes ya trabajan con nosotros</h2>
+    </div>
+
+    <div class="testimonial-slider">
+      <div class="testimonial-track" id="testimonialTrack">
+        <div class="testimonial-card active">
+          <p class="testimonial-quote">“El precio por volumen y el respaldo en calidad nos permitió mover más referencias de hogar en el punto sin bajar el margen.”</p>
+          <div class="testimonial-author">
+            <span class="author-name">Gerente de compras</span>
+            <span class="author-role">Comercio minorista, Bogotá</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-quote">“Empezamos con Chicago para probar rotación de patines y el respaldo en garantía fue clave para seguir pidiendo cada mes.”</p>
+          <div class="testimonial-author">
+            <span class="author-name">Encargado de compras</span>
+            <span class="author-role">Distribuidora regional de deporte</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-quote">“Catálogo enfocado, atención directa y tiempos claros. Justo lo que buscábamos en un proveedor mayorista.”</p>
+          <div class="testimonial-author">
+            <span class="author-name">Propietario</span>
+            <span class="author-role">Comercio de hogar, zona centro</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-dots" id="testimonialDots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="section faq" id="faq">
+  <div class="container container-narrow">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Preguntas frecuentes</span>
+      <h2 class="section-title">Resolvemos tus dudas</h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item" data-reveal>
+        <button class="faq-question">
+          ¿Venden solo a mayoristas o también a comercios minoristas?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><p>Atendemos principalmente distribuidores mayoristas y locales comerciales minoristas. Escríbenos con tu volumen aproximado y te indicamos las condiciones.</p></div>
+      </div>
+      <div class="faq-item" data-reveal>
+        <button class="faq-question">
+          ¿Cuáles son las cantidades mínimas de pedido?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><p>Varían según la línea de producto (hogar, patines o deporte). Un asesor te confirmará los mínimos exactos al solicitar la cotización.</p></div>
+      </div>
+      <div class="faq-item" data-reveal>
+        <button class="faq-question">
+          ¿Tienen catálogo con fichas técnicas y precios?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><p>Sí, contamos con catálogo de producto. Solicítalo desde el formulario de contacto y te lo enviamos junto con la cotización.</p></div>
+      </div>
+      <div class="faq-item" data-reveal>
+        <button class="faq-question">
+          ¿En qué ciudades hacen despachos?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><p>Operamos desde Bogotá y coordinamos despachos a nivel nacional según el destino y el volumen del pedido.</p></div>
+      </div>
+      <div class="faq-item" data-reveal>
+        <button class="faq-question">
+          ¿Cómo me convierto en distribuidor Chicago o CJ Housewares?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><p>Cuéntanos sobre tu negocio a través del formulario de contacto o la página de distribuidores y evaluamos la alianza comercial contigo.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA + FORMULARIO ===================== -->
+<section class="section contact-cta" id="contacto-form">
+  <div class="container">
+    <div class="contact-cta-grid">
+      <div class="contact-cta-info" data-reveal>
+        <span class="eyebrow eyebrow-light">Hablemos</span>
+        <h2 class="section-title text-white">Solicita información<br>y precios sin compromiso</h2>
+        <p class="section-desc text-muted-light">Cuéntanos qué categoría te interesa y un asesor te contactará con precios por volumen.</p>
+        <div class="contact-info-list">
+          <a href="mailto:cj.coimport@hotmail.com" class="contact-info-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 6h18v12H3z" stroke="currentColor" stroke-width="1.6"/><path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="1.6"/></svg>
+            cj.coimport@hotmail.com
+          </a>
+          <a href="tel:+573142444580" class="contact-info-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 006 6L15 14l5 2v4a2 2 0 01-2 2C9.5 22 2 14.5 2 6a2 2 0 012-2z" stroke="currentColor" stroke-width="1.6"/></svg>
+            (57) 314 244 4580
+          </a>
+          <span class="contact-info-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.6"/></svg>
+            Bogotá, Colombia
+          </span>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contactForm" data-reveal data-reveal-delay="120" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cf-name">Nombre completo *</label>
+            <input type="text" id="cf-name" name="name" placeholder="Tu nombre">
+            <span class="form-error" id="err-name"></span>
+          </div>
+          <div class="form-group">
+            <label for="cf-company">Empresa / Negocio</label>
+            <input type="text" id="cf-company" name="company" placeholder="Nombre de tu negocio">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cf-email">Correo electrónico *</label>
+            <input type="email" id="cf-email" name="email" placeholder="tucorreo@ejemplo.com">
+            <span class="form-error" id="err-email"></span>
+          </div>
+          <div class="form-group">
+            <label for="cf-phone">Teléfono *</label>
+            <input type="tel" id="cf-phone" name="phone" placeholder="300 000 0000">
+            <span class="form-error" id="err-phone"></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="cf-category">Categoría de interés *</label>
+          <select id="cf-category" name="category">
+            <option value="">Selecciona una categoría</option>
+            <option value="hogar">CJ Housewares — Hogar</option>
+            <option value="patines">Chicago — Patines</option>
+            <option value="deporte">Línea Deportiva</option>
+            <option value="varios">Varias categorías</option>
+          </select>
+          <span class="form-error" id="err-category"></span>
+        </div>
+        <div class="form-group">
+          <label for="cf-message">Mensaje *</label>
+          <textarea id="cf-message" name="message" rows="4" placeholder="Cuéntanos qué necesitas, cantidades aproximadas, ciudad de despacho..."></textarea>
+          <span class="form-error" id="err-message"></span>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg btn-full">
+          <span class="btn-text">Enviar solicitud</span>
+        </button>
+        <div class="form-success" id="formSuccess">
+          ✓ Solicitud enviada. Un asesor te contactará pronto.
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo footer-logo">
+          <span class="logo-mark">CJ</span>
+          <span class="logo-text">COIMPORT</span>
+        </a>
+        <p>Distribución mayorista de artículos para el hogar y el deporte en Colombia. Calidad en productos por un precio asequible.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram" class="social-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook" class="social-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 8h2V5h-2a4 4 0 00-4 4v2H9v3h2v7h3v-7h2.5l.5-3H14V9a1 1 0 011-1z" fill="currentColor"/></svg>
+          </a>
+          <a href="#" aria-label="WhatsApp" class="social-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 12a8 8 0 10-14.5 4.6L4 21l4.6-1.4A8 8 0 0020 12z" stroke="currentColor" stroke-width="1.6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <a href="index.html">Inicio</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="productos.html">Productos</a>
+        <a href="catalogo.html">Categorías</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Categorías</h4>
+        <a href="productos.html#hogar-cocina">CJ Housewares</a>
+        <a href="productos.html#patines-linea">Chicago Skates</a>
+        <a href="productos.html#deporte-implementos">Línea Deportiva</a>
+        <a href="distribuidores.html">Sé distribuidor</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <a href="mailto:cj.coimport@hotmail.com">cj.coimport@hotmail.com</a>
+        <a href="tel:+573142444580">(57) 314 244 4580</a>
+        <span>Bogotá, Colombia</span>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; <span id="year"></span> CJ Coimport S.A.S. Todos los derechos reservados.</p>
+      <div class="footer-legal">
+        <a href="#">Términos y condiciones</a>
+        <a href="#">Política de privacidad</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== FLOTANTES ===================== -->
+<a href="https://wa.me/573142444580" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Escríbenos por WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M20 12a8 8 0 10-14.5 4.6L4 21l4.6-1.4A8 8 0 0020 12z" stroke="white" stroke-width="1.7"/><path d="M8.5 9.5c0 3.5 2.5 6 6 6l.7-1.4-2-1-1 1c-1-.5-2-1.5-2.5-2.5l1-1-1-2z" fill="white"/></svg>
+</a>
+
+<button class="back-to-top" id="backToTop" aria-label="Volver arriba">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script src="script.js"></script>
+</body>
+</html>
