@@ -3,171 +3,534 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CJ Coimport | Catálogo Premium</title>
-<meta name="description" content="Catálogo CJ Coimport: hogar, juguetería y deportes.">
+<title>CJ Coimport | Catálogo mayorista</title>
+<meta name="description" content="Catálogo mayorista CJ Coimport: deportes, juguetería y hogar. Arma tu cotización y envíala por WhatsApp.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
+/* Catálogo B2B con profundidad: portada tinta + brillo violeta, paneles de categoría en color, fichas blancas elevadas */
 :root{
- --purple:#7c2cff;--purple2:#a855f7;--ink:#17131f;--muted:#6d6875;--bg:#f7f5fb;--white:#fff;
- --red:#ef3340;--aqua:#18c7b7;--blue:#2477e8;--line:#e9e5ef;
- --shadow:0 18px 50px rgba(36,22,62,.10);--radius:22px;
+ --ink:#120f1c;--ink-2:#3b3647;--muted:#6f6a7a;--line:#ebe8f0;--line-2:#dad6e1;
+ --bg:#f4f3f7;--surface:#fff;--soft:#f3f1f7;
+ --brand:#6d28d9;--brand-2:#5b21b6;--brand-3:#a855f7;--brand-soft:#f1eafe;
+ --wa:#22b35e;--wa-2:#1a944d;
+ --dep:#e0393e;--dep-2:#a8192a;--jug:#10a594;--jug-2:#0a6c66;--hog:#2f6fe0;--hog-2:#1b3f9e;
+ --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+ --body:"Figtree","Segoe UI",Arial,sans-serif;
+ --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+ --r:18px;
+ --sh-1:0 1px 2px rgba(18,15,28,.04),0 4px 14px rgba(18,15,28,.06);
+ --sh-2:0 2px 6px rgba(18,15,28,.06),0 22px 48px rgba(46,20,90,.14);
 }
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"DM Sans",sans-serif;background:var(--bg);color:var(--ink)}
-button,input{font:inherit}button{cursor:pointer;border:0}a{text-decoration:none;color:inherit}
-.container{width:min(1240px,calc(100% - 40px));margin:auto}
-.topbar{background:#21142e;color:#fff;font-size:12px;padding:9px 0}.topbar .container{display:flex;justify-content:space-between;gap:20px}
-.header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
-.header-main{height:78px;display:flex;align-items:center;gap:28px}.logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.5px}.logo-mark{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,var(--purple),#c026d3);color:#fff;display:grid;place-items:center;font-family:Manrope;font-weight:800}.logo span:last-child{font-family:Manrope;font-size:18px}
-.search{flex:1;position:relative}.search input{width:100%;height:46px;border:1px solid var(--line);border-radius:24px;background:#f8f7fa;padding:0 50px 0 18px;outline:none}.search input:focus{border-color:var(--purple);background:#fff}.search button{position:absolute;right:5px;top:5px;width:36px;height:36px;border-radius:50%;background:var(--purple);color:#fff}
-.nav-actions{display:flex;gap:10px;align-items:center}.outline{border:1px solid var(--line);background:#fff;border-radius:22px;padding:11px 16px;font-weight:700}.primary{background:var(--purple);color:#fff;border-radius:22px;padding:12px 18px;font-weight:700;box-shadow:0 8px 22px rgba(124,44,255,.25)}
-.nav{border-top:1px solid #f0edf4}.nav .container{display:flex;gap:28px;height:45px;align-items:center}.nav a{font-weight:700;font-size:13px}.nav a:hover{color:var(--purple)}
-.hero{padding:38px 0 22px}.hero-box{min-height:390px;border-radius:30px;overflow:hidden;position:relative;background:linear-gradient(105deg,#29113f,#7c2cff 52%,#bd4cff);color:#fff;display:flex;align-items:center;padding:55px}.hero-box:after{content:"";position:absolute;right:-80px;top:-100px;width:520px;height:520px;border-radius:50%;background:rgba(255,255,255,.12);filter:blur(2px)}.hero-content{position:relative;z-index:2;max-width:590px}.eyebrow{display:inline-flex;padding:8px 12px;border-radius:30px;background:rgba(255,255,255,.14);font-weight:700;font-size:12px;margin-bottom:18px}.hero h1{font-family:Manrope;font-size:clamp(36px,5vw,62px);line-height:1.02;margin:0 0 18px}.hero p{font-size:17px;line-height:1.65;color:#f1eafa;max-width:530px}.hero-buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}.hero-buttons a{padding:13px 20px;border-radius:24px;font-weight:800}.hero-buttons .light{background:#fff;color:#5b20bf}.hero-buttons .ghost{border:1px solid rgba(255,255,255,.4);color:#fff}
-.hero-art{position:absolute;right:50px;bottom:0;width:430px;height:310px;z-index:1}.orb{position:absolute;border-radius:50%;background:#fff;opacity:.12}.orb.one{width:240px;height:240px;right:90px;top:20px}.orb.two{width:120px;height:120px;right:20px;bottom:20px}.hero-card{position:absolute;background:#fff;color:var(--ink);border-radius:24px;box-shadow:0 25px 60px rgba(0,0,0,.25);padding:16px;width:220px}.hero-card img{width:100%;height:130px;object-fit:cover;border-radius:16px}.hero-card strong{display:block;margin-top:10px}.hero-card small{color:var(--muted)}.hero-card.a{right:20px;top:25px;transform:rotate(5deg)}.hero-card.b{left:15px;bottom:8px;transform:rotate(-5deg);width:190px}.hero-card.b img{height:105px}
-.section{padding:28px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:18px}.section-head h2{font-family:Manrope;font-size:30px;margin:0}.section-head p{color:var(--muted);margin:7px 0 0}.see{color:var(--purple);font-weight:800;font-size:14px}
-.category-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.cat{border-radius:24px;padding:26px;min-height:180px;position:relative;overflow:hidden;color:#fff;transition:.25s}.cat:hover{transform:translateY(-4px);box-shadow:var(--shadow)}.cat.red{background:linear-gradient(135deg,#cf1725,#ff5360)}.cat.aqua{background:linear-gradient(135deg,#079f94,#38dfd0)}.cat.blue{background:linear-gradient(135deg,#1761c7,#4e9cff)}.cat h3{font-family:Manrope;font-size:27px;margin:0 0 8px}.cat p{max-width:310px;line-height:1.5;margin:0;color:rgba(255,255,255,.9)}.cat-icon{position:absolute;right:20px;bottom:15px;font-size:62px;opacity:.28}.subcats{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}.subcats span{font-size:11px;padding:6px 9px;border-radius:12px;background:rgba(255,255,255,.17)}
-.filters{background:#fff;border:1px solid var(--line);border-radius:22px;padding:17px;margin:28px 0;box-shadow:0 8px 30px rgba(30,20,50,.05)}.filter-row{display:flex;gap:8px;flex-wrap:wrap}.chip{padding:10px 14px;border-radius:18px;background:#f5f3f8;color:#554e60;font-weight:700;font-size:13px}.chip.active{background:var(--purple);color:#fff}.subfilter{margin-top:11px;display:flex;gap:7px;flex-wrap:wrap}.subfilter .chip{font-weight:600;font-size:12px}
-.catalog-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.count{color:var(--muted);font-size:13px}.sort{border:1px solid var(--line);background:#fff;border-radius:16px;padding:9px 12px;font-size:13px}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.product{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;transition:.25s;cursor:pointer}.product:hover{transform:translateY(-5px);box-shadow:var(--shadow)}.product.hide{display:none}.photo{height:245px;background:#eee;position:relative}.photo img{width:100%;height:100%;object-fit:cover;display:block}.badge{position:absolute;top:12px;left:12px;color:#fff;padding:7px 10px;border-radius:12px;font-size:11px;font-weight:800}.badge.red{background:var(--red)}.badge.aqua{background:#079f94}.badge.blue{background:var(--blue)}.heart{position:absolute;right:12px;top:12px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center}.body{padding:16px}.body .crumb{font-size:11px;color:var(--muted);margin-bottom:7px}.body h3{font-size:16px;margin:0 0 7px;line-height:1.25}.body p{font-size:12px;color:var(--muted);line-height:1.5;min-height:37px;margin:0 0 12px}.card-bottom{display:flex;justify-content:space-between;align-items:center}.tag{font-size:11px;font-weight:800;color:var(--purple);background:#f1eaff;padding:6px 8px;border-radius:9px}.quote{color:var(--purple);font-weight:800;font-size:12px}
-.promo{margin:42px 0;padding:34px;border-radius:26px;background:#20152c;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:20px}.promo h2{font-family:Manrope;margin:0 0 8px;font-size:28px}.promo p{margin:0;color:#d9d0e2}.promo .primary{background:#fff;color:#5b20bf;box-shadow:none}
-.footer{margin-top:40px;background:#17121d;color:#fff;padding:48px 0 25px}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px}.footer h4{margin:0 0 12px}.footer p,.footer a{color:#bdb5c7;font-size:13px;line-height:1.7}.footer-bottom{border-top:1px solid #332b3b;margin-top:30px;padding-top:18px;color:#91889b;font-size:12px}
-.modal{position:fixed;inset:0;background:rgba(19,10,28,.68);backdrop-filter:blur(7px);display:none;place-items:center;z-index:500;padding:20px}.modal.open{display:grid}.modal-box{background:#fff;border-radius:28px;max-width:850px;width:100%;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;box-shadow:0 30px 100px rgba(0,0,0,.3)}.modal-image{min-height:420px}.modal-image img{width:100%;height:100%;object-fit:cover}.modal-info{padding:34px;position:relative}.close{position:absolute;right:15px;top:15px;width:38px;height:38px;border-radius:50%;background:#f4f1f6;font-size:20px}.modal-info .badge{position:static;display:inline-block;margin-bottom:16px}.modal-info h2{font-family:Manrope;font-size:30px;line-height:1.1;margin:0 0 10px}.modal-info .path{font-size:12px;color:var(--muted);margin-bottom:20px}.modal-info p{color:var(--muted);line-height:1.7}.specs{border-top:1px solid var(--line);margin-top:22px;padding-top:16px}.spec{display:flex;justify-content:space-between;padding:8px 0;font-size:13px;border-bottom:1px solid #f0edf3}.spec span:first-child{color:var(--muted)}.modal-actions{display:flex;gap:8px;margin-top:22px}
-@media(max-width:1050px){.grid{grid-template-columns:repeat(3,1fr)}.hero-art{opacity:.6;right:-30px}.footer-grid{grid-template-columns:2fr 1fr 1fr}}
-@media(max-width:800px){.header-main{height:auto;padding:12px 0;flex-wrap:wrap}.search{order:3;flex-basis:100%}.nav{display:none}.hero-box{padding:35px;min-height:500px}.hero-art{display:none}.category-grid{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.modal-box{grid-template-columns:1fr}.modal-image{min-height:260px}.footer-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:520px){.container{width:min(100% - 24px,1240px)}.topbar{display:none}.header-main{gap:12px}.nav-actions .outline{display:none}.hero{padding-top:14px}.hero-box{padding:28px 22px}.hero h1{font-size:39px}.grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.promo{display:block}.promo .primary{display:inline-block;margin-top:16px}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--body);font-size:15px;line-height:1.5;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}button,input,textarea,select{font:inherit;color:inherit}button{cursor:pointer;border:0;background:none}a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--brand-3);outline-offset:2px}
+.wrap{width:min(1280px,100% - 40px);margin-inline:auto}
+h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;margin:0}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brand)}
+.eyebrow::before{content:"";width:18px;height:2px;background:currentColor;border-radius:2px}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.02em}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 22px;border-radius:12px;font-weight:700;font-size:14.5px;transition:transform .15s,background .15s,box-shadow .15s,border-color .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn-dark{background:var(--ink);color:#fff}.btn-dark:hover{background:#2a2537}
+.btn-light{background:#fff;color:var(--ink);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.btn-ghost{border:1px solid rgba(255,255,255,.28);color:#fff;background:rgba(255,255,255,.06)}.btn-ghost:hover{background:rgba(255,255,255,.14)}
+.btn-line{border:1px solid var(--line-2);background:var(--surface)}.btn-line:hover{border-color:var(--ink)}
+.btn-wa{background:var(--wa);color:#fff;box-shadow:0 10px 26px rgba(34,179,94,.3)}.btn-wa:hover{background:var(--wa-2)}
+.ico{width:18px;height:18px;flex:none}
 
-.photo{background:#fff}.photo img{object-fit:contain;padding:14px;transition:transform .35s}.product:hover .photo img{transform:scale(1.04)}.photo img.cover{object-fit:cover;padding:0}
-.ref{position:absolute;left:12px;bottom:12px;background:rgba(23,19,31,.78);color:#fff;font-size:11px;font-weight:700;padding:5px 8px;border-radius:9px}
-.pics{position:absolute;right:12px;bottom:12px;background:#fff;border:1px solid var(--line);color:var(--muted);font-size:11px;font-weight:700;padding:5px 8px;border-radius:9px}
-.photo img.broken{opacity:.25}
-.hero-card img{object-fit:contain;background:#fff}
-.modal-box{max-height:calc(100vh - 40px)}.modal-image{min-height:420px;background:#fff;display:flex;flex-direction:column}.modal-image .main{flex:1;min-height:0;display:grid;place-items:center;padding:24px}.modal-image .main img{width:100%;height:100%;max-height:440px;object-fit:contain}.modal-image .main img.cover{object-fit:cover;max-height:none}
-.thumbs{display:flex;gap:8px;padding:0 16px 16px;overflow-x:auto}.thumbs button{flex:0 0 58px;height:58px;border-radius:12px;border:2px solid var(--line);background:#fff;padding:4px}.thumbs button.on{border-color:var(--purple)}.thumbs img{width:100%;height:100%;object-fit:contain}
-.modal-info{overflow-y:auto}
-.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:50px 0}
-@media(max-width:800px){.modal-box{overflow-y:auto}.modal-image{min-height:auto}.modal-image .main{height:300px}}
+/* top + header */
+.topbar{background:#0b0912;color:#cfc9dc;font-size:12.5px}
+.topbar .wrap{display:flex;justify-content:space-between;gap:16px;padding-block:9px}
+.topbar a{color:#fff;font-weight:600}
+.topbar .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--wa);margin-right:8px;box-shadow:0 0 0 3px rgba(34,179,94,.25)}
+.header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
+.header .wrap{display:flex;align-items:center;gap:24px;height:74px}
+.logo{display:flex;align-items:center;gap:11px;flex:none}
+.logo-mark{width:42px;height:42px;border-radius:12px;background:linear-gradient(140deg,var(--brand-3),var(--brand) 55%,#3b0f80);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:16px;box-shadow:0 6px 16px rgba(109,40,217,.35)}
+.logo-txt{font-family:var(--display);font-weight:800;font-size:19px;line-height:1;letter-spacing:.02em}.logo-txt small{display:block;font-family:var(--body);font-weight:600;font-size:10.5px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-top:4px}
+.search{flex:1;position:relative;max-width:560px}
+.search input{width:100%;height:46px;border:1px solid var(--line-2);border-radius:12px;background:var(--soft);padding:0 14px 0 44px;outline:none;transition:.15s}
+.search input:focus{border-color:var(--brand);background:#fff;box-shadow:0 0 0 4px var(--brand-soft)}
+.search .ico{position:absolute;left:15px;top:14px;color:var(--muted)}
+.nav{display:flex;gap:24px;font-weight:600;font-size:14px;color:var(--ink-2)}.nav a:hover{color:var(--brand)}
+.cart-btn{position:relative;margin-left:auto;height:46px}
+.cart-count{min-width:22px;height:22px;padding:0 6px;border-radius:11px;background:var(--brand);color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center}
+.cart-count:empty{display:none}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:var(--ink);color:#fff;padding-block:64px 120px;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:
+ radial-gradient(600px 420px at 78% 30%,rgba(168,85,247,.45),transparent 70%),
+ radial-gradient(500px 380px at 95% 95%,rgba(224,57,62,.28),transparent 70%),
+ radial-gradient(520px 360px at 8% 110%,rgba(16,165,148,.22),transparent 70%)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;opacity:.22;background-image:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse at 70% 40%,#000 20%,transparent 75%)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+.hero .eyebrow{color:#d8b4fe}
+.hero h1{font-size:clamp(38px,5.2vw,66px);line-height:1;font-weight:800;margin:18px 0 20px}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,#e9d5ff,#c084fc 50%,#f0abfc);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:17.5px;color:#cfc8dc;max-width:50ch;margin:0}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.stats{display:flex;gap:12px;margin-top:40px;flex-wrap:wrap}
+.stats div{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px 18px;backdrop-filter:blur(6px)}
+.stats b{display:block;font-family:var(--display);font-size:26px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}
+.stats span{font-size:12.5px;color:#b9b1c9}
+.collage{position:relative;height:460px}
+.tile{position:absolute;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.45);transition:transform .35s}
+.tile img{width:100%;height:100%;object-fit:contain;padding:20px}
+.tile .tag{position:absolute;left:12px;top:12px;background:var(--ink);color:#fff;border-radius:8px;padding:5px 10px;font-size:12px;font-weight:700}
+.tile:nth-child(1){width:58%;height:78%;left:4%;top:4%;transform:rotate(-3deg)}
+.tile:nth-child(2){width:44%;height:50%;right:0;top:0;transform:rotate(4deg)}
+.tile:nth-child(3){width:44%;height:44%;right:6%;bottom:0;transform:rotate(-2deg)}
+.tile:hover{transform:rotate(0) scale(1.03);z-index:2}
+.float-badge{position:absolute;left:0;bottom:6%;z-index:3;background:#fff;color:var(--ink);border-radius:14px;padding:12px 16px;display:flex;gap:12px;align-items:center;box-shadow:0 20px 40px rgba(0,0,0,.35)}
+.float-badge .ic{width:38px;height:38px;border-radius:10px;background:var(--wa);color:#fff;display:grid;place-items:center}
+.float-badge b{display:block;font-size:14px}.float-badge span{font-size:12px;color:var(--muted)}
+
+/* steps (overlap) */
+.steps{position:relative;z-index:5;margin-top:-64px}
+.steps .wrap{display:grid;grid-template-columns:repeat(3,1fr);background:var(--surface);border-radius:20px;box-shadow:var(--sh-2);overflow:hidden}
+.step{display:flex;gap:16px;align-items:flex-start;padding:26px 28px}
+.step+.step{border-left:1px solid var(--line)}
+.step-n{flex:none;width:42px;height:42px;border-radius:12px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:16px}
+.step h3{font-size:16px;margin-bottom:3px}.step p{margin:0;font-size:13.5px;color:var(--muted)}
+
+/* sections */
+.section{padding-block:72px 8px}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:26px}
+.head h2{font-size:clamp(26px,3vw,38px);font-weight:800;margin-top:10px}
+.head p{color:var(--muted);margin:8px 0 0;max-width:60ch}
+.link{font-weight:700;font-size:14px;color:var(--brand);white-space:nowrap}.link:hover{text-decoration:underline}
+
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cat{position:relative;overflow:hidden;border-radius:22px;padding:26px 26px 0;min-height:340px;color:#fff;text-align:left;display:flex;flex-direction:column;background:linear-gradient(150deg,var(--c1),var(--c2));box-shadow:var(--sh-1);transition:transform .25s,box-shadow .25s;isolation:isolate}
+.cat::before{content:"";position:absolute;width:320px;height:320px;border-radius:50%;right:-110px;top:-120px;background:rgba(255,255,255,.12);z-index:-1}
+.cat:hover{transform:translateY(-6px);box-shadow:var(--sh-2)}
+.cat .kicker{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.85}
+.cat h3{font-size:30px;font-weight:800;margin:6px 0 6px}
+.cat p{margin:0;font-size:14.5px;opacity:.9;max-width:34ch}
+.cat .go{position:absolute;right:22px;top:24px;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:18px;transition:.2s}
+.cat:hover .go{background:#fff;color:var(--c2)}
+.cat-imgs{margin-top:auto;display:flex;gap:10px;padding-top:22px;transform:translateY(18px)}
+.cat-imgs img{flex:1;min-width:0;aspect-ratio:1/1;object-fit:contain;background:#fff;border-radius:16px 16px 0 0;padding:12px;box-shadow:0 -6px 24px rgba(0,0,0,.18);transition:transform .3s}
+.cat-imgs img.cover{object-fit:cover;padding:0}
+.cat:hover .cat-imgs img:nth-child(2){transform:translateY(-8px)}
+
+/* featured rail */
+.feat{background:linear-gradient(180deg,transparent,rgba(109,40,217,.06) 30%,transparent)}
+.rail-wrap{position:relative}
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(250px,1fr);gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 4px 22px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.rail .card{scroll-snap-align:start}
+.arrows{display:flex;gap:8px}
+.arrows button{width:44px;height:44px;border-radius:50%;background:var(--surface);border:1px solid var(--line-2);font-size:18px;display:grid;place-items:center;transition:.15s}
+.arrows button:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+/* catalog */
+.catalog-sec{margin-top:72px;background:var(--surface);border-block:1px solid var(--line);padding-block:64px 72px}
+.catalog-sec .section{padding:0}
+.catalog{display:grid;grid-template-columns:250px 1fr;gap:32px;align-items:start}
+.side{position:sticky;top:96px;background:var(--bg);border-radius:var(--r);padding:10px}
+.side h4{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:12px 12px 8px}
+.fbtn{display:flex;justify-content:space-between;align-items:center;width:100%;padding:10px 12px;border-radius:10px;font-size:14px;font-weight:600;color:var(--ink-2);text-align:left;transition:background .15s}
+.fbtn:hover{background:#fff}
+.fbtn.on{background:var(--ink);color:#fff;box-shadow:0 6px 16px rgba(18,15,28,.2)}
+.fbtn small{font-weight:600;color:inherit;opacity:.6;font-variant-numeric:tabular-nums}
+.fbtn i{width:9px;height:9px;border-radius:50%;background:var(--c);display:inline-block;margin-right:9px}
+.subs{display:flex;flex-direction:column;padding-left:14px;margin:4px 0 6px;border-left:2px solid var(--line-2);margin-left:16px}
+.subs .fbtn{font-weight:500;font-size:13.5px;padding:7px 12px}
+.subs .fbtn.on{background:var(--brand-soft);color:var(--brand);box-shadow:none}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.toolbar .count{color:var(--muted);font-size:14px}.toolbar .count b{color:var(--ink)}
+.toolbar select{height:42px;border:1px solid var(--line-2);border-radius:12px;background:var(--surface);padding:0 12px;font-size:14px}
+.mchips{display:none;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:12px;scrollbar-width:none}
+.mchips button{flex:none;height:38px;padding:0 16px;border-radius:19px;border:1px solid var(--line-2);background:var(--surface);font-weight:600;font-size:13px}
+.mchips button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--sh-1);transition:transform .25s,box-shadow .25s,border-color .25s}
+.card:hover{transform:translateY(-5px);box-shadow:var(--sh-2);border-color:transparent}
+.card .media{position:relative;aspect-ratio:1/1;cursor:pointer;background:#fff}
+.card .media img{width:100%;height:100%;object-fit:contain;padding:22px;transition:transform .4s}
+.card .media img.cover{object-fit:cover;padding:0}
+.card:hover .media img{transform:scale(1.06)}
+.pill{position:absolute;top:12px;left:12px;font-size:11px;font-weight:700;padding:5px 9px;border-radius:8px;color:#fff;background:var(--c)}
+.nphotos{position:absolute;right:12px;top:12px;font-size:11px;font-weight:600;color:var(--ink-2);background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:8px;padding:4px 8px}
+.illus{position:absolute;right:12px;top:12px;font-size:11px;color:#fff;background:rgba(18,15,28,.65);border-radius:8px;padding:4px 8px}
+.peek{position:absolute;left:50%;bottom:14px;transform:translate(-50%,8px);opacity:0;background:var(--ink);color:#fff;font-size:12.5px;font-weight:700;padding:8px 14px;border-radius:20px;transition:.25s;white-space:nowrap}
+.card:hover .peek{opacity:1;transform:translate(-50%,0)}
+.card .info{padding:16px 16px 18px;display:flex;flex-direction:column;gap:4px;flex:1;border-top:1px solid var(--line)}
+.card .ref{color:var(--brand);font-weight:500}
+.card h3{font-family:var(--body);font-size:16px;font-weight:700;line-height:1.3;cursor:pointer}
+.card .sub{font-size:13px;color:var(--muted)}
+.card .act{display:flex;gap:8px;margin-top:auto;padding-top:14px}
+.qty{display:flex;align-items:center;border:1px solid var(--line-2);border-radius:12px;height:42px;overflow:hidden;background:var(--surface)}
+.qty button{width:34px;height:100%;font-size:18px;color:var(--ink-2)}.qty button:hover{background:var(--soft)}
+.qty input{width:42px;height:100%;border:0;text-align:center;font-weight:700;font-variant-numeric:tabular-nums;outline:none;-moz-appearance:textfield;background:transparent}
+.qty input::-webkit-outer-spin-button,.qty input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.add{flex:1;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;font-weight:700;font-size:13.5px;box-shadow:0 6px 16px rgba(109,40,217,.25);transition:transform .15s,box-shadow .15s}
+.add:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(109,40,217,.35)}
+.add.in{background:var(--brand-soft);color:var(--brand);box-shadow:none}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:60px 0;background:var(--bg);border:1px dashed var(--line-2);border-radius:var(--r)}
+
+/* trust */
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:72px}
+.trust div{display:flex;gap:14px;align-items:center;background:var(--surface);border-radius:16px;padding:18px;box-shadow:var(--sh-1)}
+.trust .ic{flex:none;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--brand-soft);color:var(--brand)}
+.trust b{display:block;font-size:14.5px}.trust span{font-size:13px;color:var(--muted)}
+
+/* band */
+.band{position:relative;overflow:hidden;margin-top:28px;border-radius:24px;padding:48px;display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:center;color:#fff;background:linear-gradient(120deg,#2e1065,var(--brand) 60%,#9333ea);isolation:isolate}
+.band::before{content:"";position:absolute;z-index:-1;width:420px;height:420px;border-radius:50%;right:-120px;top:-180px;background:rgba(255,255,255,.1)}
+.band::after{content:"";position:absolute;z-index:-1;width:260px;height:260px;border-radius:50%;right:180px;bottom:-170px;background:rgba(255,255,255,.07)}
+.band .eyebrow{color:#e9d5ff}
+.band h2{font-size:clamp(26px,3vw,38px);font-weight:800;margin-top:10px}
+.band p{color:#e4dafa;margin:12px 0 0;max-width:54ch}
+.band .acts{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.band .phone{font-family:var(--mono);font-size:15px;color:#fff;opacity:.85}
+
+.footer{margin-top:80px;background:#0b0912;color:#c9c2d6}
+.footer .wrap{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px;padding-block:56px 40px}
+.footer .logo-txt{color:#fff}.footer .logo-txt small{color:#8e86a0}
+.footer h4{font-size:13px;margin:0 0 12px;color:#fff;letter-spacing:.04em}.footer p,.footer a{color:#a9a1b8;font-size:14px;line-height:1.9;margin:0}.footer a:hover{color:#fff}
+.legal{border-top:1px solid #241f31;padding-block:18px;color:#7d758e;font-size:12.5px}
+
+/* modal */
+.overlay{position:fixed;inset:0;background:rgba(12,9,20,.6);backdrop-filter:blur(4px);z-index:100;display:none}
+.overlay.open{display:block}
+.modal{position:fixed;inset:0;z-index:110;display:none;place-items:center;padding:20px}
+.modal.open{display:grid}
+.mbox{background:var(--surface);border-radius:24px;width:min(980px,100%);max-height:calc(100vh - 40px);display:grid;grid-template-columns:1.1fr 1fr;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.35);animation:pop .22s ease}
+@keyframes pop{from{transform:translateY(10px) scale(.98);opacity:.6}}
+.mgal{background:#fff;border-right:1px solid var(--line);display:flex;flex-direction:column;min-height:0}
+.mmain{flex:1;min-height:0;display:grid;place-items:center;padding:32px}
+.mmain img{width:100%;height:100%;max-height:460px;object-fit:contain}
+.mmain img.cover{object-fit:cover;max-height:none}
+.thumbs{display:flex;gap:8px;padding:0 18px 18px;overflow-x:auto}
+.thumbs button{flex:0 0 62px;height:62px;border:2px solid transparent;border-radius:12px;padding:4px;background:#fff;box-shadow:var(--sh-1)}
+.thumbs button.on{border-color:var(--brand)}
+.thumbs img{width:100%;height:100%;object-fit:contain}
+.minfo{padding:34px;overflow-y:auto;position:relative;display:flex;flex-direction:column;gap:14px}
+.x{position:absolute;right:16px;top:16px;width:38px;height:38px;border-radius:50%;background:var(--soft);display:grid;place-items:center}
+.x:hover{background:var(--line)}
+.minfo h2{font-size:30px;font-weight:800;line-height:1.08;padding-right:40px}
+.minfo .desc{color:var(--ink-2);margin:0}
+.specs{background:var(--bg);border-radius:14px;padding:4px 16px}
+.spec{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line);font-size:14px}.spec:last-child{border:0}
+.spec span{color:var(--muted)}
+.mact{display:flex;gap:10px;margin-top:4px}.mact .qty{height:50px}.mact .add{height:50px;font-size:15px}
+.note{font-size:12.5px;color:var(--muted);margin:0}
+
+/* drawer */
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(450px,100%);background:var(--surface);z-index:120;transform:translateX(100%);transition:transform .3s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;box-shadow:-30px 0 80px rgba(0,0,0,.2)}
+.drawer.open{transform:none}
+.dhead{display:flex;justify-content:space-between;align-items:center;padding:22px 24px;background:linear-gradient(120deg,#2e1065,var(--brand));color:#fff}
+.dhead h3{font-size:21px}.dhead span{font-size:13px;opacity:.8}
+.dhead .x{background:rgba(255,255,255,.15);color:#fff}
+.dlist{flex:1;overflow-y:auto;padding:8px 24px}
+.ditem{display:grid;grid-template-columns:68px 1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.ditem img{width:68px;height:68px;object-fit:contain;border-radius:12px;background:#fff;padding:5px;box-shadow:var(--sh-1)}
+.ditem img.cover{object-fit:cover;padding:0}
+.ditem b{font-size:14px;display:block;line-height:1.3}
+.ditem .mono{color:var(--brand)}
+.ditem .row{display:flex;gap:8px;align-items:center;margin-top:6px}
+.ditem .qty{height:34px;border-radius:10px}.ditem .qty button{width:28px}.ditem .qty input{width:40px}
+.rm{font-size:12.5px;color:var(--muted);text-decoration:underline}.rm:hover{color:var(--dep)}
+.dempty{text-align:center;color:var(--muted);padding:70px 20px}
+.dempty .ic{width:64px;height:64px;border-radius:18px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;margin:0 auto 14px}
+.dempty b{display:block;color:var(--ink);font-size:16px;margin-bottom:6px}
+.dfoot{border-top:1px solid var(--line);padding:18px 24px 22px;display:flex;flex-direction:column;gap:12px;background:var(--bg)}
+.totals{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.totals div{background:var(--surface);border-radius:12px;padding:12px 14px;box-shadow:var(--sh-1)}
+.totals span{font-size:12px;color:var(--muted)}
+.totals b{display:block;font-family:var(--display);font-size:26px;font-variant-numeric:tabular-nums;line-height:1.15}
+.totals div:last-child b{color:var(--brand)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fields input,.fields textarea{width:100%;border:1px solid var(--line-2);border-radius:12px;background:var(--surface);padding:11px 12px;font-size:14px;outline:none}
+.fields input:focus,.fields textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+.fields textarea{grid-column:1/-1;resize:vertical;min-height:58px}
+.dfoot .btn-wa{height:54px;font-size:15.5px}
+.dfoot .btn-wa[aria-disabled=true]{opacity:.45;pointer-events:none;box-shadow:none}
+.clear{font-size:13px;color:var(--muted);text-decoration:underline;align-self:center}
+
+/* floating + toast */
+.fab{position:fixed;right:22px;bottom:22px;z-index:90;display:flex;align-items:center;gap:10px;height:58px;padding:0 22px 0 18px;border-radius:29px;background:var(--wa);color:#fff;font-weight:700;box-shadow:0 14px 34px rgba(34,179,94,.4);transition:transform .2s}
+.fab:hover{transform:translateY(-2px);background:var(--wa-2)}
+.fab::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:0 0 0 0 rgba(34,179,94,.5);animation:pulse 2.6s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 14px rgba(34,179,94,0)}100%{box-shadow:0 0 0 0 rgba(34,179,94,0)}}
+.fab .cart-count{background:#fff;color:var(--wa-2)}
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);opacity:0;z-index:130;background:var(--ink);color:#fff;padding:13px 18px;border-radius:12px;font-weight:600;font-size:14px;transition:.25s;pointer-events:none;display:flex;gap:10px;align-items:center;box-shadow:0 14px 34px rgba(0,0,0,.3)}
+.toast::before{content:"✓";width:22px;height:22px;border-radius:50%;background:var(--wa);display:grid;place-items:center;font-size:12px}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:1100px){.nav{display:none}.trust{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:960px){
+ .hero .wrap{grid-template-columns:1fr}.collage{height:380px;max-width:560px}
+ .catalog{grid-template-columns:1fr}.side{display:none}.mchips{display:flex}
+ .cats{grid-template-columns:1fr}.cat{min-height:300px}.band{grid-template-columns:1fr}
+ .footer .wrap{grid-template-columns:1fr 1fr}
+ .steps .wrap{grid-template-columns:1fr}.step+.step{border-left:0;border-top:1px solid var(--line)}
+}
+@media (max-width:720px){
+ .wrap{width:min(1280px,100% - 32px)}
+ .topbar .hide-s{display:none}
+ .header .wrap{flex-wrap:wrap;height:auto;padding-block:12px;gap:12px}
+ .search{order:3;flex-basis:100%;max-width:none}
+ .cart-btn .lbl{display:none}
+ .hero{padding-block:36px 100px}.collage{height:320px}.float-badge{display:none}
+ .section{padding-block:56px 8px}
+ .mbox{grid-template-columns:1fr;overflow-y:auto}.mmain{height:300px}.minfo{overflow:visible;padding:24px}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .card .media img{padding:12px}.card .info{padding:12px}
+ .card .act{flex-direction:column}.card .qty{justify-content:space-between}.card .qty input{flex:1}
+ .peek{display:none}
+ .rail{grid-auto-columns:72%}
+ .trust{grid-template-columns:1fr}
+ .band{padding:30px}
+ .footer .wrap{grid-template-columns:1fr}
+ .fab .lbl{display:none}.fab{padding:0 18px}
+ .fields{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
-<div class="topbar"><div class="container"><span>Compra mayorista · Productos para hogar, diversión y deporte</span><span>Atención comercial · Solicita tu cotización</span></div></div>
-<header class="header">
-  <div class="container header-main">
-    <a class="logo" href="#"><span class="logo-mark">CJ</span><span>COIMPORT</span></a>
-    <div class="search"><input id="search" placeholder="¿Qué estás buscando? Ej. patines, linternas, ref. 207..."><button>⌕</button></div>
-    <div class="nav-actions"><button class="outline" onclick="document.getElementById('categorias').scrollIntoView()">Categorías</button><a class="primary" href="#catalogo">Ver catálogo</a></div>
-  </div>
-  <nav class="nav"><div class="container">
-    <a href="#catalogo">Productos</a><a href="#deportes">Deportes</a><a href="#jugueteria">Juguetería</a><a href="#hogar">Hogar</a><a href="#destacados">Destacados</a><a href="#contacto">Contacto</a>
-  </div></nav>
-</header>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1.1 2.7 11.4 11.4 0 0 0 4.4 3.9c1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></symbol>
+ <symbol id="i-search" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="m21 21-4.3-4.3M11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></symbol>
+ <symbol id="i-list" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></symbol>
+ <symbol id="i-box" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5v-9ZM3 7.5l9 4.5 9-4.5M12 12v9"/></symbol>
+ <symbol id="i-cam" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 8h3l2-3h6l2 3h3v11H4V8Z"/><circle cx="12" cy="13" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+ <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+</svg>
 
-<main>
-<section class="hero"><div class="container"><div class="hero-box">
-  <div class="hero-content"><span class="eyebrow">NUEVO CATÁLOGO CJ COIMPORT</span><h1>Todo lo que necesitas, en un solo lugar.</h1><p>Descubre productos para el hogar, juguetes y artículos deportivos, organizados por categorías para que encuentres lo que buscas más rápido.</p>
-    <div class="hero-buttons"><a class="light" href="#catalogo">Explorar productos</a><a class="ghost" href="#categorias">Ver categorías</a></div>
-  </div>
-  <div class="hero-art">
-    <div class="orb one"></div><div class="orb two"></div>
-    <div class="hero-card a"><img src="https://drive.google.com/thumbnail?sz=w600&id=1VgrvH0D7wGctRLvcPhWxlVZytq9H-oqu" alt="Patines"><strong>Patines</strong><small>Ruedas · diseño · diversión</small></div>
-    <div class="hero-card b"><img src="https://drive.google.com/thumbnail?sz=w600&id=1RaflS1Pp0BQZxDxDCgosEtbOOr5RFIkc" alt="Monopatín"><strong>Monopatines</strong><small>Muévete y disfruta</small></div>
-  </div>
-</div></div></section>
+<div class="topbar"><div class="wrap"><span><span class="dot"></span>Venta al por mayor para distribuidores y comercios</span><span class="hide-s">Cotizaciones por WhatsApp · <a href="https://wa.me/573142444580" target="_blank" rel="noopener">314 244 4580</a></span></div></div>
 
-<section class="section" id="categorias"><div class="container">
-  <div class="section-head"><div><h2>Compra por categoría</h2><p>Encuentra rápidamente la línea que necesitas.</p></div><a class="see" href="#catalogo">Ver todo →</a></div>
-  <div class="category-grid">
-    <a class="cat red" id="deportes" href="#catalogo" onclick="setCat('deportes')"><h3>Deportes</h3><p>Patines, patinetas, monopatines, balones, linternas, protecciones y más.</p><div class="subcats"><span>Patines</span><span>Monopatines</span><span>Patinetas</span><span>Balones</span><span>Protecciones</span><span>Linternas</span></div><div class="cat-icon">⚽</div></a>
-    <a class="cat aqua" id="jugueteria" href="#catalogo" onclick="setCat('jugueteria')"><h3>Juguetería</h3><p>Montables inflables, carpas de juego y sets de arte para los más pequeños.</p><div class="subcats"><span>Montables</span><span>Carpas</span><span>Arte y manualidades</span></div><div class="cat-icon">🧸</div></a>
-    <a class="cat blue" id="hogar" href="#catalogo" onclick="setCat('hogar')"><h3>Hogar</h3><p>Cocina, baño, decoración y textiles para cada espacio.</p><div class="subcats"><span>Cocina</span><span>Baño</span><span>Vajillas</span><span>Termos</span><span>Tapetes</span></div><div class="cat-icon">🏠</div></a>
-  </div>
+<header class="header"><div class="wrap">
+ <a class="logo" href="#inicio"><span class="logo-mark">CJ</span><span class="logo-txt">COIMPORT<small>Catálogo mayorista</small></span></a>
+ <label class="search"><svg class="ico"><use href="#i-search"/></svg><input id="search" type="search" placeholder="Buscar producto o referencia, ej. patines, ref 207" aria-label="Buscar productos"></label>
+ <nav class="nav"><a href="#categorias">Categorías</a><a href="#catalogo">Catálogo</a><a href="#contacto">Contacto</a></nav>
+ <button class="btn btn-line cart-btn" id="openCart"><svg class="ico"><use href="#i-list"/></svg><span class="lbl">Mi cotización</span><span class="cart-count" data-count></span></button>
+</div></header>
+
+<main id="inicio">
+<section class="hero"><div class="wrap">
+ <div>
+  <span class="eyebrow">Catálogo 2026 · Por mayor</span>
+  <h1>Producto importado para <em>surtir tu negocio.</em></h1>
+  <p>Deportes, juguetería y hogar en un solo proveedor. Elige las referencias, indica las cantidades y recibe tu cotización por WhatsApp.</p>
+  <div class="hero-cta"><a class="btn btn-light" href="#catalogo">Explorar catálogo →</a><button class="btn btn-ghost" data-open-cart>Ver mi cotización</button></div>
+  <div class="stats"><div><b id="stRefs">0</b><span>referencias</span></div><div><b>3</b><span>líneas de producto</span></div><div><b id="stSubs">0</b><span>subcategorías</span></div></div>
+ </div>
+ <div class="collage" id="collage"></div>
 </div></section>
 
-<section class="section" id="destacados"><div class="container">
-  <div class="section-head"><div><h2>Productos destacados</h2><p>Una selección para comenzar a explorar.</p></div></div>
-  <div class="grid" id="featured"></div>
+<section class="steps"><div class="wrap">
+ <div class="step"><span class="step-n">1</span><div><h3>Elige las referencias</h3><p>Filtra por categoría o busca por número de referencia.</p></div></div>
+ <div class="step"><span class="step-n">2</span><div><h3>Indica las cantidades</h3><p>Tu cotización suma referencias y unidades automáticamente.</p></div></div>
+ <div class="step"><span class="step-n">3</span><div><h3>Envía por WhatsApp</h3><p>El pedido llega listo a nuestro asesor comercial.</p></div></div>
 </div></section>
 
-<section class="section" id="catalogo"><div class="container">
-  <div class="section-head"><div><h2>Catálogo completo</h2><p>Filtra por categoría y subcategoría.</p></div></div>
-  <div class="filters">
-    <div class="filter-row" id="cats">
-      <button class="chip active" data-cat="todos">Todos</button><button class="chip" data-cat="deportes">🔴 Deportes</button><button class="chip" data-cat="jugueteria">🟢 Juguetería</button><button class="chip" data-cat="hogar">🔵 Hogar</button>
-    </div>
-    <div class="subfilter" id="subs"></div>
+<section class="section" id="categorias"><div class="wrap">
+ <div class="head"><div><span class="eyebrow">Líneas</span><h2>Compra por categoría</h2></div><a class="link" href="#catalogo">Ver todo el catálogo →</a></div>
+ <div class="cats" id="cats"></div>
+</div></section>
+
+<section class="section feat" id="destacados"><div class="wrap">
+ <div class="head"><div><span class="eyebrow">Selección</span><h2>Productos destacados</h2><p>Una selección del catálogo para empezar a explorar.</p></div><div class="arrows"><button id="railPrev" aria-label="Anterior">←</button><button id="railNext" aria-label="Siguiente">→</button></div></div>
+ <div class="rail" id="rail"></div>
+</div></section>
+
+<div class="catalog-sec">
+<section class="section" id="catalogo"><div class="wrap">
+ <div class="head"><div><span class="eyebrow">Catálogo completo</span><h2>Todas las referencias</h2><p>Agrega productos a tu cotización con la cantidad que necesitas.</p></div></div>
+ <div class="catalog">
+  <aside class="side" id="side" aria-label="Filtros"></aside>
+  <div>
+   <div class="mchips" id="mchips"></div>
+   <div class="toolbar"><span class="count" id="count"></span><select id="sort" aria-label="Ordenar"><option value="cat">Ordenar por categoría</option><option value="az">Nombre A-Z</option><option value="ref">Referencia</option></select></div>
+   <div class="grid" id="grid"></div>
   </div>
-  <div class="catalog-head"><span class="count" id="count"></span><select class="sort" id="sort"><option value="default">Ordenar: recomendados</option><option value="az">Nombre A-Z</option></select></div>
-  <div class="grid" id="grid"></div>
+ </div>
 </div></section>
+</div>
 
-<section class="container"><div class="promo"><div><h2>¿Eres distribuidor o comercio?</h2><p>Solicita información comercial y cotización para compras por volumen.</p></div><a class="primary" href="mailto:comercial@cjcoimport.com">Solicitar cotización →</a></div></section>
+<div class="wrap">
+<div class="trust">
+ <div><span class="ic"><svg class="ico"><use href="#i-box"/></svg></span><p style="margin:0"><b>Venta al por mayor</b><span>Para distribuidores y comercios</span></p></div>
+ <div><span class="ic"><svg class="ico"><use href="#i-cam"/></svg></span><p style="margin:0"><b>Fotos reales</b><span>Varias vistas por referencia</span></p></div>
+ <div><span class="ic"><svg class="ico"><use href="#i-list"/></svg></span><p style="margin:0"><b>Cotización organizada</b><span>Referencias y unidades sumadas</span></p></div>
+ <div><span class="ic"><svg class="ico"><use href="#i-wa"/></svg></span><p style="margin:0"><b>Atención por WhatsApp</b><span>Asesor comercial directo</span></p></div>
+</div>
+<section class="band" id="contacto">
+ <div><span class="eyebrow">Asesoría comercial</span><h2>¿Compras por volumen o tienes una referencia específica?</h2><p>Escríbenos y un asesor te confirma disponibilidad, precios por mayor y tiempos de entrega.</p></div>
+ <div class="acts"><a class="btn btn-wa" href="https://wa.me/573142444580?text=Hola%20CJ%20Coimport%2C%20quiero%20informaci%C3%B3n%20comercial." target="_blank" rel="noopener"><svg class="ico"><use href="#i-wa"/></svg>Escribir por WhatsApp</a><span class="phone">+57 314 244 4580</span></div>
+</section></div>
 </main>
 
-<footer class="footer" id="contacto"><div class="container"><div class="footer-grid">
-  <div><div class="logo"><span class="logo-mark">CJ</span><span style="color:#fff">COIMPORT</span></div><p>Catálogo comercial de productos para hogar, juguetería y deportes.</p></div>
-  <div><h4>Productos</h4><a href="#deportes">Deportes</a><br><a href="#jugueteria">Juguetería</a><br><a href="#hogar">Hogar</a></div>
-  <div><h4>Ayuda</h4><a href="#catalogo">Catálogo</a><br><a href="#categorias">Categorías</a><br><a href="#contacto">Contacto</a></div>
-  <div><h4>Comercial</h4><p>Atención a distribuidores y comercios.</p><a href="mailto:comercial@cjcoimport.com">Solicitar cotización</a></div>
-</div><div class="footer-bottom">© 2026 CJ Coimport · Catálogo demostrativo</div></div></footer>
+<footer class="footer"><div class="wrap">
+ <div><a class="logo" href="#inicio"><span class="logo-mark">CJ</span><span class="logo-txt">COIMPORT<small>Catálogo mayorista</small></span></a><p style="margin-top:14px;max-width:38ch">Importación y distribución al por mayor de productos para deportes, juguetería y hogar.</p></div>
+ <div><h4>Líneas</h4><a href="#catalogo" data-go="deportes">Deportes</a><br><a href="#catalogo" data-go="jugueteria">Juguetería</a><br><a href="#catalogo" data-go="hogar">Hogar</a></div>
+ <div><h4>Catálogo</h4><a href="#categorias">Categorías</a><br><a href="#catalogo">Todas las referencias</a><br><a href="#" data-open-cart>Mi cotización</a></div>
+ <div><h4>Contacto</h4><p>WhatsApp: 314 244 4580</p><p>comercial@cjcoimport.com</p></div>
+</div><div class="wrap legal">© 2026 CJ Coimport S.A.S. · Precios y disponibilidad sujetos a confirmación del asesor comercial.</div></footer>
 
-<div class="modal" id="modal"><div class="modal-box"><div class="modal-image"><div class="main"><img id="mImg" alt=""></div><div class="thumbs" id="mThumbs"></div></div><div class="modal-info"><button class="close" onclick="closeModal()">×</button><span id="mBadge" class="badge"></span><h2 id="mName"></h2><div class="path" id="mPath"></div><p id="mDesc"></p><div class="specs"><div class="spec" id="mRefRow"><span>Referencia</span><strong id="mRef"></strong></div><div class="spec"><span>Categoría</span><strong id="mCat"></strong></div><div class="spec"><span>Subcategoría</span><strong id="mSub"></strong></div><div class="spec"><span>Modalidad</span><strong>Venta por mayor</strong></div></div><div class="modal-actions"><a class="primary" href="mailto:comercial@cjcoimport.com">Cotizar producto</a></div></div></div></div>
+<button class="fab" data-open-cart aria-label="Abrir mi cotización"><svg class="ico" style="width:22px;height:22px"><use href="#i-wa"/></svg><span class="lbl">Mi cotización</span><span class="cart-count" data-count></span></button>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mName"><div class="mbox">
+ <div class="mgal"><div class="mmain"><img id="mImg" alt=""></div><div class="thumbs" id="mThumbs"></div></div>
+ <div class="minfo">
+  <button class="x" id="mClose" aria-label="Cerrar"><svg class="ico"><use href="#i-x"/></svg></button>
+  <span class="eyebrow" id="mPath"></span>
+  <h2 id="mName"></h2>
+  <p class="desc" id="mDesc"></p>
+  <div class="specs"><div class="spec" id="mRefRow"><span>Referencia</span><strong class="mono" id="mRef"></strong></div><div class="spec"><span>Categoría</span><strong id="mCat"></strong></div><div class="spec"><span>Subcategoría</span><strong id="mSub"></strong></div><div class="spec"><span>Modalidad</span><strong>Venta por mayor</strong></div></div>
+  <div class="mact"><div class="qty"><button data-step="-1" aria-label="Menos">−</button><input id="mQty" type="number" min="1" value="1" aria-label="Cantidad"><button data-step="1" aria-label="Más">+</button></div><button class="add" id="mAdd">Agregar a la cotización</button></div>
+  <p class="note" id="mNote">Precio y disponibilidad se confirman por WhatsApp.</p>
+ </div>
+</div></div>
+
+<aside class="drawer" id="drawer" aria-label="Mi cotización">
+ <div class="dhead"><div><h3>Mi cotización</h3><span>Se envía a nuestro asesor por WhatsApp</span></div><button class="x" style="position:static" id="dClose" aria-label="Cerrar"><svg class="ico"><use href="#i-x"/></svg></button></div>
+ <div class="dlist" id="dlist"></div>
+ <div class="dfoot">
+  <div class="totals"><div><span>Referencias</span><b id="tRefs">0</b></div><div><span>Unidades totales</span><b id="tUnits">0</b></div></div>
+  <div class="fields"><input id="fName" placeholder="Tu nombre" autocomplete="name"><input id="fCity" placeholder="Empresa / ciudad"><textarea id="fNote" placeholder="Comentarios (opcional)"></textarea></div>
+  <a class="btn btn-wa" id="sendWa" href="#" target="_blank" rel="noopener" aria-disabled="true"><svg class="ico"><use href="#i-wa"/></svg>Enviar cotización por WhatsApp</a>
+  <button class="clear" id="clearCart">Vaciar cotización</button>
+ </div>
+</aside>
+
+<div class="toast" id="toast" role="status"></div>
 
 <script>
+const WA="573142444580";
 const TH="https://drive.google.com/thumbnail?id=";
-const products=[{"n":"Repuesto para monopatín y patines","c":"deportes","s":"Repuestos y accesorios","r":"2013-1","d":"Pieza de repuesto para mantenimiento y ajuste de monopatines y patines.","g":["1f1YmjrlWPUVs6DeXJ_FdDOOLh9v7Bglv"]},{"n":"Repuesto para monopatín y patines","c":"deportes","s":"Repuestos y accesorios","r":"2024-1","d":"Pieza de repuesto para mantenimiento y ajuste de monopatines y patines.","g":["1EvfAcZJ-q65sAcqL4qYLjdxfN3FfSmWG"]},{"n":"Repuesto para monopatín y patines","c":"deportes","s":"Repuestos y accesorios","r":"BUJE","d":"Pieza de repuesto para mantenimiento y ajuste de monopatines y patines.","g":["1tff61Hc0HXIsnXzS070G9oMZJNolavdC"]},{"n":"Repuesto para monopatín y patines","c":"deportes","s":"Repuestos y accesorios","r":"CH-2","d":"Pieza de repuesto para mantenimiento y ajuste de monopatines y patines.","g":["1JCyAjeBzgbJZksrAu-iXkH8waGtHG2Cs"]},{"n":"Repuesto para monopatín y patines","c":"deportes","s":"Repuestos y accesorios","r":"F2410-1","d":"Pieza de repuesto para mantenimiento y ajuste de monopatines y patines.","g":["1XX8LM__ZnsAl1DHcY84YM5suZef-OCPs"]},{"n":"Repuesto para monopatín y patines","c":"deportes","s":"Repuestos y accesorios","r":"M7","d":"Pieza de repuesto para mantenimiento y ajuste de monopatines y patines.","g":["1WoOTrXS-keeXQmoDFbXbY47pV8_CjQ3y"]},{"n":"Animal saltarín inflable","c":"jugueteria","s":"Montables","r":"250-3","d":"Montable inflable para saltar y jugar, ideal para los más pequeños.","g":["1Qt6qScJjjYZeKkePW-_d1h1-2WoN6lao","1ggmPnB1KAlVgW1IZMqDDHZCE1kceMWeN","17SlXIdB-FCuAdyBgJ5ujBsUwfBoP3qU4","11pNWu1ZCV9JJZ58tvVNhYhsN_y7_w0Xu","1xHsfA9TMfdiLZccAULsZyoogBsKfUhD5"]},{"n":"Animal saltarín inflable","c":"jugueteria","s":"Montables","r":"250-3A","d":"Montable inflable para saltar y jugar, ideal para los más pequeños.","g":["1VGt8-Y3AHpA3WDV6OyUmAFVx_wp0fCby","1Fi2WZDgBZdKE8OERthYcq9CX3sKGX-pE","1HRVHMPQzmnfH2F8r9LMmuM119eFtsBq4","1kc-Prh2BnWphFqhy4PCCaeyMgsPXnjw7","1zHHNg1BdsSoL0dw_ZK7Bzziw1rhMLWF8","1rFy9KAhb8E101Yd2zCJqtDehOoaLNbpM"]},{"n":"Balón","c":"deportes","s":"Balones","r":"250-2","d":"Balón para juego recreativo y práctica deportiva.","g":["1YIndeFp7gdeoNMhwIGiO_03MJjVa0n-u","1-UItB_nQYianQR-OiqoGTV4lw36xLfGl","1zaCp_nWimSXycAiPhFKEHPlm5aofjQeC","1DlMjioGmtnWN-2D1MeAodR4_AckYzqoG"]},{"n":"Balón","c":"deportes","s":"Balones","r":"FT5711","d":"Balón para juego recreativo y práctica deportiva.","g":["1fNODv0mdpcivVgEIq3TEYel9DFmUUcnh","1nglJREKppPLKB6QP03JpaIxT-66ezFC5","1eyTYrJxgb7IbU-6CDqiZJM4sa8dlI-Xf"]},{"n":"Balón","c":"deportes","s":"Balones","r":"TWX-515","d":"Balón para juego recreativo y práctica deportiva.","g":["189cF1osf5tU-r6i9SAeCxp6Gg60_Yifi"]},{"n":"Balón","c":"deportes","s":"Balones","r":"B711/1213","d":"Balón para juego recreativo y práctica deportiva.","g":["1aq_3RM_fLHSyClhS0q0ImaAGPQvCKeaS","1xwPJ-Dylyrwi8YXVizgOty3ZeKUl-UMn","1fcrBXz4lc7FrPcWwwHRg4tuKKMoEdtR2"]},{"n":"Balón","c":"deportes","s":"Balones","r":"B714","d":"Balón para juego recreativo y práctica deportiva.","g":["1aWbjaO6zAfc0uglCsw8jQlpCoWrtUjDo"]},{"n":"Carpa infantil","c":"jugueteria","s":"Carpas y túneles","r":"CP22","d":"Carpa de juego plegable para crear un espacio propio dentro o fuera de casa.","g":["1yX9781kgAc6zNPXSGxqHsTqzJPO8t-LC","1tdMw87azImTdQccXjlKfdYGJ86oppyOn","1KYBWVLn_B62PFArDJ0isftunHsiqbEPy"]},{"n":"Carpa infantil","c":"jugueteria","s":"Carpas y túneles","r":"H801","d":"Carpa de juego plegable para crear un espacio propio dentro o fuera de casa.","g":["1Haw-83vM230BeydEDzH8b4ztYzt0lXuS","1ZoDKkzmsMibaILBIPmLedb7fXwGAvI8-","1J6VM_QsjXkmQFSxorTxL_iPh5kmxcm52","1tTw8BW90K2AfNkR4dFoimjLd-Im78Qap"]},{"n":"Carpa infantil","c":"jugueteria","s":"Carpas y túneles","r":"H812L","d":"Carpa de juego plegable para crear un espacio propio dentro o fuera de casa.","g":["1S7-iwonlcZF4B_Q0lpt26jnp-eiOkcyv","1HibVSTj0TBZ5X06ubGEm0FRm7eAUgSE5"]},{"n":"Linterna","c":"deportes","s":"Linternas","r":"68","d":"Linterna práctica para camping, viajes y actividades al aire libre.","g":["1aYh-owK4E905Zgo9I3orA9OevNhJA7D-","1L3lBBnMmd-qxeW7n61jdi9dDbg4nrpNy","1tBXv_XjGfOc-8EKytFWpKxInaBGHsk60","1D1BammcBDJ1ZaBHZOaTrPD6zk42Y2aU6","1sjNXVSA-r2mthkkn3St5_sFiwbjxLW_t"]},{"n":"Linterna","c":"deportes","s":"Linternas","r":"0108A","d":"Linterna práctica para camping, viajes y actividades al aire libre.","g":["1iu2OEKaOZO08r1NaIVP173GF3SVOwM3x","12hW6a0lU1mnobSdW-qQZaDQjEBG9zxap","1aGvgUuyjcwyuMHM38U4hYmdOzDLDOYAt","1wUhXjUyHc0sfe8O7M2fH_yC8X0jrVXNB"]},{"n":"Linterna","c":"deportes","s":"Linternas","r":"657","d":"Linterna práctica para camping, viajes y actividades al aire libre.","g":["1vDWbbJddIk3xToa-53wZ0Nwu9323tu9k","1SC6qdLDG53jicGXukD7C_BmZih93DbIx","1ZZOVurqj2dpClWkfqbmyvYUkH2o1xTh8","1d9KL2RXi4RAVXKzOXbaPJWQXxR0nvgSB","1EBQyG4ff4KvmcIe87mqvAzicE2EHX0Q0","1XpPFs0w0-ORTtUhc2d9W8l_xmC4NYoiA"]},{"n":"Linterna","c":"deportes","s":"Linternas","r":"911","d":"Linterna práctica para camping, viajes y actividades al aire libre.","g":["1Nwa8G6SnDf5G9QyUCUnYeVyGtRxCoGai","1cjn02yzaRVcQZSZ_7OI5Umq5_fCgZM9Z","1cse0hcVP1Hl7Crz8Vt0uctBpwkAiP-jc","1tMHPIfnPAyoExOJuoSAG5l-opigHTELu","1S1Nz9vn6ofYCWW655puu8pI3KKdqZJeu"]},{"n":"Linterna","c":"deportes","s":"Linternas","r":"2203","d":"Linterna práctica para camping, viajes y actividades al aire libre.","g":["1VXm6XSTGlEEUM6rAw1hqqDBE64fRmc5o","1FXhZEaThlnreyrP0TxsV8hiO09pEa0o8","1gtVkGPEgNmq3rTOGWa4mEsnMMUVTF7ft","1xImkLNnO7HLbkLKFNki35i0xbp8PAk6-"]},{"n":"Linterna","c":"deportes","s":"Linternas","r":"A100","d":"Linterna práctica para camping, viajes y actividades al aire libre.","g":["1I7PYjfW5YeDMsBH7YYKgaPOL72UwKvwC","1VSvEpXpL_KMW3qzYigm_bORAejAGSlbD","1SU_GqJVWmlXNikyFBOeHa6kBSbnkZP7C","1HgerFDA7tn5FQaGqiQnSWGeqUIdoS0ll","15lSCRnlTDNFY1j-QFdI4zmOrLm7N8Tof","1eyLUM0Tpf7_L3PfkuMR6CmmQ12qBj_uw"]},{"n":"Linterna","c":"deportes","s":"Linternas","r":"X900","d":"Linterna práctica para camping, viajes y actividades al aire libre.","g":["1ogFaym1gqMN5WFoOMrlK-xR7huSFQmmq","1RvYoUCfRpATGYxSBy_cl5zflmXUFeqPc","1Rm--UX7cGwy8wF2lQ-Biw-uVh0dso6xc","1lwmu3sjMq892e_BGb8LC0EdOCF78LOf4","1WjFJVluEFVZs9Yk6kiH7MywlB1OO0gwe","1Ax4Bf366vDLAYDVHF_VUcnlaeeuE1ECO"]},{"n":"Llantas para patines","c":"deportes","s":"Llantas y rodamientos","r":"Llantas","d":"Juego de llantas de repuesto para patines en línea.","g":["1jTp34mwyBXlyh2licso543EJpagSn6TR","1GigE1DJfxnFL-1wytayzMNz2y2XaCzT4","18kGN2QHGhytS9s-KO-CH1dvby6TFPyLC","1lhgdazBx5yblzrGKN4k45i8yuIvEVA_e","1hSVkTc8v-m6WpSMSUKAKQqKt4-d0Gnwr","142QL6wOWXBLkWJFFFKGmn6ZbEyKlCWuo"]},{"n":"Rodamientos","c":"deportes","s":"Llantas y rodamientos","r":"2024-2B","d":"Rodamientos de precisión para patines, patinetas y monopatines.","g":["1YiF0khfdf7C0PbBaO6s1Z2qZB_8nMSL5","1TwXQD_8aGy8yDB5fVyDh9XHVHDY6Kov-"]},{"n":"Rodamientos","c":"deportes","s":"Llantas y rodamientos","r":"ABEC-11","d":"Rodamientos de precisión para patines, patinetas y monopatines.","g":["1tg1hkWp6skQ8cQhwxIdbcylVRnuPQ-k2","1vAxBql_ZyphH0RKh8Vn8uFq9jrRIPGFO","1u6_Ux2EJj7ehoRQh7mInRXwvSwuU87dp","1zc4sMCEM_uRW7nWBMyUR0pBldbXFPd1-"]},{"n":"Monopatín","c":"deportes","s":"Monopatines","r":"832T-2 Guitarra","d":"Monopatín (scooter) para movilidad recreativa y diversión al aire libre.","g":["1VNGleOPTL4SL6bsdTnY22ZQCV5sQXWZ7","1xLe9A0M8QgGh-nAUqHntDWIMvIxNu6rS","1Zzm6dvPvGtgDIg9ckDgYPUifdx4qc8K5","1VCvkoXdJLZn1-9VSTA1aDttQU1ZfOnWp","1k43dqlWqkfIroPyufFC66Ky_urb0F_dz","1M4S0NoiJAdglKuJCd_LNUVaZR2OCvu9N"]},{"n":"Monopatín","c":"deportes","s":"Monopatines","r":"832T-2 Recta","d":"Monopatín (scooter) para movilidad recreativa y diversión al aire libre.","g":["1WS4k5t4IIJSmtHw32fqclL-ODaCglVi-","1WYh_ZT3IpkB8YjPwYQtkVRgfEaF5J6Ax","18Ap47EMHHPer-hsJxSYO112cSaE73fOe","17kkxic193sORipP0NUVfD5XQCsInBULe"]},{"n":"Monopatín","c":"deportes","s":"Monopatines","r":"877P","d":"Monopatín (scooter) para movilidad recreativa y diversión al aire libre.","g":["1MYUu6GsxIjTx_F-j3_iGqqFKbuDL40N5","1BkCnCJiEcUpXqTjsTdE7-oZAEkXi20D2","1tjAqepYpKaUo5xH8B7XYmtc9bmadUH0V","13UbBF87yaUlwdzJPs3sEIDvY2na5XRXH"]},{"n":"Monopatín","c":"deportes","s":"Monopatines","r":"H0","d":"Monopatín (scooter) para movilidad recreativa y diversión al aire libre.","g":["1RaflS1Pp0BQZxDxDCgosEtbOOr5RFIkc","1gXkll35djC1qCNDCA0rbDgFMwXpivJmj","1TVXJsmXiObcPQUstoN4PDWJw6ZhTPqC_","1eApYpcT-RPOwSp5YrBAX5m57OUoha0R7","1NuBOFNpOZJXnM7Tj5A5iaBTlxD4fg9XB","1tXHxZDHUJk3ON0GTYgmo8rvUIzA-BNFi"]},{"n":"Monopatín","c":"deportes","s":"Monopatines","r":"H1","d":"Monopatín (scooter) para movilidad recreativa y diversión al aire libre.","g":["1zMFjy48RhTX1Xaj89aOj7lL-BqRmigoM","1i4WPXloZxp_Ofk9eH2HvloVxyv10jTrR","1IFjpstNnkJ5vKKon0_UrTx5zxuPZ6qG6","18kYfBAcanOFVOcmnj5ZqdsIron_jmABX","1WAwreEBlEFI8y-IrOInk0BxL9I9P5x_7","16U4GiQtlnRCh-TMawJ13pgo5p936fdza"]},{"n":"Monopatín","c":"deportes","s":"Monopatines","r":"H11","d":"Monopatín (scooter) para movilidad recreativa y diversión al aire libre.","g":["1JUoWn0X77QJICSWZKNuVZUVpTthqnOOl","18fKd75wdWNBMogIHAb7048jhWiSC09Ow","1WPDaHOYZxRtiolUjCH2StEm4paaZ2_Gt","1wmkMt5QgPzyt3E9Y2mGX8uyQ217brqae","16CL9VI5tmM5228iP2ffWpnH8xdKAMV9S","1RRty0jiWkpORnf9psox-lzACpKILFz_p"]},{"n":"Monopatín","c":"deportes","s":"Monopatines","r":"L8888","d":"Monopatín (scooter) para movilidad recreativa y diversión al aire libre.","g":["1RGY_VrtGyfVKd_h_Q79kxkoWq7wX44qa","1ofPc8sAs4JsLOYqJC7r5gufikKIU2gj3","1JSnJSsKjtjFGC2wAtO1xT1_sR6yU0zQE","19AMCbKcjNop_HYVn-uvPGNtMc-zbRWrW","1OBLTerixHY3s9ha5CTQASMoryf5J-GqG","1XSVDpBaE5oAJA0Ko92bxzoF3B0XiImbA"]},{"n":"Monopatín","c":"deportes","s":"Monopatines","r":"H3","d":"Monopatín (scooter) para movilidad recreativa y diversión al aire libre.","g":["10P-aFHpAERNpS_d5LbRnh7UGsLnzr76M","1oCLTd1i_HRrjtKUhZexdBd1ZwU3gejwB","1_VbJf9AGVLbzRDhX_XAxAv2ODY9Nw7wA","1scOOo2Dl21Vkb5cDL7YKHzZ8lU-Dg6Yc","10WmYCsKWJbGSgNMC0im3zpwt36O1U_09","1AW3HmrFhnY7R99W24z4xema6DRROg4s7"]},{"n":"Patines","c":"deportes","s":"Patines","r":"11A5","d":"Patines para patinaje recreativo, con diseño cómodo y seguro.","g":["11IT9v-jLj-qpPgTWXGTi3tmZXwbV3LTA","1NJKIUqmRwtOs5Hb-z9f3po7CE2lqFCPR","1n6zQB0LUHK-T4BaB9D7YJoVcdpaOUcZV","1FABgwl102y8VHgwkTXI3YJ-E2Xp1Ofyh","1ND7dp0yAn65pZgFELVrzEl2hPUp1JSLa","1m9RgfKuGzbFJeS330U0HnnL_bl0qTY1y"]},{"n":"Patines","c":"deportes","s":"Patines","r":"207","d":"Patines para patinaje recreativo, con diseño cómodo y seguro.","g":["1VgrvH0D7wGctRLvcPhWxlVZytq9H-oqu","1vptMNuTEPsKNsEaXLDxeKfDlhL1zV1bc","1alY2MmcEz5GrryTEEL5JwY8SrdPA5oG3","17ux9lsyuVLJvJwY1kcTsixB4UYh4LVyW","1T0dYvnxFNHzvSKq_Kt8pmkX58ejXHfQ2","1MnNikB2B-z4mTREUwiVwPnFccus2eIJ-"]},{"n":"Patines","c":"deportes","s":"Patines","r":"913","d":"Patines para patinaje recreativo, con diseño cómodo y seguro.","g":["1NUuCqrQnoQVEhIDvaETPUQ7z9fX20D_1","1sVeMROdhfSdn8QbJ2QVA5n_LitmaRSi8","1Fci4RdxeQfyOEk06vcb4BBuZMqPbqsin","1F6sGopwWwc0xofOzrPxWGisGz1jfDD_4","1VwKxUxv1SrWXFRGeYhRfc5opOMzHcmFH","1E5YsaUNlouvjSpzrD8tDUjigm1eORr1w"]},{"n":"Patines","c":"deportes","s":"Patines","r":"YX-F0217/18","d":"Patines para patinaje recreativo, con diseño cómodo y seguro.","g":["1lB8ZXzPSWKgBaI22MEfkn0qo8kvr4B5M","1PxUrlPextco6X1ny9YDNXFjN3Xur5JSP","1hClBdlpGfLDQrtsVG_nKKG7EapMALnop","1CXRie_wqquojrGZGH7SPzgmshNzGSFD8","1WbG1uk3Y3ls0OzV3Igoy6IYlQ-9kSB-P","1o7lZccovJAqCublj5HgzTzquof6p6l2W"]},{"n":"Patines","c":"deportes","s":"Patines","r":"CH-1","d":"Patines para patinaje recreativo, con diseño cómodo y seguro.","g":["1vpIszkF7bRmmb7hq8tFL-Aq8-LxVKUP0","1_j8sHWC_Egk4hCaP79_Mxv7z_D1yyWn3","14aHWQh4na1SF0Z0RBEOlCfOUyRFO9NE8","1uuQFsZmvcwrKSFHqE0ZLkXJJCAv1A1y_","1-oBebzRA0rgsoqpbl_IM2YvMwfERT9QN","1vQmK7F0q1azzGIaSzH8ZprweZ2oga532"]},{"n":"Patineta","c":"deportes","s":"Patinetas","r":"211 MJAZP","d":"Patineta para patinaje recreativo y desplazamientos cortos.","g":["1v-4xu9p7NwAPeWapFC0MM8m1RrEI9sl6","1C5TZolNVIVSympk2EB_yQAmXBJIrup0e","1WyQrt3fWplyVErTsr6tiL1QK8sYbxXPA","1bNSJCdrUJMTT9Vpqo4p8UHom2WqROKZp","1C5HLp2MGBoTn6520QE3B3CrWcitqxqa3","1LxGngefozQTsMhVPvsHn4qJw_7RJRGzQ"]},{"n":"Patineta","c":"deportes","s":"Patinetas","r":"211 Moval","d":"Patineta para patinaje recreativo y desplazamientos cortos.","g":["1bEWpLOU8bj4Mpcpke7pV9V7ejwlpUJ4R","1IVH33oHcTNYNm6nVVNwQBSpP8foJ1Yb8","1KWIer6Zth-8Tg12D6qhN8ucqg-yBSZCf","1R5s-hGbY-pd_Q1MOpJMkECl0ixJSu2fO","1llSFRM0DIBQE-JlrUqQ0p3KbR96gqmgc","1eO4GkwvB3UTO3YVBT6K3GQ2Al0GTpZjg"]},{"n":"Patineta","c":"deportes","s":"Patinetas","r":"211L","d":"Patineta para patinaje recreativo y desplazamientos cortos.","g":["1Gyr2xN9zElA9hU-GhQxDDGop9bIYfM8n","13nlYP4fJlbEIg1OIeA1lgRzw8T6jzNLM","14AnO8Yd-ZxzMyyj1k-Fr_IaRZ_boFmJy","1qoQRTnSTOSrpCcszSu30Y9EfyOvY2wFO","1C_GYU4E3FPn3ag8IAyElbvFiMa7Ztm2q","108UtIHhBexlpLXEiugBvJZfP_FKyyQiT"]},{"n":"Patineta","c":"deportes","s":"Patinetas","r":"211M","d":"Patineta para patinaje recreativo y desplazamientos cortos.","g":["16t-rB07fyHe1DJQdjzmtvHJKYCysMTyg","1NHqk1MURRqhFL7vnGgCGoJLo7QQodHao","1HWYNMix6msmQLN96kzzWNnPMtt7jfNiS","1jjV0om_-st_CwPf606Q7NFGtDtZZij3H","1r36zwA9SweBrMsF98M_XcDfmmBycnQoT","1APAyi4keDwPK8NWJdNiJVQNTtwqarPTD"]},{"n":"Patineta","c":"deportes","s":"Patinetas","r":"212-1","d":"Patineta para patinaje recreativo y desplazamientos cortos.","g":["1tenGGbeRucSLqfhRssHF31Ye5qdqZe0v","1i6-PI0UPYLxLdhI0x1xUIDX8F27RwV7r","1pA8YxVIrZdT4jyw8rNdbVJnXQajFTFsN","1A3AwRbv_yIA1S2bOaab9heoTkPIWBtP8","1PbEf0l637lOMAtLAAwuHhIPK0zuRJSMQ","1AUV8sW4-lBbrQG3uvM2aGPrF500sebhJ"]},{"n":"Patineta","c":"deportes","s":"Patinetas","r":"3108A","d":"Patineta para patinaje recreativo y desplazamientos cortos.","g":["1QlHqo07eTjoqQUltx7EkNsfDCKq-wZoD","106MER-9bfxgmvyr3T7_Ocnc90eM3wtCt","1uqS13jCUknTbXXuyhgmuK4SSMXvRkRTL","1oItIXywtHEav6qTDkhaLAIhxW4Ru2kJa","1SHy1SNWULNvL6kok4OZIE19AcPYyoHM2","1xzWJRqkt64T4KFcqhDzrsUzPkIZwr1SL"]},{"n":"Pelota de yoga","c":"deportes","s":"Fitness","r":"A65","d":"Pelota para yoga, pilates, estiramientos y ejercicios de equilibrio.","g":["1WMOL-hW0kxBiaC0uc1BVSh_ZOEFvJplC","1suGm0opHcWi7NUUVK7a1EIo_8W3MMz_f","1kFpslpoGk7RD1OCrMMG-XxQpj-l5ZYuG","1v54sGx-_LQgptjAtMdTAXtHKfxQ2RH1c"]},{"n":"Set de protecciones","c":"deportes","s":"Protecciones","r":"HD-0","d":"Protecciones para patinaje y deportes sobre ruedas.","g":["1IbTIVLDKuMK2z_-X6xj5pNi2K-9wxtPK","1jisjIcnU9J9GHpmIt_8jksd76xbYOQaL","19y11xr447CUYJf-Pbz8lR-zyDyXkKdpm","1r9t7uemqTV0qSEuinpiSyFAqx6_g3rMj","1L3bRpRZX4Q8KZX0TUDrlWDO07bhC0rTB","13J0IuXFEKQRiCrEgT8rjy-XVdy2qN9Z8"]},{"n":"Set de protecciones","c":"deportes","s":"Protecciones","r":"HD-2","d":"Protecciones para patinaje y deportes sobre ruedas.","g":["1951e0P8MOjfm2fiAKnpjZNVPaesqxj0e","1-tJ20VVFpDdkzimtwV7InGuvwdu-SooL","1CVw4IMBkqIML-tVTSYZdy7OSX3mUd29b","1wvalJ0DDyQVwI6qLZyoHkL5_I0HtQ1kI","1N7YAPYoWk-oCJMThRCtyjQqXSLhVNyQ0","1MxkYBNlS8zSys06PklfSZqYGYRBPmeD7"]},{"n":"Set de protecciones","c":"deportes","s":"Protecciones","r":"MCC-0332","d":"Protecciones para patinaje y deportes sobre ruedas.","g":["1l-KfZG-0IyMaCIfyXVUX4ER0cKJmCWAg","1fUQ0BRvaEB8P4VPdSaEG1uwFSCOxHQaB","1S1Lf3CAu3RDo0Cd-m9oXnypQAI2fLYYy","1X_4dRrjBZxx-E04g_BKp0VCUhq5wpxRb","1L7Scx2DKf-PtSqKmPhkZ3qGBUNUTxUnz"]},{"n":"Set de ping pong","c":"deportes","s":"Raquetas","r":"328","d":"Set de raquetas y pelotas para tenis de mesa.","g":["1fRPP7DxDx1AgC-gvFSAUA5tpyFAO6aOk"]},{"n":"Set de ping pong","c":"deportes","s":"Raquetas","r":"2027","d":"Set de raquetas y pelotas para tenis de mesa.","g":["194B6XMiTSxqkL6CgreEhOjNra58rNjEt"]},{"n":"Pelotas de tenis","c":"deportes","s":"Raquetas","r":"686","d":"Pelotas para tenis y práctica recreativa.","g":["1KgNgiaPZ9ZE0GCdMlk3GgfmCLXgxuiGW","1vg2TzYYHv9aN-7wgFpBTdfm0LFBjDe7d","197dr-nZf0csU8MZCfpj1OiQ0XKDyGrlA"]},{"n":"Raqueta de tenis","c":"deportes","s":"Raquetas","r":"1005","d":"Raqueta para iniciación y juego recreativo.","g":["1syR7hvz08LW-S-7p5z6_K0IJvfNA7cAF","1B0eUpqpmFDNbKP44oRpk62JQxqN52_LE","1Ogb72wuWd9CT_k4mknoqpe9AVt4merVA","1Z0twQdtxYcIOptx6ZvpCvzJvC1E9rRdo"]},{"n":"Raqueta de tenis","c":"deportes","s":"Raquetas","r":"DA-23","d":"Raqueta para iniciación y juego recreativo.","g":["1ETiVRHfD7TONMeR86RWPQzgE4l_apJi8","1Rno_H_4c6sFro7RnJYf1w7fknVFNabQS","1dUTuzepziim8gI0zPCkykjfw6zYEznwh"]},{"n":"Raqueta de tenis","c":"deportes","s":"Raquetas","r":"DA-25","d":"Raqueta para iniciación y juego recreativo.","g":["1g8kiTFg6QvlnRzApa5KKh2GHdEcR2JLy","1jYs7RiChp60QRBnCfj7ppKAVAdfLEB_O","15hjtCJcsltsw5O1GFqSb-n6v2vy2n0us"]},{"n":"Rodillera deportiva","c":"deportes","s":"Protecciones","r":"787","d":"Rodillera de soporte para entrenamiento y actividad física.","g":["1GKKTiZrBMVpkXarlkDFlLA0TxGXLRpb5","1jMgQa_fgjNQKrqNU_DcyEJpOV7LpepcO"]},{"n":"Set de arte","c":"jugueteria","s":"Arte y manualidades","r":"168","d":"Estuche de arte con colores y accesorios para dibujar y pintar.","g":["1QZlGzaWIPhA-tgrmZwHQRt3x7pyntVuc"]},{"n":"Set de arte","c":"jugueteria","s":"Arte y manualidades","r":"208","d":"Estuche de arte con colores y accesorios para dibujar y pintar.","g":["1EeFtau5jt8oRY4kJKBCy0kV69JNJe-bQ"]},{"n":"Multiherramienta Traveler","c":"deportes","s":"Multiherramientas","r":"MQ003G","d":"Herramienta compacta multifunción para camping, viajes y uso diario.","g":["1xKFRwJ8gDVPkftDN3lO1SEcuP3Rn9yVD","1Fjb4XjZEQDCjye_xE0dhgzeNN_UAHdd0","1dw4GRCvMbwd4xianiI9Ff0-KwG-ZzU4-","1-S-qYqCR90LfI-o88wbzjdlDV-EKOHSl","1Sr2PuJzorzaPo-mwpR5fK2RHbUeIu18h","1V6Tn0TQx1TBBwFJujDNCEU-o4pkShDpt"]},{"n":"Multiherramienta Traveler","c":"deportes","s":"Multiherramientas","r":"MS001","d":"Herramienta compacta multifunción para camping, viajes y uso diario.","g":["1ArYEp-4xzArDqmKQb038Jg89Rrn8wvbe","1qfQ6qjzS01zQOew0fJc5NwYk2Xb7OFUK","1PdphuQKiynu_okiyz7lJnNKCaKLXU4hu","1XMaHmId0e22GztZrqUSIDSDunfwptNwz","1hwo0KRHkN3mK3qXrdBvEfBygiG9-UveJ"]},{"n":"Multiherramienta Traveler","c":"deportes","s":"Multiherramientas","r":"MT 8321-8G","d":"Herramienta compacta multifunción para camping, viajes y uso diario.","g":["1a0BRQOhM1Zngc1_31TqcoRXbSGpkzFH0","1uTwT0XE3t5ELJYb2K1QwmV9pM2oYeofc","1mNi_XJsqUqN8Fg0gDpR123bY0sY_9T_Q","1ZAYDla6n3X1MvLB_MCgngrByKgIDyRyK","1jaLZcDWHAY1F0YJ-JLgKdmMnAcGwrdPV","1K57YWqdioO61FFuNcr3aWzNY6oU2DBBY"]},{"n":"Multiherramienta Traveler","c":"deportes","s":"Multiherramientas","r":"MT629PG","d":"Herramienta compacta multifunción para camping, viajes y uso diario.","g":["16rem7jGwJjqGoD_YsiacKC2Wgh-89NIo","12B1qbZGnur9KTB0MF3unSRI68m9eSdEK","1u6c3ZhbE79eXl58nZQRebHkSo5ZlM-9Y","1XG3BA02wOq0t2hgc2Kai5slkWD6SOJfA","12e4tiueJAt_PjJya0WqmTHttbTpVcul7","1q1qIdrHNRyfK6OP003MZt8sOSCsvLkua"]},{"n":"Multiherramienta Traveler","c":"deportes","s":"Multiherramientas","r":"MT821G","d":"Herramienta compacta multifunción para camping, viajes y uso diario.","g":["1778kdbMaBP1fkWf4BKZtEanzCsLP6lXa","1LbgsEJ74fS1nVvpmVbdTvJbgaUSu-q7B","1oH51MKpg0ETqZf-U7C5NYFyJ5gQdYuUv","1idaM4_XnthR6EEdTRGwJDEgqykl-uePe","182MpIM98gv6I1ztjIUxUSK7piGSV29go","13zxdtgqEBpAA92pJAPINtY7UTw4qOHfF"]},{"n":"Multiherramienta Traveler","c":"deportes","s":"Multiherramientas","r":"MT832F-1-8G","d":"Herramienta compacta multifunción para camping, viajes y uso diario.","g":["1i5tMxJp9SMr_n6doyj5s9kcJhVl4E4vM","1FATClA1a8CiHCzIBDczyMpgd57cZSevP","1uwMchAPjeQZEQitZbQ6oY0CleaCZjwgI","1Ir-wStMuGCjftvUwDtsFKKxWlWb-U_c-","1kEF5r50FpT7D7l1IK_AF6DnqoyBlgu9m","1PJROn57xOBP75rTWqyNasgUm2NO04_8B"]},{"n":"Cortinas de baño","c":"hogar","s":"Baño","r":"","d":"Cortinas funcionales para baño y renovación de espacios.","u":["https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=900&q=80"]},{"n":"Utensilios de cocina","c":"hogar","s":"Cocina","r":"","d":"Utensilios esenciales para preparar y servir alimentos.","u":["https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=900&q=80"]},{"n":"Coladores","c":"hogar","s":"Cocina","r":"","d":"Coladores prácticos para preparación y cocina diaria.","u":["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=900&q=80"]},{"n":"Cuchillos de cocina","c":"hogar","s":"Cocina","r":"","d":"Cuchillos para diferentes tareas de cocina.","u":["https://images.unsplash.com/photo-1593618998160-e34014e67546?auto=format&fit=crop&w=900&q=80"]},{"n":"Cubiertos","c":"hogar","s":"Cocina","r":"","d":"Cubiertos para uso diario y presentación de mesa.","u":["https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80"]},{"n":"Juegos de cubiertos","c":"hogar","s":"Cocina","r":"","d":"Juegos completos de cubiertos para mesa.","u":["https://images.unsplash.com/photo-1494390248081-4e521a5940db?auto=format&fit=crop&w=900&q=80"]},{"n":"Tablas para picar","c":"hogar","s":"Cocina","r":"","d":"Tablas resistentes para preparación de alimentos.","u":["https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80"]},{"n":"Individuales","c":"hogar","s":"Cocina","r":"","d":"Individuales para vestir la mesa y proteger superficies.","u":["https://images.unsplash.com/photo-1519710887729-4c2d6e4f1f5d?auto=format&fit=crop&w=900&q=80"]},{"n":"Termos","c":"hogar","s":"Cocina","r":"","d":"Termos para conservar bebidas durante el día.","u":["https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=900&q=80"]},{"n":"Ollas y baterías de cocina","c":"hogar","s":"Cocina","r":"","d":"Ollas y baterías para equipar la cocina.","u":["https://images.unsplash.com/photo-1584990347449-a0c6b6f8f5b1?auto=format&fit=crop&w=900&q=80"]},{"n":"Vajillas","c":"hogar","s":"Cocina","r":"","d":"Vajillas para uso cotidiano y ocasiones especiales.","u":["https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80"]},{"n":"Tapetes","c":"hogar","s":"Decoración y Textiles","r":"","d":"Tapetes para aportar textura y estilo a los espacios.","u":["https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=80"]}];
-products.forEach(p=>{p.imgs=p.g?p.g.map(id=>TH+id+"&sz=w900"):p.u;p.small=p.g?TH+p.g[0]+"&sz=w500":p.u[0];p.isPhoto=!p.g});
-const colors={deportes:"red",jugueteria:"aqua",hogar:"blue"};
-const labels={deportes:"Deportes",jugueteria:"Juguetería",hogar:"Hogar"};
-const featuredRefs=["207","H0","211M","HD-2","A100","250-3","MT629PG","H801"];
-let currentCat="todos", currentSub="todos";
-const grid=document.getElementById("grid"), featured=document.getElementById("featured"), count=document.getElementById("count"), subs=document.getElementById("subs");
-const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const products=[{"n":"Repuesto para monopatín y patines","c":"deportes","s":"Repuestos y accesorios","r":"2013-1","d":"Pieza de repuesto para mantenimiento y ajuste de monopatines y patines.","g":["1f1YmjrlWPUVs6DeXJ_FdDOOLh9v7Bglv"]},{"n":"Repuesto para monopatín y patines","c":"deportes","s":"Repuestos y accesorios","r":"2024-1","d":"Pieza de repuesto para mantenimiento y ajuste de monopatines y patines.","g":["1EvfAcZJ-q65sAcqL4qYLjdxfN3FfSmWG"]},{"n":"Repuesto para monopatín y patines","c":"deportes","s":"Repuestos y accesorios","r":"BUJE","d":"Pieza de repuesto para mantenimiento y ajuste de monopatines y patines.","g":["1tff61Hc0HXIsnXzS070G9oMZJNolavdC"]},{"n":"Repuesto para monopatín y patines","c":"deportes","s":"Repuestos y accesorios","r":"CH-2","d":"Pieza de repuesto para mantenimiento y ajuste de monopatines y patines.","g":["1JCyAjeBzgbJZksrAu-iXkH8waGtHG2Cs"]},{"n":"Repuesto para monopatín y patines","c":"deportes","s":"Repuestos y accesorios","r":"F2410-1","d":"Pieza de repuesto para mantenimiento y ajuste de monopatines y patines.","g":["1XX8LM__ZnsAl1DHcY84YM5suZef-OCPs"]},{"n":"Repuesto para monopatín y patines","c":"deportes","s":"Repuestos y accesorios","r":"M7","d":"Pieza de repuesto para mantenimiento y ajuste de monopatines y patines.","g":["1WoOTrXS-keeXQmoDFbXbY47pV8_CjQ3y"]},{"n":"Animal saltarín inflable","c":"jugueteria","s":"Montables","r":"250-3","d":"Montable inflable para saltar y jugar, ideal para los más pequeños.","g":["1Qt6qScJjjYZeKkePW-_d1h1-2WoN6lao","1ggmPnB1KAlVgW1IZMqDDHZCE1kceMWeN","17SlXIdB-FCuAdyBgJ5ujBsUwfBoP3qU4","11pNWu1ZCV9JJZ58tvVNhYhsN_y7_w0Xu","1xHsfA9TMfdiLZccAULsZyoogBsKfUhD5"]},{"n":"Animal saltarín inflable","c":"jugueteria","s":"Montables","r":"250-3A","d":"Montable inflable para saltar y jugar, ideal para los más pequeños.","g":["1VGt8-Y3AHpA3WDV6OyUmAFVx_wp0fCby","1Fi2WZDgBZdKE8OERthYcq9CX3sKGX-pE","1HRVHMPQzmnfH2F8r9LMmuM119eFtsBq4","1kc-Prh2BnWphFqhy4PCCaeyMgsPXnjw7","1zHHNg1BdsSoL0dw_ZK7Bzziw1rhMLWF8","1rFy9KAhb8E101Yd2zCJqtDehOoaLNbpM"]},{"n":"Balón","c":"deportes","s":"Balones","r":"250-2","d":"Balón para juego recreativo y práctica deportiva.","g":["1YIndeFp7gdeoNMhwIGiO_03MJjVa0n-u","1-UItB_nQYianQR-OiqoGTV4lw36xLfGl","1zaCp_nWimSXycAiPhFKEHPlm5aofjQeC","1DlMjioGmtnWN-2D1MeAodR4_AckYzqoG"]},{"n":"Balón","c":"deportes","s":"Balones","r":"FT5711","d":"Balón para juego recreativo y práctica deportiva.","g":["1fNODv0mdpcivVgEIq3TEYel9DFmUUcnh","1nglJREKppPLKB6QP03JpaIxT-66ezFC5","1eyTYrJxgb7IbU-6CDqiZJM4sa8dlI-Xf"]},{"n":"Balón","c":"deportes","s":"Balones","r":"TWX-515","d":"Balón para juego recreativo y práctica deportiva.","g":["189cF1osf5tU-r6i9SAeCxp6Gg60_Yifi"]},{"n":"Balón","c":"deportes","s":"Balones","r":"B711/1213","d":"Balón para juego recreativo y práctica deportiva.","g":["1aq_3RM_fLHSyClhS0q0ImaAGPQvCKeaS","1xwPJ-Dylyrwi8YXVizgOty3ZeKUl-UMn","1fcrBXz4lc7FrPcWwwHRg4tuKKMoEdtR2"]},{"n":"Balón","c":"deportes","s":"Balones","r":"B714","d":"Balón para juego recreativo y práctica deportiva.","g":["1aWbjaO6zAfc0uglCsw8jQlpCoWrtUjDo"]},{"n":"Carpa infantil","c":"jugueteria","s":"Carpas y túneles","r":"CP22","d":"Carpa de juego plegable para crear un espacio propio dentro o fuera de casa.","g":["1yX9781kgAc6zNPXSGxqHsTqzJPO8t-LC","1tdMw87azImTdQccXjlKfdYGJ86oppyOn","1KYBWVLn_B62PFArDJ0isftunHsiqbEPy"]},{"n":"Carpa infantil","c":"jugueteria","s":"Carpas y túneles","r":"H801","d":"Carpa de juego plegable para crear un espacio propio dentro o fuera de casa.","g":["1Haw-83vM230BeydEDzH8b4ztYzt0lXuS","1ZoDKkzmsMibaILBIPmLedb7fXwGAvI8-","1J6VM_QsjXkmQFSxorTxL_iPh5kmxcm52","1tTw8BW90K2AfNkR4dFoimjLd-Im78Qap"]},{"n":"Carpa infantil","c":"jugueteria","s":"Carpas y túneles","r":"H812L","d":"Carpa de juego plegable para crear un espacio propio dentro o fuera de casa.","g":["1S7-iwonlcZF4B_Q0lpt26jnp-eiOkcyv","1HibVSTj0TBZ5X06ubGEm0FRm7eAUgSE5"]},{"n":"Linterna","c":"deportes","s":"Linternas","r":"68","d":"Linterna práctica para camping, viajes y actividades al aire libre.","g":["1aYh-owK4E905Zgo9I3orA9OevNhJA7D-","1L3lBBnMmd-qxeW7n61jdi9dDbg4nrpNy","1tBXv_XjGfOc-8EKytFWpKxInaBGHsk60","1D1BammcBDJ1ZaBHZOaTrPD6zk42Y2aU6","1sjNXVSA-r2mthkkn3St5_sFiwbjxLW_t"]},{"n":"Linterna","c":"deportes","s":"Linternas","r":"0108A","d":"Linterna práctica para camping, viajes y actividades al aire libre.","g":["1iu2OEKaOZO08r1NaIVP173GF3SVOwM3x","12hW6a0lU1mnobSdW-qQZaDQjEBG9zxap","1aGvgUuyjcwyuMHM38U4hYmdOzDLDOYAt","1wUhXjUyHc0sfe8O7M2fH_yC8X0jrVXNB"]},{"n":"Linterna","c":"deportes","s":"Linternas","r":"657","d":"Linterna práctica para camping, viajes y actividades al aire libre.","g":["1vDWbbJddIk3xToa-53wZ0Nwu9323tu9k","1SC6qdLDG53jicGXukD7C_BmZih93DbIx","1ZZOVurqj2dpClWkfqbmyvYUkH2o1xTh8","1d9KL2RXi4RAVXKzOXbaPJWQXxR0nvgSB","1EBQyG4ff4KvmcIe87mqvAzicE2EHX0Q0","1XpPFs0w0-ORTtUhc2d9W8l_xmC4NYoiA"]},{"n":"Linterna","c":"deportes","s":"Linternas","r":"911","d":"Linterna práctica para camping, viajes y actividades al aire libre.","g":["1Nwa8G6SnDf5G9QyUCUnYeVyGtRxCoGai","1cjn02yzaRVcQZSZ_7OI5Umq5_fCgZM9Z","1cse0hcVP1Hl7Crz8Vt0uctBpwkAiP-jc","1tMHPIfnPAyoExOJuoSAG5l-opigHTELu","1S1Nz9vn6ofYCWW655puu8pI3KKdqZJeu"]},{"n":"Linterna","c":"deportes","s":"Linternas","r":"2203","d":"Linterna práctica para camping, viajes y actividades al aire libre.","g":["1VXm6XSTGlEEUM6rAw1hqqDBE64fRmc5o","1FXhZEaThlnreyrP0TxsV8hiO09pEa0o8","1gtVkGPEgNmq3rTOGWa4mEsnMMUVTF7ft","1xImkLNnO7HLbkLKFNki35i0xbp8PAk6-"]},{"n":"Linterna","c":"deportes","s":"Linternas","r":"A100","d":"Linterna práctica para camping, viajes y actividades al aire libre.","g":["1I7PYjfW5YeDMsBH7YYKgaPOL72UwKvwC","1VSvEpXpL_KMW3qzYigm_bORAejAGSlbD","1SU_GqJVWmlXNikyFBOeHa6kBSbnkZP7C","1HgerFDA7tn5FQaGqiQnSWGeqUIdoS0ll","15lSCRnlTDNFY1j-QFdI4zmOrLm7N8Tof","1eyLUM0Tpf7_L3PfkuMR6CmmQ12qBj_uw"]},{"n":"Linterna","c":"deportes","s":"Linternas","r":"X900","d":"Linterna práctica para camping, viajes y actividades al aire libre.","g":["1ogFaym1gqMN5WFoOMrlK-xR7huSFQmmq","1RvYoUCfRpATGYxSBy_cl5zflmXUFeqPc","1Rm--UX7cGwy8wF2lQ-Biw-uVh0dso6xc","1lwmu3sjMq892e_BGb8LC0EdOCF78LOf4","1WjFJVluEFVZs9Yk6kiH7MywlB1OO0gwe","1Ax4Bf366vDLAYDVHF_VUcnlaeeuE1ECO"]},{"n":"Llantas para patines","c":"deportes","s":"Llantas y rodamientos","r":"Llantas","d":"Juego de llantas de repuesto para patines en línea.","g":["1jTp34mwyBXlyh2licso543EJpagSn6TR","1GigE1DJfxnFL-1wytayzMNz2y2XaCzT4","18kGN2QHGhytS9s-KO-CH1dvby6TFPyLC","1lhgdazBx5yblzrGKN4k45i8yuIvEVA_e","1hSVkTc8v-m6WpSMSUKAKQqKt4-d0Gnwr","142QL6wOWXBLkWJFFFKGmn6ZbEyKlCWuo"]},{"n":"Rodamientos","c":"deportes","s":"Llantas y rodamientos","r":"2024-2B","d":"Rodamientos de precisión para patines, patinetas y monopatines.","g":["1YiF0khfdf7C0PbBaO6s1Z2qZB_8nMSL5","1TwXQD_8aGy8yDB5fVyDh9XHVHDY6Kov-"]},{"n":"Rodamientos","c":"deportes","s":"Llantas y rodamientos","r":"ABEC-11","d":"Rodamientos de precisión para patines, patinetas y monopatines.","g":["1tg1hkWp6skQ8cQhwxIdbcylVRnuPQ-k2","1vAxBql_ZyphH0RKh8Vn8uFq9jrRIPGFO","1u6_Ux2EJj7ehoRQh7mInRXwvSwuU87dp","1zc4sMCEM_uRW7nWBMyUR0pBldbXFPd1-"]},{"n":"Monopatín","c":"deportes","s":"Monopatines","r":"832T-2 Guitarra","d":"Monopatín (scooter) para movilidad recreativa y diversión al aire libre.","g":["1VNGleOPTL4SL6bsdTnY22ZQCV5sQXWZ7","1xLe9A0M8QgGh-nAUqHntDWIMvIxNu6rS","1Zzm6dvPvGtgDIg9ckDgYPUifdx4qc8K5","1VCvkoXdJLZn1-9VSTA1aDttQU1ZfOnWp","1k43dqlWqkfIroPyufFC66Ky_urb0F_dz","1M4S0NoiJAdglKuJCd_LNUVaZR2OCvu9N"]},{"n":"Monopatín","c":"deportes","s":"Monopatines","r":"832T-2 Recta","d":"Monopatín (scooter) para movilidad recreativa y diversión al aire libre.","g":["1WS4k5t4IIJSmtHw32fqclL-ODaCglVi-","1WYh_ZT3IpkB8YjPwYQtkVRgfEaF5J6Ax","18Ap47EMHHPer-hsJxSYO112cSaE73fOe","17kkxic193sORipP0NUVfD5XQCsInBULe"]},{"n":"Monopatín","c":"deportes","s":"Monopatines","r":"877P","d":"Monopatín (scooter) para movilidad recreativa y diversión al aire libre.","g":["1MYUu6GsxIjTx_F-j3_iGqqFKbuDL40N5","1BkCnCJiEcUpXqTjsTdE7-oZAEkXi20D2","1tjAqepYpKaUo5xH8B7XYmtc9bmadUH0V","13UbBF87yaUlwdzJPs3sEIDvY2na5XRXH"]},{"n":"Monopatín","c":"deportes","s":"Monopatines","r":"H0","d":"Monopatín (scooter) para movilidad recreativa y diversión al aire libre.","g":["1RaflS1Pp0BQZxDxDCgosEtbOOr5RFIkc","1gXkll35djC1qCNDCA0rbDgFMwXpivJmj","1TVXJsmXiObcPQUstoN4PDWJw6ZhTPqC_","1eApYpcT-RPOwSp5YrBAX5m57OUoha0R7","1NuBOFNpOZJXnM7Tj5A5iaBTlxD4fg9XB","1tXHxZDHUJk3ON0GTYgmo8rvUIzA-BNFi"]},{"n":"Monopatín","c":"deportes","s":"Monopatines","r":"H1","d":"Monopatín (scooter) para movilidad recreativa y diversión al aire libre.","g":["1zMFjy48RhTX1Xaj89aOj7lL-BqRmigoM","1i4WPXloZxp_Ofk9eH2HvloVxyv10jTrR","1IFjpstNnkJ5vKKon0_UrTx5zxuPZ6qG6","18kYfBAcanOFVOcmnj5ZqdsIron_jmABX","1WAwreEBlEFI8y-IrOInk0BxL9I9P5x_7","16U4GiQtlnRCh-TMawJ13pgo5p936fdza"]},{"n":"Monopatín","c":"deportes","s":"Monopatines","r":"H11","d":"Monopatín (scooter) para movilidad recreativa y diversión al aire libre.","g":["1JUoWn0X77QJICSWZKNuVZUVpTthqnOOl","18fKd75wdWNBMogIHAb7048jhWiSC09Ow","1WPDaHOYZxRtiolUjCH2StEm4paaZ2_Gt","1wmkMt5QgPzyt3E9Y2mGX8uyQ217brqae","16CL9VI5tmM5228iP2ffWpnH8xdKAMV9S","1RRty0jiWkpORnf9psox-lzACpKILFz_p"]},{"n":"Monopatín","c":"deportes","s":"Monopatines","r":"L8888","d":"Monopatín (scooter) para movilidad recreativa y diversión al aire libre.","g":["1RGY_VrtGyfVKd_h_Q79kxkoWq7wX44qa","1ofPc8sAs4JsLOYqJC7r5gufikKIU2gj3","1JSnJSsKjtjFGC2wAtO1xT1_sR6yU0zQE","19AMCbKcjNop_HYVn-uvPGNtMc-zbRWrW","1OBLTerixHY3s9ha5CTQASMoryf5J-GqG","1XSVDpBaE5oAJA0Ko92bxzoF3B0XiImbA"]},{"n":"Monopatín","c":"deportes","s":"Monopatines","r":"H3","d":"Monopatín (scooter) para movilidad recreativa y diversión al aire libre.","g":["10P-aFHpAERNpS_d5LbRnh7UGsLnzr76M","1oCLTd1i_HRrjtKUhZexdBd1ZwU3gejwB","1_VbJf9AGVLbzRDhX_XAxAv2ODY9Nw7wA","1scOOo2Dl21Vkb5cDL7YKHzZ8lU-Dg6Yc","10WmYCsKWJbGSgNMC0im3zpwt36O1U_09","1AW3HmrFhnY7R99W24z4xema6DRROg4s7"]},{"n":"Patines","c":"deportes","s":"Patines","r":"11A5","d":"Patines para patinaje recreativo, con diseño cómodo y seguro.","g":["11IT9v-jLj-qpPgTWXGTi3tmZXwbV3LTA","1NJKIUqmRwtOs5Hb-z9f3po7CE2lqFCPR","1n6zQB0LUHK-T4BaB9D7YJoVcdpaOUcZV","1FABgwl102y8VHgwkTXI3YJ-E2Xp1Ofyh","1ND7dp0yAn65pZgFELVrzEl2hPUp1JSLa","1m9RgfKuGzbFJeS330U0HnnL_bl0qTY1y"]},{"n":"Patines","c":"deportes","s":"Patines","r":"207","d":"Patines para patinaje recreativo, con diseño cómodo y seguro.","g":["1VgrvH0D7wGctRLvcPhWxlVZytq9H-oqu","1vptMNuTEPsKNsEaXLDxeKfDlhL1zV1bc","1alY2MmcEz5GrryTEEL5JwY8SrdPA5oG3","17ux9lsyuVLJvJwY1kcTsixB4UYh4LVyW","1T0dYvnxFNHzvSKq_Kt8pmkX58ejXHfQ2","1MnNikB2B-z4mTREUwiVwPnFccus2eIJ-"]},{"n":"Patines","c":"deportes","s":"Patines","r":"913","d":"Patines para patinaje recreativo, con diseño cómodo y seguro.","g":["1NUuCqrQnoQVEhIDvaETPUQ7z9fX20D_1","1sVeMROdhfSdn8QbJ2QVA5n_LitmaRSi8","1Fci4RdxeQfyOEk06vcb4BBuZMqPbqsin","1F6sGopwWwc0xofOzrPxWGisGz1jfDD_4","1VwKxUxv1SrWXFRGeYhRfc5opOMzHcmFH","1E5YsaUNlouvjSpzrD8tDUjigm1eORr1w"]},{"n":"Patines","c":"deportes","s":"Patines","r":"YX-F0217/18","d":"Patines para patinaje recreativo, con diseño cómodo y seguro.","g":["1lB8ZXzPSWKgBaI22MEfkn0qo8kvr4B5M","1PxUrlPextco6X1ny9YDNXFjN3Xur5JSP","1hClBdlpGfLDQrtsVG_nKKG7EapMALnop","1CXRie_wqquojrGZGH7SPzgmshNzGSFD8","1WbG1uk3Y3ls0OzV3Igoy6IYlQ-9kSB-P","1o7lZccovJAqCublj5HgzTzquof6p6l2W"]},{"n":"Patines","c":"deportes","s":"Patines","r":"CH-1","d":"Patines para patinaje recreativo, con diseño cómodo y seguro.","g":["1vpIszkF7bRmmb7hq8tFL-Aq8-LxVKUP0","1_j8sHWC_Egk4hCaP79_Mxv7z_D1yyWn3","14aHWQh4na1SF0Z0RBEOlCfOUyRFO9NE8","1uuQFsZmvcwrKSFHqE0ZLkXJJCAv1A1y_","1-oBebzRA0rgsoqpbl_IM2YvMwfERT9QN","1vQmK7F0q1azzGIaSzH8ZprweZ2oga532"]},{"n":"Patineta","c":"deportes","s":"Patinetas","r":"211 MJAZP","d":"Patineta para patinaje recreativo y desplazamientos cortos.","g":["1v-4xu9p7NwAPeWapFC0MM8m1RrEI9sl6","1C5TZolNVIVSympk2EB_yQAmXBJIrup0e","1WyQrt3fWplyVErTsr6tiL1QK8sYbxXPA","1bNSJCdrUJMTT9Vpqo4p8UHom2WqROKZp","1C5HLp2MGBoTn6520QE3B3CrWcitqxqa3","1LxGngefozQTsMhVPvsHn4qJw_7RJRGzQ"]},{"n":"Patineta","c":"deportes","s":"Patinetas","r":"211 Moval","d":"Patineta para patinaje recreativo y desplazamientos cortos.","g":["1bEWpLOU8bj4Mpcpke7pV9V7ejwlpUJ4R","1IVH33oHcTNYNm6nVVNwQBSpP8foJ1Yb8","1KWIer6Zth-8Tg12D6qhN8ucqg-yBSZCf","1R5s-hGbY-pd_Q1MOpJMkECl0ixJSu2fO","1llSFRM0DIBQE-JlrUqQ0p3KbR96gqmgc","1eO4GkwvB3UTO3YVBT6K3GQ2Al0GTpZjg"]},{"n":"Patineta","c":"deportes","s":"Patinetas","r":"211L","d":"Patineta para patinaje recreativo y desplazamientos cortos.","g":["1Gyr2xN9zElA9hU-GhQxDDGop9bIYfM8n","13nlYP4fJlbEIg1OIeA1lgRzw8T6jzNLM","14AnO8Yd-ZxzMyyj1k-Fr_IaRZ_boFmJy","1qoQRTnSTOSrpCcszSu30Y9EfyOvY2wFO","1C_GYU4E3FPn3ag8IAyElbvFiMa7Ztm2q","108UtIHhBexlpLXEiugBvJZfP_FKyyQiT"]},{"n":"Patineta","c":"deportes","s":"Patinetas","r":"211M","d":"Patineta para patinaje recreativo y desplazamientos cortos.","g":["16t-rB07fyHe1DJQdjzmtvHJKYCysMTyg","1NHqk1MURRqhFL7vnGgCGoJLo7QQodHao","1HWYNMix6msmQLN96kzzWNnPMtt7jfNiS","1jjV0om_-st_CwPf606Q7NFGtDtZZij3H","1r36zwA9SweBrMsF98M_XcDfmmBycnQoT","1APAyi4keDwPK8NWJdNiJVQNTtwqarPTD"]},{"n":"Patineta","c":"deportes","s":"Patinetas","r":"212-1","d":"Patineta para patinaje recreativo y desplazamientos cortos.","g":["1tenGGbeRucSLqfhRssHF31Ye5qdqZe0v","1i6-PI0UPYLxLdhI0x1xUIDX8F27RwV7r","1pA8YxVIrZdT4jyw8rNdbVJnXQajFTFsN","1A3AwRbv_yIA1S2bOaab9heoTkPIWBtP8","1PbEf0l637lOMAtLAAwuHhIPK0zuRJSMQ","1AUV8sW4-lBbrQG3uvM2aGPrF500sebhJ"]},{"n":"Patineta","c":"deportes","s":"Patinetas","r":"3108A","d":"Patineta para patinaje recreativo y desplazamientos cortos.","g":["1QlHqo07eTjoqQUltx7EkNsfDCKq-wZoD","106MER-9bfxgmvyr3T7_Ocnc90eM3wtCt","1uqS13jCUknTbXXuyhgmuK4SSMXvRkRTL","1oItIXywtHEav6qTDkhaLAIhxW4Ru2kJa","1SHy1SNWULNvL6kok4OZIE19AcPYyoHM2","1xzWJRqkt64T4KFcqhDzrsUzPkIZwr1SL"]},{"n":"Pelota de yoga","c":"deportes","s":"Fitness","r":"A65","d":"Pelota para yoga, pilates, estiramientos y ejercicios de equilibrio.","g":["1WMOL-hW0kxBiaC0uc1BVSh_ZOEFvJplC","1suGm0opHcWi7NUUVK7a1EIo_8W3MMz_f","1kFpslpoGk7RD1OCrMMG-XxQpj-l5ZYuG","1v54sGx-_LQgptjAtMdTAXtHKfxQ2RH1c"]},{"n":"Set de protecciones","c":"deportes","s":"Protecciones","r":"HD-0","d":"Protecciones para patinaje y deportes sobre ruedas.","g":["1IbTIVLDKuMK2z_-X6xj5pNi2K-9wxtPK","1jisjIcnU9J9GHpmIt_8jksd76xbYOQaL","19y11xr447CUYJf-Pbz8lR-zyDyXkKdpm","1r9t7uemqTV0qSEuinpiSyFAqx6_g3rMj","1L3bRpRZX4Q8KZX0TUDrlWDO07bhC0rTB","13J0IuXFEKQRiCrEgT8rjy-XVdy2qN9Z8"]},{"n":"Set de protecciones","c":"deportes","s":"Protecciones","r":"HD-2","d":"Protecciones para patinaje y deportes sobre ruedas.","g":["1951e0P8MOjfm2fiAKnpjZNVPaesqxj0e","1-tJ20VVFpDdkzimtwV7InGuvwdu-SooL","1CVw4IMBkqIML-tVTSYZdy7OSX3mUd29b","1wvalJ0DDyQVwI6qLZyoHkL5_I0HtQ1kI","1N7YAPYoWk-oCJMThRCtyjQqXSLhVNyQ0","1MxkYBNlS8zSys06PklfSZqYGYRBPmeD7"]},{"n":"Set de protecciones","c":"deportes","s":"Protecciones","r":"MCC-0332","d":"Protecciones para patinaje y deportes sobre ruedas.","g":["1l-KfZG-0IyMaCIfyXVUX4ER0cKJmCWAg","1fUQ0BRvaEB8P4VPdSaEG1uwFSCOxHQaB","1S1Lf3CAu3RDo0Cd-m9oXnypQAI2fLYYy","1X_4dRrjBZxx-E04g_BKp0VCUhq5wpxRb","1L7Scx2DKf-PtSqKmPhkZ3qGBUNUTxUnz"]},{"n":"Set de ping pong","c":"deportes","s":"Raquetas","r":"328","d":"Set de raquetas y pelotas para tenis de mesa.","g":["1fRPP7DxDx1AgC-gvFSAUA5tpyFAO6aOk"]},{"n":"Set de ping pong","c":"deportes","s":"Raquetas","r":"2027","d":"Set de raquetas y pelotas para tenis de mesa.","g":["194B6XMiTSxqkL6CgreEhOjNra58rNjEt"]},{"n":"Pelotas de tenis","c":"deportes","s":"Raquetas","r":"686","d":"Pelotas para tenis y práctica recreativa.","g":["1KgNgiaPZ9ZE0GCdMlk3GgfmCLXgxuiGW","1vg2TzYYHv9aN-7wgFpBTdfm0LFBjDe7d","197dr-nZf0csU8MZCfpj1OiQ0XKDyGrlA"]},{"n":"Raqueta de tenis","c":"deportes","s":"Raquetas","r":"1005","d":"Raqueta para iniciación y juego recreativo.","g":["1syR7hvz08LW-S-7p5z6_K0IJvfNA7cAF","1B0eUpqpmFDNbKP44oRpk62JQxqN52_LE","1Ogb72wuWd9CT_k4mknoqpe9AVt4merVA","1Z0twQdtxYcIOptx6ZvpCvzJvC1E9rRdo"]},{"n":"Raqueta de tenis","c":"deportes","s":"Raquetas","r":"DA-23","d":"Raqueta para iniciación y juego recreativo.","g":["1ETiVRHfD7TONMeR86RWPQzgE4l_apJi8","1Rno_H_4c6sFro7RnJYf1w7fknVFNabQS","1dUTuzepziim8gI0zPCkykjfw6zYEznwh"]},{"n":"Raqueta de tenis","c":"deportes","s":"Raquetas","r":"DA-25","d":"Raqueta para iniciación y juego recreativo.","g":["1g8kiTFg6QvlnRzApa5KKh2GHdEcR2JLy","1jYs7RiChp60QRBnCfj7ppKAVAdfLEB_O","15hjtCJcsltsw5O1GFqSb-n6v2vy2n0us"]},{"n":"Rodillera deportiva","c":"deportes","s":"Protecciones","r":"787","d":"Rodillera de soporte para entrenamiento y actividad física.","g":["1GKKTiZrBMVpkXarlkDFlLA0TxGXLRpb5","1jMgQa_fgjNQKrqNU_DcyEJpOV7LpepcO"]},{"n":"Set de arte","c":"jugueteria","s":"Arte y manualidades","r":"168","d":"Estuche de arte con colores y accesorios para dibujar y pintar.","g":["1QZlGzaWIPhA-tgrmZwHQRt3x7pyntVuc"]},{"n":"Set de arte","c":"jugueteria","s":"Arte y manualidades","r":"208","d":"Estuche de arte con colores y accesorios para dibujar y pintar.","g":["1EeFtau5jt8oRY4kJKBCy0kV69JNJe-bQ"]},{"n":"Multiherramienta Traveler","c":"deportes","s":"Multiherramientas","r":"MQ003G","d":"Herramienta compacta multifunción para camping, viajes y uso diario.","g":["1xKFRwJ8gDVPkftDN3lO1SEcuP3Rn9yVD","1Fjb4XjZEQDCjye_xE0dhgzeNN_UAHdd0","1dw4GRCvMbwd4xianiI9Ff0-KwG-ZzU4-","1-S-qYqCR90LfI-o88wbzjdlDV-EKOHSl","1Sr2PuJzorzaPo-mwpR5fK2RHbUeIu18h","1V6Tn0TQx1TBBwFJujDNCEU-o4pkShDpt"]},{"n":"Multiherramienta Traveler","c":"deportes","s":"Multiherramientas","r":"MS001","d":"Herramienta compacta multifunción para camping, viajes y uso diario.","g":["1ArYEp-4xzArDqmKQb038Jg89Rrn8wvbe","1qfQ6qjzS01zQOew0fJc5NwYk2Xb7OFUK","1PdphuQKiynu_okiyz7lJnNKCaKLXU4hu","1XMaHmId0e22GztZrqUSIDSDunfwptNwz","1hwo0KRHkN3mK3qXrdBvEfBygiG9-UveJ"]},{"n":"Multiherramienta Traveler","c":"deportes","s":"Multiherramientas","r":"MT 8321-8G","d":"Herramienta compacta multifunción para camping, viajes y uso diario.","g":["1a0BRQOhM1Zngc1_31TqcoRXbSGpkzFH0","1uTwT0XE3t5ELJYb2K1QwmV9pM2oYeofc","1mNi_XJsqUqN8Fg0gDpR123bY0sY_9T_Q","1ZAYDla6n3X1MvLB_MCgngrByKgIDyRyK","1jaLZcDWHAY1F0YJ-JLgKdmMnAcGwrdPV","1K57YWqdioO61FFuNcr3aWzNY6oU2DBBY"]},{"n":"Multiherramienta Traveler","c":"deportes","s":"Multiherramientas","r":"MT629PG","d":"Herramienta compacta multifunción para camping, viajes y uso diario.","g":["16rem7jGwJjqGoD_YsiacKC2Wgh-89NIo","12B1qbZGnur9KTB0MF3unSRI68m9eSdEK","1u6c3ZhbE79eXl58nZQRebHkSo5ZlM-9Y","1XG3BA02wOq0t2hgc2Kai5slkWD6SOJfA","12e4tiueJAt_PjJya0WqmTHttbTpVcul7","1q1qIdrHNRyfK6OP003MZt8sOSCsvLkua"]},{"n":"Multiherramienta Traveler","c":"deportes","s":"Multiherramientas","r":"MT821G","d":"Herramienta compacta multifunción para camping, viajes y uso diario.","g":["1778kdbMaBP1fkWf4BKZtEanzCsLP6lXa","1LbgsEJ74fS1nVvpmVbdTvJbgaUSu-q7B","1oH51MKpg0ETqZf-U7C5NYFyJ5gQdYuUv","1idaM4_XnthR6EEdTRGwJDEgqykl-uePe","182MpIM98gv6I1ztjIUxUSK7piGSV29go","13zxdtgqEBpAA92pJAPINtY7UTw4qOHfF"]},{"n":"Multiherramienta Traveler","c":"deportes","s":"Multiherramientas","r":"MT832F-1-8G","d":"Herramienta compacta multifunción para camping, viajes y uso diario.","g":["1i5tMxJp9SMr_n6doyj5s9kcJhVl4E4vM","1FATClA1a8CiHCzIBDczyMpgd57cZSevP","1uwMchAPjeQZEQitZbQ6oY0CleaCZjwgI","1Ir-wStMuGCjftvUwDtsFKKxWlWb-U_c-","1kEF5r50FpT7D7l1IK_AF6DnqoyBlgu9m","1PJROn57xOBP75rTWqyNasgUm2NO04_8B"]},{"n":"Cortinas de baño","c":"hogar","s":"Baño","r":"","d":"Cortinas funcionales para baño y renovación de espacios.","u":["https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=900&q=80"]},{"n":"Utensilios de cocina","c":"hogar","s":"Cocina","r":"","d":"Utensilios esenciales para preparar y servir alimentos.","u":["https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=900&q=80"]},{"n":"Coladores","c":"hogar","s":"Cocina","r":"","d":"Coladores prácticos para preparación y cocina diaria.","u":["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=900&q=80"]},{"n":"Cuchillos de cocina","c":"hogar","s":"Cocina","r":"","d":"Cuchillos para diferentes tareas de cocina.","u":["https://images.unsplash.com/photo-1593618998160-e34014e67546?auto=format&fit=crop&w=900&q=80"]},{"n":"Cubiertos","c":"hogar","s":"Mesa","r":"","d":"Cubiertos para uso diario y presentación de mesa.","u":["https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80"]},{"n":"Juegos de cubiertos","c":"hogar","s":"Mesa","r":"","d":"Juegos completos de cubiertos para mesa.","u":["https://images.unsplash.com/photo-1494390248081-4e521a5940db?auto=format&fit=crop&w=900&q=80"]},{"n":"Tablas para picar","c":"hogar","s":"Cocina","r":"","d":"Tablas resistentes para preparación de alimentos.","u":["https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80"]},{"n":"Individuales","c":"hogar","s":"Mesa","r":"","d":"Individuales para vestir la mesa y proteger superficies.","u":["https://images.unsplash.com/photo-1519710887729-4c2d6e4f1f5d?auto=format&fit=crop&w=900&q=80"]},{"n":"Termos","c":"hogar","s":"Cocina","r":"","d":"Termos para conservar bebidas durante el día.","u":["https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=900&q=80"]},{"n":"Ollas y baterías de cocina","c":"hogar","s":"Cocina","r":"","d":"Ollas y baterías para equipar la cocina.","u":["https://images.unsplash.com/photo-1584990347449-a0c6b6f8f5b1?auto=format&fit=crop&w=900&q=80"]},{"n":"Vajillas","c":"hogar","s":"Mesa","r":"","d":"Vajillas para uso cotidiano y ocasiones especiales.","u":["https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80"]},{"n":"Tapetes","c":"hogar","s":"Decoración y textiles","r":"","d":"Tapetes para aportar textura y estilo a los espacios.","u":["https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=80"]}];
+const CATS={deportes:{label:"Deportes",c:"var(--dep)",desc:"Patines, monopatines, patinetas, balones, protecciones, linternas y más."},jugueteria:{label:"Juguetería",c:"var(--jug)",desc:"Montables inflables, carpas de juego y sets de arte."},hogar:{label:"Hogar",c:"var(--hog)",desc:"Cocina, baño, mesa y textiles para cada espacio."}};
+const ORDER=["deportes","jugueteria","hogar"];
+products.forEach((p,i)=>{p.i=i;p.key=p.n+"|"+(p.r||i);p.imgs=p.g?p.g.map(id=>TH+id+"&sz=w1000"):p.u;p.small=p.g?TH+p.g[0]+"&sz=w500":p.u[0];p.tiny=p.g?TH+p.g[0]+"&sz=w160":p.u[0];p.photo=!p.g});
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const title=p=>p.r?`${p.n} · Ref. ${p.r}`:p.n;
-function card(p,i){
- return `<article class="product" data-i="${i}">
- <div class="photo"><img loading="lazy" class="${p.isPhoto?"cover":""}" src="${p.small}" alt="${esc(title(p))}" onerror="this.classList.add('broken')"><span class="badge ${colors[p.c]}">${labels[p.c]}</span><button class="heart" aria-label="Favorito" onclick="event.stopPropagation();this.textContent=this.textContent==='♡'?'♥':'♡'">♡</button>${p.r?`<span class="ref">Ref. ${esc(p.r)}</span>`:""}${p.imgs.length>1?`<span class="pics">${p.imgs.length} fotos</span>`:""}</div>
- <div class="body"><div class="crumb">${labels[p.c]} · ${esc(p.s)}</div><h3>${esc(p.n)}</h3><p>${esc(p.d)}</p><div class="card-bottom"><span class="tag">POR MAYOR</span><span class="quote">Ver detalle →</span></div></div></article>`;
+const imgTag=(src,p,extra="")=>`<img loading="lazy" src="${src}" alt="${esc(title(p))}" class="${p.photo?"cover":""}" ${extra}>`;
+
+/* ---------- cotización (estado) ---------- */
+let cart={};
+try{cart=JSON.parse(localStorage.getItem("cj_cot")||"{}")||{}}catch(e){cart={}}
+Object.keys(cart).forEach(k=>{if(!products.some(p=>p.key===k))delete cart[k]});
+function save(){try{localStorage.setItem("cj_cot",JSON.stringify(cart))}catch(e){}}
+const byKey=k=>products.find(p=>p.key===k);
+function addToCart(p,q){q=Math.max(1,parseInt(q)||1);cart[p.key]=(cart[p.key]||0)+q;save();updateCart();toast(`Agregado: ${q} und. de ${title(p)}`)}
+function setQty(k,q){q=parseInt(q);if(!q||q<1){delete cart[k]}else cart[k]=q;save();updateCart()}
+function totals(){const ks=Object.keys(cart);return{refs:ks.length,units:ks.reduce((a,k)=>a+cart[k],0)}}
+function buildMessage(){
+ const ks=Object.keys(cart);const t=totals();
+ const lines=["Hola CJ Coimport, quiero solicitar una cotización por mayor:",""];
+ ks.forEach((k,n)=>{const p=byKey(k);lines.push(`${n+1}. ${p.n}${p.r?` - Ref. ${p.r}`:""} (${CATS[p.c].label} / ${p.s}): ${cart[k]} und.`)});
+ lines.push("",`Total: ${t.refs} ${t.refs===1?"referencia":"referencias"} - ${t.units} unidades`);
+ const nm=$("#fName").value.trim(),ct=$("#fCity").value.trim(),nt=$("#fNote").value.trim();
+ if(nm||ct||nt)lines.push("");
+ if(nm)lines.push(`Nombre: ${nm}`);if(ct)lines.push(`Empresa / ciudad: ${ct}`);if(nt)lines.push(`Comentarios: ${nt}`);
+ return lines.join("\n");
 }
-function bind(container){container.querySelectorAll(".product").forEach(el=>el.addEventListener("click",()=>openModal(products[+el.dataset.i])))}
-function render(){
- const q=document.getElementById("search").value.toLowerCase().trim();
- let arr=products.map((p,i)=>[p,i]).filter(([p])=>(currentCat==="todos"||p.c===currentCat)&&(currentSub==="todos"||p.s===currentSub)&&(`${p.n} ${labels[p.c]} ${p.s} ${p.d} ${p.r} ref. ${p.r} ref ${p.r}`.toLowerCase().includes(q)));
- if(document.getElementById("sort").value==="az") arr.sort((a,b)=>title(a[0]).localeCompare(title(b[0]),"es"));
- grid.innerHTML=arr.length?arr.map(([p,i])=>card(p,i)).join(""):`<div class="empty">No encontramos productos con esa búsqueda.</div>`;
- count.textContent=`${arr.length} productos`;
- bind(grid); renderSubs();
+function updateCart(){
+ const t=totals();
+ $$("[data-count]").forEach(e=>e.textContent=t.refs?t.units:"");
+ $("#tRefs").textContent=t.refs;$("#tUnits").textContent=t.units;
+ const ks=Object.keys(cart);
+ $("#dlist").innerHTML=ks.length?ks.map(k=>{const p=byKey(k);return `<div class="ditem" data-k="${esc(k)}">${imgTag(p.tiny,p)}<div><b>${esc(p.n)}</b><span class="mono">${p.r?"Ref. "+esc(p.r):esc(p.s)}</span><div class="row"><div class="qty"><button data-d="-1" aria-label="Menos">−</button><input type="number" min="1" value="${cart[k]}" aria-label="Cantidad"><button data-d="1" aria-label="Más">+</button></div></div></div><button class="rm">Quitar</button></div>`}).join(""):`<div class="dempty"><span class="ic"><svg class="ico" style="width:28px;height:28px"><use href="#i-list"/></svg></span><b>Tu cotización está vacía</b>Agrega productos desde el catálogo con la cantidad que necesitas.</div>`;
+ $$("#dlist .ditem").forEach(row=>{const k=row.dataset.k,inp=row.querySelector("input");
+  row.querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>setQty(k,(cart[k]||0)+ +b.dataset.d));
+  inp.onchange=()=>setQty(k,inp.value);row.querySelector(".rm").onclick=()=>setQty(k,0)});
+ $("#sendWa").setAttribute("aria-disabled",ks.length?"false":"true");
+ $$(".card").forEach(c=>{const p=products[+c.dataset.i];const b=c.querySelector(".add");if(b){const n=cart[p.key];b.classList.toggle("in",!!n);b.textContent=n?`Agregado · ${n}`:"Agregar"}});
 }
-function renderSubs(){
- const set=[...new Set(products.filter(p=>currentCat==="todos"||p.c===currentCat).map(p=>p.s))];
- subs.innerHTML=`<button class="chip ${currentSub==="todos"?"active":""}" data-sub="todos">Todas las subcategorías</button>`+set.map(s=>`<button class="chip ${currentSub===s?"active":""}" data-sub="${esc(s)}">${esc(s)}</button>`).join("");
- subs.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>setSub(b.dataset.sub)));
-}
-function setCat(cat){currentCat=cat;currentSub="todos";document.querySelectorAll("#cats .chip").forEach(x=>x.classList.toggle("active",x.dataset.cat===cat));render();}
-function setSub(sub){currentSub=sub;render();}
-document.querySelectorAll("#cats .chip").forEach(b=>b.addEventListener("click",()=>setCat(b.dataset.cat)));
-document.getElementById("search").addEventListener("input",()=>{render()});
-document.querySelector(".search button").addEventListener("click",()=>document.getElementById("catalogo").scrollIntoView());
-document.getElementById("search").addEventListener("keydown",e=>{if(e.key==="Enter")document.getElementById("catalogo").scrollIntoView()});
-document.getElementById("sort").addEventListener("change",render);
-function showImg(p,k){const m=document.getElementById("mImg");m.src=p.imgs[k];m.className=p.isPhoto?"cover":"";m.alt=title(p);document.querySelectorAll("#mThumbs button").forEach((b,j)=>b.classList.toggle("on",j===k))}
+$("#sendWa").addEventListener("click",e=>{if(!Object.keys(cart).length){e.preventDefault();return}$("#sendWa").href=`https://wa.me/${WA}?text=${encodeURIComponent(buildMessage())}`});
+$("#clearCart").onclick=()=>{cart={};save();updateCart()};
+
+/* ---------- drawer / modal ---------- */
+const overlay=$("#overlay");
+function openCart(){closeModal(true);$("#drawer").classList.add("open");overlay.classList.add("open")}
+function closeAll(){$("#drawer").classList.remove("open");closeModal(true);overlay.classList.remove("open")}
+$$("[data-open-cart]").forEach(b=>b.addEventListener("click",e=>{e.preventDefault();openCart()}));
+$("#openCart").onclick=openCart;$("#dClose").onclick=closeAll;overlay.onclick=closeAll;
+let cur=null;
+function showImg(k){$("#mImg").src=cur.imgs[k];$("#mImg").className=cur.photo?"cover":"";$("#mImg").alt=title(cur);$$("#mThumbs button").forEach((b,j)=>b.classList.toggle("on",j===k))}
 function openModal(p){
- document.getElementById("mBadge").textContent=labels[p.c];document.getElementById("mBadge").className=`badge ${colors[p.c]}`;
- document.getElementById("mName").textContent=p.n;document.getElementById("mPath").textContent=`${labels[p.c]} / ${p.s}`;document.getElementById("mDesc").textContent=p.d;
- document.getElementById("mCat").textContent=labels[p.c];document.getElementById("mSub").textContent=p.s;
- document.getElementById("mRefRow").style.display=p.r?"":"none";document.getElementById("mRef").textContent=p.r;
- const th=document.getElementById("mThumbs");
- th.innerHTML=p.imgs.length>1?p.imgs.map((u,k)=>`<button aria-label="Foto ${k+1}"><img loading="lazy" src="${p.g?TH+p.g[k]+"&sz=w160":u}" alt=""></button>`).join(""):"";
- th.querySelectorAll("button").forEach((b,k)=>b.addEventListener("click",()=>showImg(p,k)));
- showImg(p,0);
- const subj=encodeURIComponent(`Cotización: ${title(p)}`);
- document.querySelector(".modal-actions a").href=`mailto:comercial@cjcoimport.com?subject=${subj}`;
- document.getElementById("modal").classList.add("open");
+ cur=p;$("#mPath").textContent=`${CATS[p.c].label} / ${p.s}`;$("#mName").textContent=p.n;$("#mDesc").textContent=p.d;
+ $("#mRefRow").hidden=!p.r;$("#mRef").textContent=p.r;$("#mCat").textContent=CATS[p.c].label;$("#mSub").textContent=p.s;
+ $("#mThumbs").innerHTML=p.imgs.length>1?p.imgs.map((u,k)=>`<button aria-label="Foto ${k+1}"><img loading="lazy" src="${p.g?TH+p.g[k]+"&sz=w160":u}" alt=""></button>`).join(""):"";
+ $$("#mThumbs button").forEach((b,k)=>b.onclick=()=>showImg(k));showImg(0);
+ $("#mQty").value=1;$("#mNote").textContent=p.photo?"Foto ilustrativa. Precio y disponibilidad se confirman por WhatsApp.":"Precio y disponibilidad se confirman por WhatsApp.";
+ $("#modal").classList.add("open");overlay.classList.add("open");
 }
-function closeModal(){document.getElementById("modal").classList.remove("open")}
-document.getElementById("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal()});
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
-const featIdx=featuredRefs.map(r=>products.findIndex(p=>p.r===r)).filter(i=>i>=0);
-featured.innerHTML=featIdx.map(i=>card(products[i],i)).join(""); bind(featured);
+function closeModal(keepOverlay){$("#modal").classList.remove("open");if(!keepOverlay&&!$("#drawer").classList.contains("open"))overlay.classList.remove("open")}
+$("#mClose").onclick=()=>closeModal();$("#modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAll()});
+$$(".mact [data-step]").forEach(b=>b.onclick=()=>{const i=$("#mQty");i.value=Math.max(1,(parseInt(i.value)||1)+ +b.dataset.step)});
+$("#mAdd").onclick=()=>{addToCart(cur,$("#mQty").value);closeModal()};
+
+/* ---------- catálogo ---------- */
+let fCat="todos",fSub="todos";
+const count=c=>products.filter(p=>c==="todos"||p.c===c).length;
+function renderSide(){
+ let h=`<h4>Categorías</h4><button class="fbtn ${fCat==="todos"?"on":""}" data-c="todos">Todos los productos<small>${products.length}</small></button>`;
+ ORDER.forEach(c=>{h+=`<button class="fbtn ${fCat===c&&fSub==="todos"?"on":""}" data-c="${c}" style="--c:${CATS[c].c}"><span><i></i>${CATS[c].label}</span><small>${count(c)}</small></button>`;
+  if(fCat===c){const subs=[...new Set(products.filter(p=>p.c===c).map(p=>p.s))];h+=`<div class="subs">`+subs.map(s=>`<button class="fbtn ${fSub===s?"on":""}" data-c="${c}" data-s="${esc(s)}">${esc(s)}<small>${products.filter(p=>p.c===c&&p.s===s).length}</small></button>`).join("")+`</div>`}});
+ $("#side").innerHTML=h;
+ $$("#side .fbtn").forEach(b=>b.onclick=()=>{fCat=b.dataset.c;fSub=b.dataset.s||"todos";render()});
+ let m=`<button class="${fCat==="todos"?"on":""}" data-c="todos">Todos</button>`+ORDER.map(c=>`<button class="${fCat===c&&fSub==="todos"?"on":""}" data-c="${c}">${CATS[c].label}</button>`).join("");
+ if(fCat!=="todos")m+=[...new Set(products.filter(p=>p.c===fCat).map(p=>p.s))].map(s=>`<button class="${fSub===s?"on":""}" data-c="${fCat}" data-s="${esc(s)}">${esc(s)}</button>`).join("");
+ $("#mchips").innerHTML=m;$$("#mchips button").forEach(b=>b.onclick=()=>{fCat=b.dataset.c;fSub=b.dataset.s||"todos";render()});
+}
+function card(p){
+ return `<article class="card" data-i="${p.i}"><div class="media">${imgTag(p.small,p)}<span class="pill" style="--c:${CATS[p.c].c}">${CATS[p.c].label}</span><span class="peek">Ver detalle</span>${p.photo?`<span class="illus">Foto ilustrativa</span>`:p.imgs.length>1?`<span class="nphotos">${p.imgs.length} fotos</span>`:""}</div>
+ <div class="info"><span class="ref mono">${p.r?"REF. "+esc(p.r):"&nbsp;"}</span><h3>${esc(p.n)}</h3><span class="sub">${esc(p.s)}</span>
+ <div class="act"><div class="qty"><button data-d="-1" aria-label="Menos">−</button><input type="number" min="1" value="1" aria-label="Cantidad"><button data-d="1" aria-label="Más">+</button></div><button class="add">Agregar</button></div></div></article>`;
+}
+function bindCards(root){root.querySelectorAll(".card").forEach(c=>{const p=products[+c.dataset.i],inp=c.querySelector(".qty input");
+ c.querySelector(".media").onclick=()=>openModal(p);c.querySelector("h3").onclick=()=>openModal(p);
+ c.querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>{inp.value=Math.max(1,(parseInt(inp.value)||1)+ +b.dataset.d)});
+ c.querySelector(".add").onclick=()=>{addToCart(p,inp.value);inp.value=1}})}
+function render(){
+ const q=$("#search").value.toLowerCase().trim();
+ let arr=products.filter(p=>(fCat==="todos"||p.c===fCat)&&(fSub==="todos"||p.s===fSub)&&(!q||`${p.n} ${CATS[p.c].label} ${p.s} ${p.d} ${p.r} ref ${p.r} ref. ${p.r}`.toLowerCase().includes(q)));
+ const s=$("#sort").value;
+ if(s==="cat"){const pr=["Patines","Monopatines","Patinetas","Protecciones","Balones","Linternas","Multiherramientas","Raquetas","Fitness","Llantas y rodamientos","Repuestos y accesorios","Montables","Carpas y túneles","Arte y manualidades"];const o=x=>{const i=pr.indexOf(x.s);return (ORDER.indexOf(x.c))*100+(i<0?50:i)};arr.sort((a,b)=>o(a)-o(b)||a.i-b.i)}
+ if(s==="az")arr.sort((a,b)=>title(a).localeCompare(title(b),"es"));
+ if(s==="ref")arr.sort((a,b)=>(a.r||"zzz").localeCompare(b.r||"zzz","es",{numeric:true}));
+ $("#grid").innerHTML=arr.length?arr.map(card).join(""):`<div class="empty">No encontramos productos con esa búsqueda. Prueba con otra palabra o número de referencia.</div>`;
+ $("#count").innerHTML=`<b>${arr.length}</b> ${arr.length===1?"producto":"productos"}`;
+ bindCards($("#grid"));renderSide();updateCart();
+}
+$("#search").addEventListener("input",()=>{render()});
+$("#search").addEventListener("keydown",e=>{if(e.key==="Enter")$("#catalogo").scrollIntoView()});
+$("#sort").onchange=render;
+function goCat(c){fCat=c;fSub="todos";$("#search").value="";render();$("#catalogo").scrollIntoView()}
+$$("[data-go]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();goCat(a.dataset.go)}));
+
+/* ---------- portada ---------- */
+const pick=r=>products.find(p=>p.r===r);
+$("#collage").innerHTML=[["207","Patines"],["211M","Patinetas"],["H0","Monopatines"]].map(([r,t])=>{const p=pick(r);return p?`<button class="tile" data-i="${p.i}">${imgTag(TH+p.g[0]+"&sz=w700",p)}<span class="tag">${t}</span></button>`:""}).join("");
+$("#collage").insertAdjacentHTML("beforeend",`<div class="float-badge"><span class="ic"><svg class="ico"><use href="#i-wa"/></svg></span><div><b>Cotiza por WhatsApp</b><span>Arma tu pedido en minutos</span></div></div>`);
+$$("#collage .tile").forEach(t=>t.onclick=()=>openModal(products[+t.dataset.i]));
+const catImgs={deportes:["207","211M","FT5711"],jugueteria:["250-3","H801","208"]};
+const C2={deportes:["#f0564b","#9d1631"],jugueteria:["#19bba6","#0a5f63"],hogar:["#4a86f0","#1a3794"]};
+$("#cats").innerHTML=ORDER.map(c=>{const ims=(catImgs[c]?catImgs[c].map(pick).filter(Boolean):products.filter(p=>p.c===c).slice(0,3));return `<button class="cat" data-c="${c}" style="--c1:${C2[c][0]};--c2:${C2[c][1]}"><span class="kicker">${count(c)} productos</span><h3>${CATS[c].label}</h3><p>${CATS[c].desc}</p><span class="go">→</span><div class="cat-imgs">${ims.map(p=>imgTag(p.small,p)).join("")}</div></button>`}).join("");
+$$("#cats .cat").forEach(b=>b.onclick=()=>goCat(b.dataset.c));
+$("#stRefs").textContent=products.filter(p=>p.r).length;
+$("#stSubs").textContent=new Set(products.map(p=>p.c+p.s)).size;
+
+const featRefs=["207","H0","211M","HD-2","A100","250-3","MT629PG","H801","913","X900"];
+$("#rail").innerHTML=featRefs.map(pick).filter(Boolean).map(card).join("");bindCards($("#rail"));
+$("#railPrev").onclick=()=>$("#rail").scrollBy({left:-$("#rail").clientWidth*.8,behavior:"smooth"});
+$("#railNext").onclick=()=>$("#rail").scrollBy({left:$("#rail").clientWidth*.8,behavior:"smooth"});
+let tt;function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("show"),2200)}
 render();
 </script>
 </body>
