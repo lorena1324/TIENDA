@@ -294,6 +294,62 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
  .fields{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+
+/* --- ajustes: estilo comercial sobrio --- */
+.eyebrow{color:var(--muted);letter-spacing:.08em}
+.eyebrow::before{display:none}
+.logo-mark{background:var(--brand);box-shadow:none;border-radius:10px}
+.btn:hover{transform:none}
+.btn-light{box-shadow:none}
+.btn-wa{box-shadow:none}
+.hero{background:#2a1259;padding-block:56px 56px}
+.hero::before,.hero::after{display:none}
+.hero .eyebrow{color:#c9b8ec}
+.hero h1{font-size:clamp(36px,4.6vw,58px);line-height:1.04}
+.hero p{color:#ddd3f0}
+.stats{gap:0;margin-top:36px;padding-top:22px;border-top:1px solid rgba(255,255,255,.18)}
+.stats div{background:none;border:0;border-radius:0;padding:0 28px 0 0;margin-right:28px;border-right:1px solid rgba(255,255,255,.18);backdrop-filter:none}
+.stats div:last-child{border-right:0;margin-right:0}
+.stats span{color:#c9b8ec}
+.collage{height:auto;display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:1fr 1fr;gap:12px;aspect-ratio:5/4}
+.tile,.tile:nth-child(1),.tile:nth-child(2),.tile:nth-child(3){position:relative;inset:auto;width:auto;height:auto;transform:none;border-radius:14px;box-shadow:none}
+.tile:nth-child(1){grid-row:span 2}
+.tile:hover{transform:none}
+.tile .tag{background:#fff;color:var(--ink);border:1px solid var(--line);font-weight:600}
+.steps{margin-top:0;background:var(--surface);border-bottom:1px solid var(--line)}
+.steps .wrap{box-shadow:none;border-radius:0;background:none}
+.step-n{background:none;border:1.5px solid var(--ink);color:var(--ink);border-radius:50%;width:34px;height:34px;font-size:14px}
+.cat{background:var(--c2);box-shadow:none;border-radius:16px;min-height:290px}
+.cat::before{display:none}
+.cat:hover{transform:none;box-shadow:none;filter:brightness(1.06)}
+.cat .go{background:rgba(255,255,255,.16)}
+.cat-imgs img{box-shadow:none;border-radius:10px 10px 0 0}
+.cat:hover .cat-imgs img:nth-child(2){transform:none}
+.feat{background:none}
+.card{box-shadow:none}
+.card:hover{transform:none;box-shadow:0 8px 24px rgba(18,15,28,.08);border-color:var(--line-2)}
+.card:hover .media img{transform:scale(1.03)}
+.pill{border-radius:6px}
+.add{background:var(--ink);box-shadow:none}
+.add:hover{transform:none;box-shadow:none;background:var(--brand)}
+.fbtn.on{box-shadow:none}
+.band{background:#2a1259;border-radius:16px}
+.band::before,.band::after{display:none}
+.band .eyebrow{color:#c9b8ec}
+.dhead{background:var(--ink)}
+.totals div{box-shadow:none;border:1px solid var(--line)}
+.ditem img{box-shadow:none;border:1px solid var(--line)}
+.thumbs button{box-shadow:none;border:1.5px solid var(--line)}
+.thumbs button.on{border-color:var(--ink)}
+.fab{box-shadow:0 6px 18px rgba(0,0,0,.18)}
+.fab::after{display:none}
+.fab:hover{transform:none}
+.toast::before{display:none}
+.mbox{animation:none}
+.search input:focus{box-shadow:none;border-color:var(--ink)}
+.fields input:focus,.fields textarea:focus{box-shadow:none;border-color:var(--ink)}
+@media (max-width:960px){.collage{max-width:none}}
+@media (max-width:720px){.hero{padding-block:32px 36px}.collage{height:auto}.stats div{padding-right:18px;margin-right:18px}}
 </style>
 </head>
 <body>
@@ -306,7 +362,6 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
  <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
 </svg>
 
-<div class="topbar"><div class="wrap"><span><span class="dot"></span>Venta al por mayor para distribuidores y comercios</span><span class="hide-s">Cotizaciones por WhatsApp · <a href="https://wa.me/573142444580" target="_blank" rel="noopener">314 244 4580</a></span></div></div>
 
 <header class="header"><div class="wrap">
  <a class="logo" href="#inicio"><span class="logo-mark">CJ</span><span class="logo-txt">COIMPORT<small>Catálogo mayorista</small></span></a>
@@ -318,10 +373,10 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
 <main id="inicio">
 <section class="hero"><div class="wrap">
  <div>
-  <span class="eyebrow">Catálogo 2026 · Por mayor</span>
-  <h1>Producto importado para <em>surtir tu negocio.</em></h1>
+  <span class="eyebrow">Catálogo mayorista 2026</span>
+  <h1>Producto importado para surtir tu negocio</h1>
   <p>Deportes, juguetería y hogar en un solo proveedor. Elige las referencias, indica las cantidades y recibe tu cotización por WhatsApp.</p>
-  <div class="hero-cta"><a class="btn btn-light" href="#catalogo">Explorar catálogo →</a><button class="btn btn-ghost" data-open-cart>Ver mi cotización</button></div>
+  <div class="hero-cta"><a class="btn btn-light" href="#catalogo">Ver catálogo</a><button class="btn btn-ghost" data-open-cart>Ver mi cotización</button></div>
   <div class="stats"><div><b id="stRefs">0</b><span>referencias</span></div><div><b>3</b><span>líneas de producto</span></div><div><b id="stSubs">0</b><span>subcategorías</span></div></div>
  </div>
  <div class="collage" id="collage"></div>
@@ -334,12 +389,12 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
 </div></section>
 
 <section class="section" id="categorias"><div class="wrap">
- <div class="head"><div><span class="eyebrow">Líneas</span><h2>Compra por categoría</h2></div><a class="link" href="#catalogo">Ver todo el catálogo →</a></div>
+ <div class="head"><div><span class="eyebrow">Líneas de producto</span><h2>Compra por categoría</h2></div><a class="link" href="#catalogo">Ver todo el catálogo →</a></div>
  <div class="cats" id="cats"></div>
 </div></section>
 
 <section class="section feat" id="destacados"><div class="wrap">
- <div class="head"><div><span class="eyebrow">Selección</span><h2>Productos destacados</h2><p>Una selección del catálogo para empezar a explorar.</p></div><div class="arrows"><button id="railPrev" aria-label="Anterior">←</button><button id="railNext" aria-label="Siguiente">→</button></div></div>
+ <div class="head"><div><span class="eyebrow">Destacados</span><h2>Productos destacados</h2></div><div class="arrows"><button id="railPrev" aria-label="Anterior">←</button><button id="railNext" aria-label="Siguiente">→</button></div></div>
  <div class="rail" id="rail"></div>
 </div></section>
 
@@ -358,12 +413,6 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
 </div>
 
 <div class="wrap">
-<div class="trust">
- <div><span class="ic"><svg class="ico"><use href="#i-box"/></svg></span><p style="margin:0"><b>Venta al por mayor</b><span>Para distribuidores y comercios</span></p></div>
- <div><span class="ic"><svg class="ico"><use href="#i-cam"/></svg></span><p style="margin:0"><b>Fotos reales</b><span>Varias vistas por referencia</span></p></div>
- <div><span class="ic"><svg class="ico"><use href="#i-list"/></svg></span><p style="margin:0"><b>Cotización organizada</b><span>Referencias y unidades sumadas</span></p></div>
- <div><span class="ic"><svg class="ico"><use href="#i-wa"/></svg></span><p style="margin:0"><b>Atención por WhatsApp</b><span>Asesor comercial directo</span></p></div>
-</div>
 <section class="band" id="contacto">
  <div><span class="eyebrow">Asesoría comercial</span><h2>¿Compras por volumen o tienes una referencia específica?</h2><p>Escríbenos y un asesor te confirma disponibilidad, precios por mayor y tiempos de entrega.</p></div>
  <div class="acts"><a class="btn btn-wa" href="https://wa.me/573142444580?text=Hola%20CJ%20Coimport%2C%20quiero%20informaci%C3%B3n%20comercial." target="_blank" rel="noopener"><svg class="ico"><use href="#i-wa"/></svg>Escribir por WhatsApp</a><span class="phone">+57 314 244 4580</span></div>
@@ -489,7 +538,7 @@ function renderSide(){
  $("#mchips").innerHTML=m;$$("#mchips button").forEach(b=>b.onclick=()=>{fCat=b.dataset.c;fSub=b.dataset.s||"todos";render()});
 }
 function card(p){
- return `<article class="card" data-i="${p.i}"><div class="media">${imgTag(p.small,p)}<span class="pill" style="--c:${CATS[p.c].c}">${CATS[p.c].label}</span><span class="peek">Ver detalle</span>${p.photo?`<span class="illus">Foto ilustrativa</span>`:p.imgs.length>1?`<span class="nphotos">${p.imgs.length} fotos</span>`:""}</div>
+ return `<article class="card" data-i="${p.i}"><div class="media">${imgTag(p.small,p)}<span class="pill" style="--c:${CATS[p.c].c}">${CATS[p.c].label}</span>${p.photo?`<span class="illus">Foto ilustrativa</span>`:p.imgs.length>1?`<span class="nphotos">${p.imgs.length} fotos</span>`:""}</div>
  <div class="info"><span class="ref mono">${p.r?"REF. "+esc(p.r):"&nbsp;"}</span><h3>${esc(p.n)}</h3><span class="sub">${esc(p.s)}</span>
  <div class="act"><div class="qty"><button data-d="-1" aria-label="Menos">−</button><input type="number" min="1" value="1" aria-label="Cantidad"><button data-d="1" aria-label="Más">+</button></div><button class="add">Agregar</button></div></div></article>`;
 }
@@ -517,7 +566,6 @@ $$("[data-go]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();goC
 /* ---------- portada ---------- */
 const pick=r=>products.find(p=>p.r===r);
 $("#collage").innerHTML=[["207","Patines"],["211M","Patinetas"],["H0","Monopatines"]].map(([r,t])=>{const p=pick(r);return p?`<button class="tile" data-i="${p.i}">${imgTag(TH+p.g[0]+"&sz=w700",p)}<span class="tag">${t}</span></button>`:""}).join("");
-$("#collage").insertAdjacentHTML("beforeend",`<div class="float-badge"><span class="ic"><svg class="ico"><use href="#i-wa"/></svg></span><div><b>Cotiza por WhatsApp</b><span>Arma tu pedido en minutos</span></div></div>`);
 $$("#collage .tile").forEach(t=>t.onclick=()=>openModal(products[+t.dataset.i]));
 const catImgs={deportes:["207","211M","FT5711"],jugueteria:["250-3","H801","208"]};
 const C2={deportes:["#f0564b","#9d1631"],jugueteria:["#19bba6","#0a5f63"],hogar:["#4a86f0","#1a3794"]};
