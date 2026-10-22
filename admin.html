@@ -131,29 +131,24 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;margin:0}
  <button class="btn btn-l btn-s" id="logout" hidden>Cerrar sesión</button>
 </div></header>
 
-<!-- 1. configuración inicial (una vez por navegador) -->
+<!-- 2. conexión con GitHub (una vez por navegador, después de iniciar sesión) -->
 <section class="auth" id="vSetup" hidden>
  <form class="card wide" id="fSetup" autocomplete="off">
-  <span class="eyebrow">Configuración inicial</span>
-  <h1>Crea el usuario administrador</h1>
-  <p class="lead">Se hace una sola vez en este navegador. El token de GitHub queda cifrado con tu contraseña y nunca se guarda en el sitio público.</p>
+  <span class="eyebrow">Conectar con GitHub</span>
+  <h1>Pega el token de GitHub</h1>
+  <p class="lead">Se pide una sola vez en este navegador. Queda cifrado con tu contraseña y nunca se publica en el sitio.</p>
   <div class="msg" id="mSetup"></div>
-  <div class="row2">
-   <div class="f"><label for="sUser">Usuario <span class="req">*</span></label><input id="sUser" required minlength="3" autocomplete="username"></div>
-   <div class="f"><label for="sPass">Contraseña <span class="req">*</span> <small>(mín. 8)</small></label><input id="sPass" type="password" required minlength="8" autocomplete="new-password"></div>
-  </div>
-  <div class="f"><label for="sPass2">Confirmar contraseña <span class="req">*</span></label><input id="sPass2" type="password" required minlength="8" autocomplete="new-password"></div>
   <div class="f"><label for="sToken">Token de GitHub <span class="req">*</span></label><input id="sToken" required placeholder="github_pat_…" spellcheck="false"></div>
   <ol class="steps">
    <li>Entra a <a class="link" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub → Fine-grained tokens</a>.</li>
    <li>En <b>Repository access</b> elige <b>Only select repositories → TIENDA</b>.</li>
    <li>En <b>Permissions → Contents</b> elige <b>Read and write</b>. Genera el token y pégalo aquí.</li>
   </ol>
-  <div class="foot"><span class="hint">Repositorio: <b>lorena1324/TIENDA</b> · rama <b>main</b></span><button class="btn btn-p" id="bSetup">Guardar y entrar</button></div>
+  <div class="foot"><button type="button" class="link" id="bCancel">Cancelar</button><button class="btn btn-p" id="bSetup">Guardar y entrar</button></div>
  </form>
 </section>
 
-<!-- 2. inicio de sesión -->
+<!-- 1. inicio de sesión -->
 <section class="auth" id="vLogin" hidden>
  <form class="card" id="fLogin">
   <span class="eyebrow">Acceso administrativo</span>
@@ -162,7 +157,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;margin:0}
   <div class="msg" id="mLogin"></div>
   <div class="f"><label for="lUser">Usuario</label><input id="lUser" required autocomplete="username"></div>
   <div class="f"><label for="lPass">Contraseña</label><input id="lPass" type="password" required autocomplete="current-password"></div>
-  <div class="foot"><button type="button" class="link" id="bReset">Configurar de nuevo</button><button class="btn btn-p" id="bLogin">Entrar</button></div>
+  <div class="foot"><button type="button" class="link" id="bReset">Cambiar token de GitHub</button><button class="btn btn-p" id="bLogin">Entrar</button></div>
  </form>
 </section>
 
@@ -245,35 +240,43 @@ async function writeData(list,sha,message){return gh(DATA,{method:"PUT",body:JSO
 async function putFile(path,b64content,message){return gh(path,{method:"PUT",body:JSON.stringify({message,branch:BRANCH,content:b64content})})}
 async function delFile(path,message){try{const f=await gh(path+"?ref="+BRANCH);await gh(path,{method:"DELETE",body:JSON.stringify({message,branch:BRANCH,sha:f.sha})})}catch(e){if(e.status!==404)throw e}}
 function ghErr(e){if(e.message==="perm")return"El token no tiene permiso de escritura en lorena1324/TIENDA. Revisa que tenga Contents: Read and write.";
- if(e.status===401)return"El token de GitHub no es válido o expiró. Usa “Configurar de nuevo” para cambiarlo.";
+ if(e.status===401)return"El token de GitHub no es válido o expiró. Cierra sesión y usa “Cambiar token de GitHub”.";
  if(e.status===403)return"GitHub rechazó la operación (permisos o límite de uso). Intenta en unos minutos.";
  if(e.status===404)return"No se encontró el repositorio o el token no tiene acceso a él.";
  if(e.status===409||e.status===422)return"El catálogo cambió mientras guardabas. Intenta de nuevo.";
  return"No se pudo conectar con GitHub. Revisa tu conexión e intenta de nuevo."}
 
 /* ---------- acceso ---------- */
+/* usuario fijo: solo se guarda la huella PBKDF2 de la contraseña, nunca la contraseña */
+const ADMIN={user:"admincj",salt:"No5FtTllm10W7MpEnXhRJw==",hash:"E8mHkdLLJrVhdWV7InIx23NO5qr1OJ1/0Lw7D073kSA=",it:310000};
+async function passOk(user,pass){if(user.trim().toLowerCase()!==ADMIN.user)return false;
+ const base=await crypto.subtle.importKey("raw",enc.encode(pass),"PBKDF2",false,["deriveBits"]);
+ const bits=await crypto.subtle.deriveBits({name:"PBKDF2",salt:unb64(ADMIN.salt),iterations:ADMIN.it,hash:"SHA-256"},base,256);
+ return b64(bits)===ADMIN.hash}
 const CFG_KEY="cj_admin_cfg",SES_KEY="cj_admin_ses";
-async function boot(){const cfg=store.get(CFG_KEY);
- let ses=null;try{ses=JSON.parse(sessionStorage.getItem(SES_KEY))}catch(e){}
- if(cfg&&ses&&ses.token){TOKEN=ses.token;enter(ses.user);return}
- show(cfg?"vLogin":"vSetup");(cfg?$("#lUser"):$("#sUser")).focus()}
-function enter(user){try{sessionStorage.setItem(SES_KEY,JSON.stringify({user,token:TOKEN}))}catch(e){}$("#whoName").textContent=user;show("vPanel");loadList();preview()}
-$("#fSetup").addEventListener("submit",async e=>{e.preventDefault();const m=$("#mSetup"),u=$("#sUser").value.trim(),p=$("#sPass").value,t=$("#sToken").value.trim();
- if(u.length<3)return msg(m,"El usuario debe tener al menos 3 caracteres.");
- if(p.length<8)return msg(m,"La contraseña debe tener al menos 8 caracteres.");
- if(p!==$("#sPass2").value)return msg(m,"Las contraseñas no coinciden.");
- if(t.length<20)return msg(m,"Pega el token completo de GitHub.");
- const b=$("#bSetup");b.disabled=true;msg(m,"Verificando el token con GitHub…","info");
- try{await checkToken(t);if(!store.set(CFG_KEY,await seal(u,p,t)))throw new Error("store");$("#fSetup").reset();msg(m,"");enter(u)}
- catch(err){TOKEN=null;msg(m,err.message==="store"?"Este navegador no permite guardar datos (modo privado). Usa una ventana normal.":err.status===401?"GitHub no reconoce ese token. Revisa que lo copiaste completo y que no haya expirado.":ghErr(err))}
- finally{b.disabled=false}});
+let PASS=null;
+function boot(){let ses=null;try{ses=JSON.parse(sessionStorage.getItem(SES_KEY))}catch(e){}
+ if(ses&&ses.token){TOKEN=ses.token;enter();return}
+ show("vLogin");$("#lUser").focus()}
+function enter(){try{sessionStorage.setItem(SES_KEY,JSON.stringify({token:TOKEN}))}catch(e){}PASS=null;$("#whoName").textContent=ADMIN.user;show("vPanel");loadList();preview()}
 let tries=0;
-$("#fLogin").addEventListener("submit",async e=>{e.preventDefault();const m=$("#mLogin"),b=$("#bLogin");b.disabled=true;msg(m,"");
- try{const r=await open_(store.get(CFG_KEY),$("#lUser").value,$("#lPass").value);TOKEN=r.token;tries=0;$("#fLogin").reset();enter(r.user)}
+$("#fLogin").addEventListener("submit",async e=>{e.preventDefault();const m=$("#mLogin"),b=$("#bLogin"),u=$("#lUser").value,p=$("#lPass").value;b.disabled=true;msg(m,"");
+ try{if(!await passOk(u,p))throw new Error("cred");tries=0;$("#fLogin").reset();
+  const cfg=store.get(CFG_KEY);
+  if(cfg){try{TOKEN=(await open_(cfg,ADMIN.user,p)).token;enter();return}catch(_){store.del(CFG_KEY)}}
+  PASS=p;msg($("#mSetup"),"");show("vSetup");$("#sToken").focus()}
  catch(err){tries++;msg(m,"Usuario o contraseña incorrectos.");await new Promise(r=>setTimeout(r,Math.min(4000,400*tries)))}
  finally{b.disabled=false}});
-$("#bReset").onclick=()=>{if(confirm("Esto borra el usuario guardado en este navegador para crearlo de nuevo con otro token. ¿Continuar?")){store.del(CFG_KEY);boot()}};
-$("#logout").onclick=()=>{TOKEN=null;try{sessionStorage.removeItem(SES_KEY)}catch(e){}show("vLogin")};
+$("#fSetup").addEventListener("submit",async e=>{e.preventDefault();const m=$("#mSetup"),t=$("#sToken").value.trim();
+ if(!PASS)return show("vLogin");
+ if(t.length<20)return msg(m,"Pega el token completo de GitHub.");
+ const b=$("#bSetup");b.disabled=true;msg(m,"Verificando el token con GitHub…","info");
+ try{await checkToken(t);if(!store.set(CFG_KEY,await seal(ADMIN.user,PASS,t)))throw new Error("store");$("#fSetup").reset();msg(m,"");enter()}
+ catch(err){TOKEN=null;msg(m,err.message==="store"?"Este navegador no permite guardar datos (modo privado). Usa una ventana normal.":err.status===401?"GitHub no reconoce ese token. Revisa que lo copiaste completo y que no haya expirado.":ghErr(err))}
+ finally{b.disabled=false}});
+$("#bCancel").onclick=()=>{PASS=null;$("#fSetup").reset();show("vLogin")};
+$("#bReset").onclick=()=>{if(confirm("Esto borra el token guardado en este navegador. Después de iniciar sesión podrás pegar uno nuevo. ¿Continuar?")){store.del(CFG_KEY);msg($("#mLogin"),"Token borrado. Inicia sesión para pegar el nuevo.","info")}};
+$("#logout").onclick=()=>{TOKEN=null;PASS=null;try{sessionStorage.removeItem(SES_KEY)}catch(e){}show("vLogin")};
 
 /* ---------- formulario ---------- */
 let files=[];
