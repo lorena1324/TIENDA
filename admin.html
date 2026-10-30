@@ -215,7 +215,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;margin:0}
 
 <!-- 3. panel -->
 <main class="panel" id="vPanel" hidden><div class="wrap">
- <div class="ph"><div><span class="eyebrow">Catálogo</span><h1 id="pTitle">Agregar un producto nuevo</h1><p>Los cambios se publican en la tienda en 1–2 minutos.</p></div>
+ <div class="ph"><div><span class="eyebrow">Catálogo</span><h1 id="pTitle">Agregar un producto nuevo</h1><p>Los cambios se publican en la tienda en unos minutos.</p></div>
   <div class="tabs" role="tablist"><button type="button" role="tab" id="tAdd" class="on" aria-selected="true">Agregar producto</button><button type="button" role="tab" id="tEdit" aria-selected="false">Editar catálogo</button></div></div>
  <div class="msg" id="mTop"></div>
 
@@ -311,7 +311,10 @@ async function open_(cfg,user,pass){if(user.trim().toLowerCase()!==cfg.user.toLo
 let TOKEN=null;
 async function gh(path,opt={}){const r=await fetch(path.startsWith("http")?path:API+path,{...opt,headers:{Accept:"application/vnd.github+json",Authorization:"Bearer "+TOKEN,"X-GitHub-Api-Version":"2022-11-28",...(opt.headers||{})}});
  if(!r.ok){const e=new Error("gh "+r.status);e.status=r.status;try{e.body=await r.json()}catch(_){}throw e}return r.status===204?null:r.json()}
-async function checkToken(t){TOKEN=t;const r=await gh(`https://api.github.com/repos/${OWNER}/${REPO}`);if(!r.permissions||!r.permissions.push)throw new Error("perm")}
+async function checkToken(t){TOKEN=t;const r=await gh(`https://api.github.com/repos/${OWNER}/${REPO}`);if(!r.permissions||!r.permissions.push)throw new Error("perm");
+ /* prueba real de escritura: un blob suelto no modifica archivos ni la tienda */
+ try{await gh(`https://api.github.com/repos/${OWNER}/${REPO}/git/blobs`,{method:"POST",body:JSON.stringify({content:"prueba de permiso del panel",encoding:"utf-8"})})}
+ catch(e){if(e.status===403||e.status===404)throw Object.assign(new Error("perm"),{body:e.body});throw e}}
 const utf8b64=s=>b64(enc.encode(s));
 const b64utf8=s=>dec.decode(unb64(s.replace(/\n/g,"")));
 async function readJSON(path,def){try{const f=await gh(path+"?ref="+BRANCH+"&t="+Date.now());const t=b64utf8(f.content).trim();return{sha:f.sha,data:t?JSON.parse(t):def}}catch(e){if(e.status===404)return{sha:null,data:def};throw e}}
@@ -321,12 +324,15 @@ async function updateJSON(path,def,fn,message){for(let a=0;;a++){const cur=await
  try{return await writeJSON(path,next,cur.sha,message)}catch(err){if((err.status===409||err.status===422)&&a<2)continue;throw err}}}
 async function putFile(path,b64content,message){return gh(path,{method:"PUT",body:JSON.stringify({message,branch:BRANCH,content:b64content})})}
 async function delFile(path,message){try{const f=await gh(path+"?ref="+BRANCH);await gh(path,{method:"DELETE",body:JSON.stringify({message,branch:BRANCH,sha:f.sha})})}catch(e){if(e.status!==404)throw e}}
-function ghErr(e){if(e.message==="perm")return"El token no tiene permiso de escritura en lorena1324/TIENDA. Revisa que tenga Contents: Read and write.";
- if(e.status===401)return"El token de GitHub no es válido o expiró. Cierra sesión y usa “Cambiar token de GitHub”.";
- if(e.status===403)return"GitHub rechazó la operación (permisos o límite de uso). Intenta en unos minutos.";
- if(e.status===404)return"No se encontró el repositorio o el token no tiene acceso a él.";
- if(e.status===409||e.status===422)return"El catálogo cambió mientras guardabas. Intenta de nuevo.";
- return"No se pudo conectar con GitHub. Revisa tu conexión e intenta de nuevo."}
+const FIX_TOKEN="En GitHub abre Settings → Developer settings → Fine-grained tokens, edita el token y en Repository access elige TIENDA y en Permissions → Contents elige “Read and write”. Luego cierra sesión aquí, usa “Cambiar token de GitHub” y pega el token.";
+function ghErr(e){const gm=e&&e.body&&e.body.message?` (GitHub: ${e.body.message})`:"";
+ if(e.message==="perm")return"El token no tiene permiso para guardar cambios en lorena1324/TIENDA."+gm+" "+FIX_TOKEN;
+ if(e.status===401)return"El token de GitHub no es válido o ya expiró."+gm+" Crea uno nuevo; luego cierra sesión aquí, usa “Cambiar token de GitHub” y pégalo.";
+ if(e.status===403&&/rate limit/i.test(e.body&&e.body.message||""))return"GitHub alcanzó su límite de uso por ahora. Espera unos minutos e intenta de nuevo.";
+ if(e.status===403||e.status===404)return"GitHub no permitió guardar: el token no tiene permiso de escritura en TIENDA."+gm+" "+FIX_TOKEN;
+ if(e.status===409||e.status===422)return"El catálogo cambió mientras guardabas. Intenta de nuevo."+gm;
+ if(e instanceof TypeError)return"No se pudo conectar con GitHub. Revisa tu conexión a internet e intenta de nuevo.";
+ return"No se pudo guardar"+(e.status?` (error ${e.status})`:"")+"."+gm+" Intenta de nuevo; si se repite, cierra sesión y vuelve a entrar."}
 
 /* ---------- acceso ---------- */
 /* usuario fijo: solo se guarda la huella PBKDF2 de la contraseña, nunca la contraseña */
@@ -354,7 +360,7 @@ $("#fSetup").addEventListener("submit",async e=>{e.preventDefault();const m=$("#
  if(t.length<20)return msg(m,"Pega el token completo de GitHub.");
  const b=$("#bSetup");b.disabled=true;msg(m,"Verificando el token con GitHub…","info");
  try{await checkToken(t);if(!store.set(CFG_KEY,await seal(ADMIN.user,PASS,t)))throw new Error("store");$("#fSetup").reset();msg(m,"");enter()}
- catch(err){TOKEN=null;msg(m,err.message==="store"?"Este navegador no permite guardar datos (modo privado). Usa una ventana normal.":err.status===401?"GitHub no reconoce ese token. Revisa que lo copiaste completo y que no haya expirado.":ghErr(err))}
+ catch(err){TOKEN=null;msg(m,err.message==="store"?"Este navegador no permite guardar datos (modo privado). Usa una ventana normal.":err.status===401?"GitHub no reconoce ese token. Revisa que lo copiaste completo y que no haya expirado.":err.message==="perm"?"Ese token no tiene permiso para guardar en TIENDA."+(err.body&&err.body.message?` (GitHub: ${err.body.message})`:"")+" En GitHub edita el token: en Repository access elige TIENDA y en Permissions → Contents elige “Read and write”. Guarda y vuelve a pegarlo aquí.":ghErr(err))}
  finally{b.disabled=false}});
 $("#bCancel").onclick=()=>{PASS=null;$("#fSetup").reset();show("vLogin")};
 $("#bReset").onclick=()=>{if(confirm("Esto borra el token guardado en este navegador. Después de iniciar sesión podrás pegar uno nuevo. ¿Continuar?")){store.del(CFG_KEY);msg($("#mLogin"),"Token borrado. Inicia sesión para pegar el nuevo.","info")}};
@@ -445,7 +451,7 @@ $("#fProd").addEventListener("submit",async e=>{e.preventDefault();const m=$("#m
   const u=await uploadNew(d.n,stamp),pk=await uploadNew(d.n,stamp,pkfiles,"-embalaje");busy(true,"Guardando…","Actualizando el catálogo en GitHub");
   if(!MODE){const prod={id:stamp,...d,u,pk,real:1,fecha:new Date().toISOString().slice(0,10)};
    await updateJSON(NUEVOS,[],list=>(list.push(prod),list),`Producto nuevo: ${d.n}${d.r?" (Ref. "+d.r+")":""}`);
-   clearForm();msg(m,`“${d.n}” se publicó correctamente. Aparecerá en la tienda en 1–2 minutos.`,"ok");loadCatalog().catch(()=>{});return}
+   clearForm();msg(m,`“${d.n}” se publicó correctamente. Aparecerá en la tienda en unos minutos.`,"ok");loadCatalog().catch(()=>{});return}
   const {id,nuevo,prev}=MODE;
   if(nuevo){await updateJSON(NUEVOS,[],list=>{const i=list.findIndex(x=>x.id===id);if(i<0)throw Object.assign(new Error("gone"),{status:0});
     const it={...list[i],...d,u,pk};if(!d.ag)delete it.ag;list[i]=it;return list},`Editar producto: ${d.n}`)}
@@ -456,7 +462,7 @@ $("#fProd").addEventListener("submit",async e=>{e.preventDefault();const m=$("#m
    if(!!d.ag!==!!o.ag)ch.ag=d.ag?1:0;if(JSON.stringify(u)!==JSON.stringify(origPhotos(o)))ch.u=u;
    await updateJSON(CAMBIOS,{},obj=>{if(obj[id]&&obj[id].oculto)ch.oculto=1;if(Object.keys(ch).length)obj[id]=ch;else delete obj[id];return obj},`Editar producto: ${d.n}${d.r?" (Ref. "+d.r+")":""}`)}
   await dropUploaded(prev,u.concat(pk),d.n);
-  await loadCatalog();showList(`Se guardaron los cambios de “${d.n}”. Se verán en la tienda en 1–2 minutos.`);
+  await loadCatalog();showList(`Se guardaron los cambios de “${d.n}”. Se verán en la tienda en unos minutos.`);
  }catch(err){msg(m,err.message==="gone"?"Ese producto ya no existe (pudo eliminarse desde otro equipo).":ghErr(err))}
  finally{busy(false);$("#bSave").disabled=false}});
 
@@ -468,12 +474,13 @@ let CAT=[],CHG={},fcat="todos",loaded=false;
 async function loadCatalog(){const [a,b]=await Promise.all([readJSON(NUEVOS,[]),readJSON(CAMBIOS,{})]);CHG=b.data&&typeof b.data==="object"&&!Array.isArray(b.data)?b.data:{};
  CAT=Object.values(ORIG).map(o=>{const p=JSON.parse(JSON.stringify(o));p.photos=origPhotos(o);const c=CHG[p.id];if(c){applyChange(p,c);if(c.u)p.photos=c.u}return p});
  (Array.isArray(a.data)?a.data:[]).forEach(n=>{const q=deriveEmb({...n,k:n.k||[],x:n.x||[],nuevo:1,photos:n.u||[]});if(q.c==="jugueteria")q.c="deportes";CAT.push(q)});loaded=true;renderList()}
+const subIdx=s=>{const i=[...SUBS.deportes,...SUBS.hogar].indexOf(s);return i<0?99:i};
 const tags=p=>(p.nuevo?`<span class="bd nw">Nuevo</span>`:"")+(p.editado?`<span class="bd ed">Editado</span>`:"")+(p.oculto?`<span class="bd oc">Oculto</span>`:"")+(p.ag?`<span class="bd ag">Agotado</span>`:"");
 function renderList(){const q=$("#q").value.toLowerCase().trim(),ord=["deportes","hogar"];
  $("#fc").innerHTML=[["todos","Todos"],["deportes","Deportes"],["hogar","Hogar"],["mod","Nuevos / editados / ocultos"]].map(([k,l])=>`<button type="button" class="${fcat===k?"on":""}" data-k="${k}">${l}</button>`).join("");
  $("#fc").querySelectorAll("button").forEach(b=>b.onclick=()=>{fcat=b.dataset.k;renderList()});
  const arr=CAT.filter(p=>(fcat==="todos"||(fcat==="mod"?(p.editado||p.oculto||p.nuevo):p.c===fcat))&&(!q||`${p.n} ${p.r} ${p.s} ref ${p.r}`.toLowerCase().includes(q)))
-  .sort((a,b)=>ord.indexOf(a.c)-ord.indexOf(b.c)||String(a.s).localeCompare(b.s,"es")||a.n.localeCompare(b.n,"es"));
+  .sort((a,b)=>ord.indexOf(a.c)-ord.indexOf(b.c)||subIdx(a.s)-subIdx(b.s)||String(a.s).localeCompare(b.s,"es")||a.n.localeCompare(b.n,"es"));
  $("#lc").textContent=`${arr.length} de ${CAT.length} productos`;
  $("#plist").innerHTML=arr.length?arr.map(p=>`<div class="pr${p.oculto?" hid":""}"><img src="${p.photos[0]?src(p.photos[0],200):NOPHOTO}" alt="" loading="lazy"><div><b title="${esc(p.n)}">${esc(p.n)}</b><span class="m">${p.r?"Ref. "+esc(p.r)+" · ":""}${CATL[p.c]||""} / ${esc(p.s)}</span><span class="badges">${tags(p)}</span></div><button type="button" class="btn btn-l btn-s" data-id="${esc(p.id)}">Editar</button></div>`).join("")
   :`<div class="empty">No hay productos con ese filtro.</div>`;
