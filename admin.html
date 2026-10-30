@@ -430,7 +430,7 @@ const blobB64=b=>new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(Strin
 const slug=s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,40)||"producto";
 function busy(on,t,d){$("#busy").classList.toggle("on",on);if(t)$("#busyT").textContent=t;if(d)$("#busyD").textContent=d}
 /* ruta guardada -> imagen visible (las fotos recién subidas aún no están publicadas en el sitio) */
-const src=(v,sz)=>{if(/^data:/.test(v))return v;if(/^https?:/.test(v))return sz?v.replace(/&sz=w\d+/,"&sz=w"+sz):v;return v.startsWith("img/nuevos/")?RAW+v:v};
+const src=(v,sz)=>{if(/^data:/.test(v))return v;if(/^https?:/.test(v))return sz?v.replace(/&sz=w\d+/,"&sz=w"+sz):v;return v.startsWith("img/nuevos/")?RAW+v:(sz&&sz<=500?smallOf(v):v)};
 async function uploadNew(name,stamp,list=files,tag=""){const u=[],total=list.filter(x=>x.blob).length;let k=0;
  for(const f of list){if(!f.blob){u.push(f.existing);continue}k++;busy(true,tag?"Subiendo fotos del embalaje…":"Subiendo fotos…",`Foto ${k} de ${total}`);
   const path=`img/nuevos/${stamp}-${slug(name)}${tag}-${u.length+1}.jpg`;await putFile(path,await blobB64(f.blob),`Foto de producto: ${name}`);u.push(path)}return u}
@@ -463,7 +463,7 @@ $("#fProd").addEventListener("submit",async e=>{e.preventDefault();const m=$("#m
 /* ---------- catálogo completo (productos base + nuevos, con cambios aplicados) ---------- */
 const NUEVOS="data/nuevos.json",CAMBIOS="data/cambios.json";
 const ORIG={};products.forEach(p=>{const o=baseInfo(JSON.parse(JSON.stringify(p)));ORIG[o.id]=o});
-const origPhotos=o=>o.g?o.g.map(id=>TH+id+"&sz=w1000"):(o.u||[]);
+const origPhotos=o=>o.g?o.g.map(IMG_DEP):(o.u||[]);
 let CAT=[],CHG={},fcat="todos",loaded=false;
 async function loadCatalog(){const [a,b]=await Promise.all([readJSON(NUEVOS,[]),readJSON(CAMBIOS,{})]);CHG=b.data&&typeof b.data==="object"&&!Array.isArray(b.data)?b.data:{};
  CAT=Object.values(ORIG).map(o=>{const p=JSON.parse(JSON.stringify(o));p.photos=origPhotos(o);const c=CHG[p.id];if(c){applyChange(p,c);if(c.u)p.photos=c.u}return p});

@@ -618,7 +618,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
 <section class="sec contact" id="contacto"><div class="wrap">
  <div class="band">
   <div><span class="eyebrow">Contacto</span><h2>¿Compras por volumen o buscas una referencia específica?</h2><p>Escríbenos y un asesor te confirma disponibilidad, precios por mayor y tiempos de entrega.</p>
-   <ul class="cinfo"><li><b>WhatsApp</b>+57 314 244 4580 · +57 313 395 5634</li><li><b>Correo</b>comercial@cjcoimport.com</li><li><b>Ciudad</b>Bogotá, Colombia</li></ul></div>
+   <ul class="cinfo"><li><b>WhatsApp</b>+57 314 244 4580 · +57 313 395 5634</li><li><b>Correo</b>cj.coimport@hotmail.com</li><li><b>Ciudad</b>Bogotá, Colombia</li></ul></div>
   <div class="acts"><a class="btn btn-wa" href="https://wa.me/573142444580?text=Hola%20CJ%20Coimport%2C%20quiero%20informaci%C3%B3n%20comercial." target="_blank" rel="noopener"><svg class="ico"><use href="#i-wa"/></svg>Escribir por WhatsApp</a><button class="btn btn-ghost" data-open-cart>Ver mi cotización</button></div>
  </div>
 </div></section>
@@ -628,7 +628,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
  <div><a class="logo logo-foot" href="#inicio" aria-label="CJ Coimport, inicio"><img class="logo-img" src="logo.jpg" alt="CJ Coimport S.A.S." width="170" height="62"></a><p style="margin-top:14px;max-width:38ch">Catálogo digital mayorista de artículos para el deporte y el hogar. Calidad en productos por un precio asequible.</p></div>
  <div><h4>Catálogos</h4><a href="#catalogo" data-go="deportes">Deportes y juguetería</a><br><a href="#catalogo" data-go="hogar">Hogar</a></div>
  <div><h4>Secciones</h4><a href="#catalogos">Catálogos</a><br><a href="#catalogo">Productos</a><br><a href="#nosotros">Quiénes somos</a><br><a href="#" data-open-cart>Mi cotización</a></div>
- <div><h4>Contacto</h4><p>WhatsApp: 314 244 4580</p><p>WhatsApp: 313 395 5634</p><p>comercial@cjcoimport.com</p></div>
+ <div><h4>Contacto</h4><p>WhatsApp: 314 244 4580</p><p>WhatsApp: 313 395 5634</p><p>cj.coimport@hotmail.com</p></div>
 </div><div class="wrap legal">© 2026 CJ Coimport S.A.S. · Precios y disponibilidad sujetos a confirmación del asesor comercial. · <a href="admin.html" style="color:inherit;text-decoration:underline">Administración</a></div></footer>
 
 <button class="fab" data-open-cart aria-label="Abrir mi cotización"><svg class="ico" style="width:22px;height:22px"><use href="#i-wa"/></svg><span class="lbl">Mi cotización</span><span class="cart-count" data-count></span></button>
@@ -682,7 +682,7 @@ const lineOf=p=>isToy(p)?"Juguetería":CATS[p.c].label;
 function prep(p,i){if(p.c==="jugueteria")p.c="deportes";if(!p.g&&!(p.u&&p.u.length)){p.u=[NOPHOTO];p.real=1}
  p.k=p.k||[];p.x=p.x||[];p.fam=p.fam||p.n;p.op=(p.op||[]).filter(o=>o&&o.n&&o.v&&o.v.length);p.vr=p.vr||[];p.pk=p.pk||[];deriveEmb(p);
  if(p.vr.length&&p.vr.every(v=>v.q!==""&&v.q!=null&&+v.q<=0))p.ag=1;
- p.i=i;p.key="id:"+p.id;p.imgs=p.g?p.g.map(id=>TH+id+"&sz=w1000"):p.u;p.small=p.g?TH+p.g[0]+"&sz=w500":p.u[0];p.tiny=p.g?TH+p.g[0]+"&sz=w160":p.u[0];p.photo=!p.g&&!p.real}
+ p.i=i;p.key="id:"+p.id;p.imgs=p.g?p.g.map(IMG_DEP):p.u;p.small=smallOf(p.imgs[0]);p.tiny=p.small;p.photo=!p.g&&!p.real}
 products.forEach(baseInfo);
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -749,7 +749,7 @@ function openModal(p){
  const rest=p.x.filter(([l])=>!/^Presentaci/i.test(l));
  $("#mRefRow").hidden=!p.r;$("#mRef").textContent=p.r;$("#mCat").textContent=lineOf(p)==="Juguetería"?"Deportes · Juguetería":CATS[p.c].label;$("#mSub").textContent=p.s;
  $$("#mSpecs .spec.sx").forEach(e=>e.remove());$("#mSpecs").insertAdjacentHTML("beforeend",rest.map(([l,v])=>`<div class="spec sx"><span>${esc(l)}</span><strong>${esc(v)}</strong></div>`).join(""));
- gal=p.imgs.map((u,k)=>({src:u,alt:p.g?TH+p.g[k]+"&sz=w500":null,th:p.g?TH+p.g[k]+"&sz=w160":u})).concat(p.pk.map(u=>({src:u,th:u,pk:1})));
+ gal=p.imgs.map((u,k)=>({src:u,alt:p.g?TH+p.g[k]+"&sz=w1000":null,th:smallOf(u)})).concat(p.pk.map(u=>({src:u,th:smallOf(u),pk:1})));
  $("#mThumbs").innerHTML=gal.length>1?gal.map((g,k)=>`<button class="${g.pk?"pkt":""}" aria-label="${g.pk?"Foto del embalaje":"Foto "+(k+1)}"><img loading="lazy" src="${g.th}" alt=""></button>`).join(""):"";
  $$("#mThumbs button").forEach((b,k)=>b.onclick=()=>showImg(k));showImg(0);
  const pkb=$("#mPkBtn");if(pkb)pkb.onclick=()=>showImg(p.imgs.length);
