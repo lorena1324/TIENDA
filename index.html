@@ -12,18 +12,18 @@
 <style>
 /* Catálogo B2B con profundidad: portada tinta + brillo violeta, paneles de categoría en color, fichas blancas elevadas */
 :root{
- --ink:#1e1414;--ink-2:#46393a;--muted:#7a6a6b;--line:#efe6e5;--line-2:#e0d3d2;
- --bg:#f8f4f3;--surface:#fff;--soft:#f7f0ef;
- --brand:#a8323a;--brand-2:#80222b;--brand-3:#d06a6f;--brand-soft:#f8eaea;
- --wine:#3b1418;--wine-2:#57191f;
+ --ink:#111111;--ink-2:#3a3a3a;--muted:#6e6e6e;--line:#ececec;--line-2:#dcdcdc;
+ --bg:#f6f6f6;--surface:#fff;--soft:#f4f4f4;
+ --brand:#E31E24;--brand-2:#B5161B;--brand-3:#ff5a5f;--brand-soft:#fdeced;
+ --wine:#0b0b0b;--wine-2:#1a1a1a;
  --wa:#22b35e;--wa-2:#1a944d;
- --dep:#a8323a;--dep-2:#7a1f27;--jug:#c0653f;--jug-2:#8a3b22;--hog:#8b4a55;--hog-2:#55262f;
+ --dep:#E31E24;--dep-2:#B5161B;--jug:#111111;--jug-2:#000;--hog:#1E5BD8;--hog-2:#0f3a96;
  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
  --body:"Figtree","Segoe UI",Arial,sans-serif;
  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
  --r:18px;
- --sh-1:0 1px 2px rgba(40,18,20,.04),0 4px 14px rgba(40,18,20,.06);
- --sh-2:0 2px 6px rgba(40,18,20,.06),0 22px 48px rgba(90,22,28,.14);
+ --sh-1:0 1px 2px rgba(0,0,0,.04),0 4px 14px rgba(0,0,0,.06);
+ --sh-2:0 2px 6px rgba(0,0,0,.06),0 22px 48px rgba(0,0,0,.14);
 }
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;font-family:var(--body);font-size:15px;line-height:1.5;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
@@ -44,14 +44,14 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
 .ico{width:18px;height:18px;flex:none}
 
 /* top + header */
-.topbar{background:#1c0e10;color:#e2cfcf;font-size:12.5px}
+.topbar{background:#0b0b0b;color:#e2cfcf;font-size:12.5px}
 .topbar .wrap{display:flex;justify-content:space-between;gap:16px;padding-block:9px}
 .topbar a{color:#fff;font-weight:600}
 .topbar .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--wa);margin-right:8px;box-shadow:0 0 0 3px rgba(34,179,94,.25)}
 .header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
 .header .wrap{display:flex;align-items:center;gap:24px;height:74px}
 .logo{display:flex;align-items:center;gap:11px;flex:none}
-.logo-mark{width:42px;height:42px;border-radius:12px;background:linear-gradient(140deg,var(--brand-3),var(--brand) 55%,#5e1a21);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:16px;box-shadow:0 6px 16px rgba(168,50,58,.35)}
+.logo-mark{width:42px;height:42px;border-radius:12px;background:linear-gradient(140deg,var(--brand-3),var(--brand) 55%,#5e1a21);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:16px;box-shadow:0 6px 16px rgba(227,30,36,.35)}
 .logo-txt{font-family:var(--display);font-weight:800;font-size:19px;line-height:1;letter-spacing:.02em}.logo-txt small{display:block;font-family:var(--body);font-weight:600;font-size:10.5px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-top:4px}
 .search{flex:1;position:relative;max-width:560px}
 .search input{width:100%;height:46px;border:1px solid var(--line-2);border-radius:12px;background:var(--soft);padding:0 14px 0 44px;outline:none;transition:.15s}
@@ -120,7 +120,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
 .cat:hover .cat-imgs img:nth-child(2){transform:translateY(-8px)}
 
 /* featured rail */
-.feat{background:linear-gradient(180deg,transparent,rgba(168,50,58,.06) 30%,transparent)}
+.feat{background:linear-gradient(180deg,transparent,rgba(227,30,36,.06) 30%,transparent)}
 .rail-wrap{position:relative}
 .rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(250px,1fr);gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 4px 22px;scrollbar-width:none}
 .rail::-webkit-scrollbar{display:none}
@@ -137,7 +137,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
 .side h4{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:12px 12px 8px}
 .fbtn{display:flex;justify-content:space-between;align-items:center;width:100%;padding:10px 12px;border-radius:10px;font-size:14px;font-weight:600;color:var(--ink-2);text-align:left;transition:background .15s}
 .fbtn:hover{background:#fff}
-.fbtn.on{background:var(--ink);color:#fff;box-shadow:0 6px 16px rgba(40,18,20,.2)}
+.fbtn.on{background:var(--ink);color:#fff;box-shadow:0 6px 16px rgba(0,0,0,.2)}
 .fbtn small{font-weight:600;color:inherit;opacity:.6;font-variant-numeric:tabular-nums}
 .fbtn i{width:9px;height:9px;border-radius:50%;background:var(--c);display:inline-block;margin-right:9px}
 .subs{display:flex;flex-direction:column;padding-left:14px;margin:4px 0 6px;border-left:2px solid var(--line-2);margin-left:16px}
@@ -159,7 +159,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
 .card:hover .media img{transform:scale(1.06)}
 .pill{position:absolute;top:12px;left:12px;font-size:11px;font-weight:700;padding:5px 9px;border-radius:8px;color:#fff;background:var(--c)}
 .nphotos{position:absolute;right:12px;top:12px;font-size:11px;font-weight:600;color:var(--ink-2);background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:8px;padding:4px 8px}
-.illus{position:absolute;right:12px;top:12px;font-size:11px;color:#fff;background:rgba(40,18,20,.65);border-radius:8px;padding:4px 8px}
+.illus{position:absolute;right:12px;top:12px;font-size:11px;color:#fff;background:rgba(0,0,0,.65);border-radius:8px;padding:4px 8px}
 .peek{position:absolute;left:50%;bottom:14px;transform:translate(-50%,8px);opacity:0;background:var(--ink);color:#fff;font-size:12.5px;font-weight:700;padding:8px 14px;border-radius:20px;transition:.25s;white-space:nowrap}
 .card:hover .peek{opacity:1;transform:translate(-50%,0)}
 .card .info{padding:16px 16px 18px;display:flex;flex-direction:column;gap:4px;flex:1;border-top:1px solid var(--line)}
@@ -171,8 +171,8 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
 .qty button{width:34px;height:100%;font-size:18px;color:var(--ink-2)}.qty button:hover{background:var(--soft)}
 .qty input{width:42px;height:100%;border:0;text-align:center;font-weight:700;font-variant-numeric:tabular-nums;outline:none;-moz-appearance:textfield;background:transparent}
 .qty input::-webkit-outer-spin-button,.qty input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
-.add{flex:1;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;font-weight:700;font-size:13.5px;box-shadow:0 6px 16px rgba(168,50,58,.25);transition:transform .15s,box-shadow .15s}
-.add:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(168,50,58,.35)}
+.add{flex:1;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;font-weight:700;font-size:13.5px;box-shadow:0 6px 16px rgba(227,30,36,.25);transition:transform .15s,box-shadow .15s}
+.add:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(227,30,36,.35)}
 .add.in{background:var(--brand-soft);color:var(--brand);box-shadow:none}
 .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:60px 0;background:var(--bg);border:1px dashed var(--line-2);border-radius:var(--r)}
 
@@ -192,11 +192,11 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
 .band .acts{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
 .band .phone{font-family:var(--mono);font-size:15px;color:#fff;opacity:.85}
 
-.footer{margin-top:80px;background:#1c0e10;color:#dccbcb}
+.footer{margin-top:80px;background:#0b0b0b;color:#dccbcb}
 .footer .wrap{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px;padding-block:56px 40px}
 .footer .logo-txt{color:#fff}.footer .logo-txt small{color:#a88d8e}
 .footer h4{font-size:13px;margin:0 0 12px;color:#fff;letter-spacing:.04em}.footer p,.footer a{color:#c4abac;font-size:14px;line-height:1.9;margin:0}.footer a:hover{color:#fff}
-.legal{border-top:1px solid #3a2023;padding-block:18px;color:#9a7f80;font-size:12.5px}
+.legal{border-top:1px solid #262626;padding-block:18px;color:#9a7f80;font-size:12.5px}
 
 /* modal */
 .overlay{position:fixed;inset:0;background:rgba(30,10,12,.6);backdrop-filter:blur(4px);z-index:100;display:none}
@@ -298,9 +298,9 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
 
 /* --- rojo sobrio + profundidad 3D --- */
 .eyebrow::before{background:var(--brand-3)}
-.logo-mark{background:linear-gradient(140deg,#c4545a,var(--brand) 55%,var(--brand-2));box-shadow:0 6px 16px rgba(168,50,58,.3);transform:perspective(200px) rotateY(-12deg);transition:transform .5s}
+.logo-mark{background:linear-gradient(140deg,#c4545a,var(--brand) 55%,var(--brand-2));box-shadow:0 6px 16px rgba(227,30,36,.3);transform:perspective(200px) rotateY(-12deg);transition:transform .5s}
 .logo:hover .logo-mark{transform:perspective(200px) rotateY(180deg)}
-.logo-img{height:48px;width:auto;transform:perspective(600px) rotateY(0);transition:transform .6s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 3px 4px rgba(90,22,28,.18))}
+.logo-img{height:48px;width:auto;transform:perspective(600px) rotateY(0);transition:transform .6s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 3px 4px rgba(0,0,0,.18))}
 .logo:hover .logo-img{transform:perspective(600px) rotateY(-14deg) scale(1.04)}
 .logo-foot{background:#fff;border-radius:14px;padding:8px 14px;display:inline-flex}.logo-foot .logo-img{height:56px;filter:none}
 @media (max-width:720px){.logo-img{height:40px}}
@@ -328,7 +328,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
 .cube i:nth-child(3){transform:rotateY(90deg) translateZ(calc(var(--s)/2))}.cube i:nth-child(4){transform:rotateY(-90deg) translateZ(calc(var(--s)/2))}
 .cube i:nth-child(5){transform:rotateX(90deg) translateZ(calc(var(--s)/2))}.cube i:nth-child(6){transform:rotateX(-90deg) translateZ(calc(var(--s)/2))}
 @keyframes tumble{to{transform:rotateX(360deg) rotateY(720deg)}}
-.hint{position:absolute;left:50%;bottom:0;transform:translateX(-50%);font-size:12px;color:#d9b9b9;white-space:nowrap}
+.hint{position:absolute;left:50%;bottom:0;transform:translateX(-50%);font-size:12px;color:#9a9a9a;white-space:nowrap}
 
 /* pasos */
 .steps .wrap{perspective:900px}
@@ -341,7 +341,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
 [data-tilt]::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(400px circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.35),transparent 45%)}
 [data-tilt].tilting::after{opacity:1}
 .card{position:relative}
-.card:hover{transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-6px);box-shadow:0 26px 50px rgba(90,22,28,.16);border-color:transparent}
+.card:hover{transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-6px);box-shadow:0 26px 50px rgba(0,0,0,.16);border-color:transparent}
 .card .media img{transform:translateZ(0);transition:transform .5s}
 .card:hover .media img{transform:translateZ(40px) scale(1.04)}
 .card .info{transform:translateZ(0)}
@@ -351,14 +351,14 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
 .pill{border-radius:6px}
 .ag.nw{background:var(--brand)}
 .add{background:linear-gradient(135deg,var(--brand),var(--brand-2))}
-.add:hover{box-shadow:0 10px 22px rgba(168,50,58,.3)}
+.add:hover{box-shadow:0 10px 22px rgba(227,30,36,.3)}
 .cat{transform-style:preserve-3d}
-.cat:hover{box-shadow:0 30px 60px rgba(90,22,28,.25)}
+.cat:hover{box-shadow:0 30px 60px rgba(0,0,0,.25)}
 .cat h3,.cat .kicker,.cat p{transform:translateZ(30px)}
 .cat-imgs img{transition:transform .5s}
 .cat:hover .cat-imgs img{transform:translateZ(50px) translateY(-6px)}
 .cat:hover .cat-imgs img:nth-child(2){transform:translateZ(70px) translateY(-12px)}
-.feat{background:linear-gradient(180deg,transparent,rgba(168,50,58,.05) 30%,transparent)}
+.feat{background:linear-gradient(180deg,transparent,rgba(227,30,36,.05) 30%,transparent)}
 .band{background:radial-gradient(500px 300px at 85% 0%,#7a2a31,transparent 70%),linear-gradient(120deg,var(--wine),var(--wine-2))}
 .dhead{background:linear-gradient(120deg,var(--wine),var(--brand-2))}
 .thumbs button.on{border-color:var(--brand)}
@@ -377,7 +377,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
 .mbox{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr);height:min(680px,calc(100vh - 40px));height:min(680px,calc(100dvh - 40px))}
 .mgal{min-height:0;overflow:hidden}
 .minfo{min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;padding-bottom:0}
-.minfo .mact{position:sticky;bottom:0;z-index:2;background:var(--surface);margin:4px -34px 0;padding:14px 34px 10px;box-shadow:0 -10px 20px -12px rgba(40,18,20,.25)}
+.minfo .mact{position:sticky;bottom:0;z-index:2;background:var(--surface);margin:4px -34px 0;padding:14px 34px 10px;box-shadow:0 -10px 20px -12px rgba(0,0,0,.25)}
 .minfo .note{padding-bottom:22px}
 .minfo{min-width:0}
 .minfo>*{max-width:100%}
@@ -393,6 +393,125 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
 @media (max-width:720px){.hero{padding-block:32px 40px}.stage{height:330px}.face{width:116px;height:150px;margin:-75px 0 0 -58px;--z:165px}.face img{height:106px;padding:8px}.face span{font-size:11px;padding:6px 8px}}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.cube{display:none}}
 @media (hover:none){[data-tilt]{transform:none!important}}
+/* --- rojo vivo + negro (colores de las primeras versiones), secciones separadas --- */
+.hero{background:radial-gradient(760px 520px at 82% 18%,rgba(227,30,36,.38),transparent 70%),radial-gradient(520px 380px at 0% 110%,rgba(227,30,36,.18),transparent 70%),#0b0b0b;padding-block:64px 110px}
+.hero::before,.hero::after{display:none}
+.hero p{color:#cfcfcf}.hero p b{color:#fff}
+.kick{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--brand);padding:6px 12px;border-radius:999px;margin-bottom:18px}
+.hero h1{font-size:clamp(38px,5vw,64px);line-height:1.02}
+.stats span{color:#a9a9a9}
+.btn-red{background:var(--brand);color:#fff;box-shadow:0 10px 26px rgba(227,30,36,.35)}.btn-red:hover{background:var(--brand-2)}
+.cube i{border-color:rgba(255,255,255,.18);background:rgba(227,30,36,.08)}
+.nav a{position:relative;padding:6px 0}.nav a.on{color:var(--brand)}
+.nav a.on::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;border-radius:2px;background:var(--brand)}
+.steps{background:#fff;border-bottom:1px solid var(--line)}
+.step-n{border-color:var(--brand);color:var(--brand)}
+
+/* secciones */
+.sec{padding-block:80px}
+.sec-soft{background:linear-gradient(180deg,#f6f6f6,#fff)}
+.sec-white{background:#fff;border-block:1px solid var(--line)}
+.sec .head h2{font-size:clamp(28px,3.2vw,40px);font-weight:800;margin-top:10px}
+.eyebrow{color:var(--brand)}
+.eyebrow::before{display:inline-block;background:var(--brand)}
+
+/* catálogos: Deportes rojo vivo, Hogar azul */
+.cats{grid-template-columns:repeat(2,1fr);gap:24px}
+.cat{min-height:400px;padding:30px 30px 0;border-radius:24px;box-shadow:0 20px 50px rgba(0,0,0,.12)}
+.cat-deportes{background:radial-gradient(500px 300px at 100% 0%,rgba(255,255,255,.18),transparent 60%),linear-gradient(150deg,#ff3b3f,#E31E24 45%,#a30d12)}
+.cat-hogar{background:radial-gradient(500px 300px at 100% 0%,rgba(255,255,255,.18),transparent 60%),linear-gradient(150deg,#3f86ff,#1E5BD8 45%,#0f3a96)}
+.cat::before{display:block;background:rgba(255,255,255,.1)}
+.cat h3{font-size:clamp(28px,3vw,38px)}
+.cat p{max-width:46ch}
+.cat .go{position:static;width:auto;height:auto;border-radius:999px;display:inline-flex;align-self:flex-start;padding:9px 16px;margin-top:16px;font-size:14px;font-weight:800;background:#fff;color:var(--ink)}
+.cat-deportes .go{color:#c4141a}.cat-hogar .go{color:#1546b5}
+.cat:hover .go{background:#111;color:#fff}
+.csubs{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;max-width:52ch}
+.csubs i{font-style:normal;font-size:12px;font-weight:700;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.28)}
+.cat-imgs img{box-shadow:0 -6px 24px rgba(0,0,0,.2)}
+
+/* productos agrupados por categoría */
+.grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+.ghead{grid-column:1/-1;display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 12px;font-family:var(--display);font-size:22px;font-weight:800;margin:18px 0 0;padding:0 0 10px;border-bottom:2px solid var(--line)}
+.ghead:first-child{margin-top:0}
+.ghead span{order:-1;font-family:var(--body);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--c);padding:4px 9px;border-radius:6px;align-self:center}
+.ghead small{font-family:var(--body);font-size:13px;font-weight:600;color:var(--muted)}
+.subh{display:block;font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:8px 0 2px 12px}
+.card{cursor:pointer}
+.card:focus-visible{outline:3px solid var(--brand);outline-offset:3px}
+.card .info{gap:6px}
+.cmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.cmeta span{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:var(--ink-2);background:var(--soft);border:1px solid var(--line);padding:4px 8px;border-radius:8px}
+.cmeta .ico{width:14px;height:14px;color:var(--brand)}
+.cmeta .ov{color:var(--brand-2);background:var(--brand-soft);border-color:transparent}
+.more{margin-top:auto;padding-top:10px;font-size:13.5px;font-weight:800;color:var(--brand)}
+.more b{display:inline-block;transition:transform .2s}.card:hover .more b{transform:translateX(4px)}
+.peek{display:none}
+
+/* ficha: variantes y embalaje */
+.vars{display:flex;flex-direction:column;gap:12px}
+.vars:empty{display:none}
+.vlbl{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}.vlbl b{color:var(--ink)}
+.vbtns{display:flex;flex-wrap:wrap;gap:6px}
+.vbtns button{min-height:38px;padding:6px 14px;border-radius:10px;border:1.5px solid var(--line-2);font-weight:700;font-size:13.5px;background:#fff;transition:.15s}
+.vbtns button:hover{border-color:var(--ink)}
+.vbtns button.on{border-color:var(--brand);background:var(--brand-soft);color:var(--brand-2)}
+.vstock{margin:0;font-size:13px;font-weight:700;color:var(--muted)}.vstock.ok{color:#1f8a4c}.vstock.out{color:var(--brand)}
+.embx{border:1.5px solid var(--line-2);border-radius:14px;padding:14px 16px;background:#fff}
+.embx h4{display:flex;align-items:center;gap:8px;margin:0 0 6px;font-size:14px}
+.embx h4 .ico{color:var(--brand)}
+.erow{display:grid;grid-template-columns:minmax(96px,38%) minmax(0,1fr);gap:14px;padding:8px 0;border-top:1px solid var(--line);font-size:14px}
+.erow span{color:var(--muted);font-size:13px}.erow strong{font-weight:600;overflow-wrap:anywhere}
+.elink{margin-top:8px;font-weight:800;font-size:13.5px;color:var(--brand)}
+.gtag{position:absolute;left:16px;top:16px;background:var(--ink);color:#fff;font-size:12px;font-weight:800;padding:5px 10px;border-radius:8px}
+.mmain{position:relative}
+.thumbs button.pkt{position:relative}.thumbs button.pkt::after{content:"Caja";position:absolute;left:3px;bottom:3px;font-size:9.5px;font-weight:800;background:var(--ink);color:#fff;padding:1px 4px;border-radius:4px}
+.qwrap{display:flex;flex-direction:column;gap:4px}
+.qlbl{font-size:12px;font-weight:700;color:var(--muted)}
+.add[disabled]{opacity:.5;pointer-events:none}
+.qu{font-size:12px;color:var(--muted);font-weight:600}
+.mact{align-items:flex-end}
+
+/* quiénes somos */
+.about{background:#fff}
+.about-top{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:34px}
+.about-top h2{font-size:clamp(28px,3.2vw,40px);font-weight:800;margin-top:10px}
+.lead{font-size:17px;color:var(--ink-2);margin:0}
+.mv{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:46px}
+.mv-card{padding:34px;border-radius:22px;background:#f6f6f6;border:1px solid var(--line);transition:transform .3s}
+.mv-card:hover{transform:translateY(-4px)}
+.mv-card.dark{background:radial-gradient(400px 260px at 100% 0%,rgba(227,30,36,.35),transparent 70%),#0b0b0b;color:#fff;border-color:#0b0b0b}
+.mv-card h3{font-size:22px;margin:16px 0 10px}
+.mv-card p{margin:0;color:var(--ink-2);line-height:1.7}.mv-card.dark p{color:#cfcfcf}
+.mv-ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:20px;background:var(--brand);color:#fff}
+.about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:44px}
+.sub-h{font-size:20px;margin-bottom:18px}
+.timeline{list-style:none;margin:0;padding:0 0 0 28px;position:relative}
+.timeline::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line-2)}
+.timeline li{position:relative;padding-bottom:24px}.timeline li:last-child{padding-bottom:0}
+.timeline li::before{content:"";position:absolute;left:-28px;top:3px;width:16px;height:16px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 4px #fff,0 0 0 6px var(--line-2)}
+.tl-k{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand)}
+.timeline h4{font-size:17px;margin:4px 0 4px}.timeline p{margin:0;color:var(--muted);font-size:14.5px}
+.values{display:flex;flex-direction:column;gap:12px}
+.val{display:grid;grid-template-columns:52px 1fr;gap:4px 14px;padding:18px;border:1px solid var(--line);border-radius:16px}
+.val span{grid-row:span 2;font-family:var(--display);font-weight:800;font-size:30px;color:var(--brand);line-height:1}
+.val h4{margin:0;font-size:16px}.val p{margin:0;color:var(--muted);font-size:14px}
+
+/* contacto */
+.contact{background:#f6f6f6}
+.band{margin-top:0;background:radial-gradient(520px 320px at 90% 0%,rgba(227,30,36,.45),transparent 70%),#0b0b0b;border-radius:24px}
+.band .eyebrow{color:#ff8a8d}.band .eyebrow::before{background:#ff8a8d}
+.band p{color:#cfcfcf}
+.cinfo{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14.5px;color:#e6e6e6}
+.cinfo b{display:inline-block;min-width:92px;color:#fff}
+.band .acts .btn-ghost{width:100%}
+.footer{background:#0b0b0b}
+.dhead{background:linear-gradient(120deg,#0b0b0b,#2a0d0e)}
+.add{background:linear-gradient(135deg,var(--brand),var(--brand-2))}
+.add:hover{box-shadow:0 10px 22px rgba(227,30,36,.3)}
+
+@media (max-width:960px){.cats{grid-template-columns:1fr}.about-top,.about-grid,.mv{grid-template-columns:1fr;gap:24px}}
+@media (max-width:720px){.sec{padding-block:56px}.cat{min-height:340px;padding:24px 22px 0}.mv-card{padding:24px}.cinfo b{min-width:76px}.ghead{font-size:19px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 </head>
 <body>
@@ -409,17 +528,19 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
 <header class="header"><div class="wrap">
  <a class="logo" href="#inicio" aria-label="CJ Coimport, inicio"><img class="logo-img" src="logo-3d.webp" alt="CJ Coimport S.A.S." width="150" height="50"></a>
  <label class="search"><svg class="ico"><use href="#i-search"/></svg><input id="search" type="search" placeholder="Buscar producto o referencia, ej. patines, ref 207" aria-label="Buscar productos"></label>
- <nav class="nav"><a href="#categorias">Categorías</a><a href="#catalogo">Catálogo</a><a href="#contacto">Contacto</a></nav>
+ <nav class="nav" aria-label="Secciones"><a href="#inicio">Inicio</a><a href="#catalogos">Catálogos</a><a href="#catalogo">Productos</a><a href="#nosotros">Quiénes somos</a><a href="#contacto">Contacto</a></nav>
  <button class="btn btn-line cart-btn" id="openCart"><svg class="ico"><use href="#i-list"/></svg><span class="lbl">Mi cotización</span><span class="cart-count" data-count></span></button>
 </div></header>
 
-<main id="inicio">
-<section class="hero"><div class="wrap">
+<main>
+<!-- 1. inicio -->
+<section class="hero" id="inicio"><div class="wrap">
  <div>
+  <span class="kick">Catálogo digital mayorista</span>
   <h1>Producto importado para surtir tu negocio</h1>
-  <p>Deportes, juguetería y hogar en un solo proveedor. Elige las referencias, indica las cantidades y recibe tu cotización por WhatsApp.</p>
-  <div class="hero-cta"><a class="btn btn-light" href="#catalogo">Ver catálogo</a><button class="btn btn-ghost" data-open-cart>Ver mi cotización</button></div>
-  <div class="stats"><div><b id="stRefs">0</b><span>referencias</span></div><div><b>3</b><span>líneas de producto</span></div><div><b id="stSubs">0</b><span>subcategorías</span></div></div>
+  <p>Consulta nuestros dos catálogos, <b>Deportes</b> (con la línea de juguetería) y <b>Hogar</b>, con fichas completas, embalaje por referencia y cotización directa por WhatsApp.</p>
+  <div class="hero-cta"><a class="btn btn-red" href="#catalogos">Ver catálogos</a><a class="btn btn-ghost" href="#catalogo">Buscar productos</a></div>
+  <div class="stats"><div><b id="stRefs">0</b><span>referencias</span></div><div><b>2</b><span>catálogos</span></div><div><b id="stSubs">0</b><span>categorías</span></div></div>
  </div>
  <div class="stage" id="stage" aria-label="Productos destacados en 3D">
   <span class="cube" style="--s:60px;left:4%;top:8%;--t:22s"><i></i><i></i><i></i><i></i><i></i><i></i></span>
@@ -430,48 +551,84 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
  </div>
 </div></section>
 
-<section class="steps"><div class="wrap">
- <div class="step"><span class="step-n">1</span><div><h3>Elige las referencias</h3><p>Filtra por categoría o busca por número de referencia.</p></div></div>
- <div class="step"><span class="step-n">2</span><div><h3>Indica las cantidades</h3><p>Tu cotización suma referencias y unidades automáticamente.</p></div></div>
- <div class="step"><span class="step-n">3</span><div><h3>Envía por WhatsApp</h3><p>El pedido llega listo a nuestro asesor comercial.</p></div></div>
+<!-- 2. cómo cotizar -->
+<section class="steps" id="como-cotizar" aria-label="Cómo cotizar"><div class="wrap">
+ <div class="step"><span class="step-n">1</span><div><h3>Explora el catálogo</h3><p>Filtra por catálogo y categoría o busca por número de referencia.</p></div></div>
+ <div class="step"><span class="step-n">2</span><div><h3>Indica cuántas cajas</h3><p>Cada referencia se cotiza por su embalaje: caja, bulto o set.</p></div></div>
+ <div class="step"><span class="step-n">3</span><div><h3>Envía por WhatsApp</h3><p>Tu cotización llega lista a nuestro asesor comercial.</p></div></div>
 </div></section>
 
-<section class="section" id="categorias"><div class="wrap">
- <div class="head"><div><span class="eyebrow">Líneas de producto</span><h2>Compra por categoría</h2></div><a class="link" href="#catalogo">Ver todo el catálogo →</a></div>
+<!-- 3. catálogos -->
+<section class="sec" id="catalogos"><div class="wrap">
+ <div class="head"><div><span class="eyebrow">Nuestros catálogos</span><h2>Dos catálogos, un solo proveedor</h2><p>Elige un catálogo para ver sus categorías y referencias.</p></div></div>
  <div class="cats" id="cats"></div>
 </div></section>
 
-<section class="section feat" id="destacados"><div class="wrap">
+<!-- 4. destacados -->
+<section class="sec sec-soft" id="destacados"><div class="wrap">
  <div class="head"><div><span class="eyebrow">Destacados</span><h2>Productos destacados</h2></div><div class="arrows"><button id="railPrev" aria-label="Anterior">←</button><button id="railNext" aria-label="Siguiente">→</button></div></div>
  <div class="rail" id="rail"></div>
 </div></section>
 
-<div class="catalog-sec">
-<section class="section" id="catalogo"><div class="wrap">
- <div class="head"><div><span class="eyebrow">Catálogo completo</span><h2>Todas las referencias</h2><p>Agrega productos a tu cotización con la cantidad que necesitas.</p></div></div>
+<!-- 5. productos -->
+<section class="sec sec-white" id="catalogo"><div class="wrap">
+ <div class="head"><div><span class="eyebrow">Productos</span><h2>Catálogo por categorías</h2><p>Toca un producto para ver su ficha, el contenido de su embalaje y agregarlo a tu cotización.</p></div></div>
  <div class="catalog">
   <aside class="side" id="side" aria-label="Filtros"></aside>
   <div>
    <div class="mchips" id="mchips"></div>
-   <div class="toolbar"><span class="count" id="count"></span><select id="sort" aria-label="Ordenar"><option value="cat">Ordenar por categoría</option><option value="az">Nombre A-Z</option><option value="ref">Referencia</option></select></div>
+   <div class="toolbar"><span class="count" id="count"></span></div>
    <div class="grid" id="grid"></div>
   </div>
  </div>
 </div></section>
-</div>
 
-<div class="wrap">
-<section class="band" id="contacto">
- <div><span class="eyebrow">Asesoría comercial</span><h2>¿Compras por volumen o tienes una referencia específica?</h2><p>Escríbenos y un asesor te confirma disponibilidad, precios por mayor y tiempos de entrega.</p></div>
- <div class="acts"><a class="btn btn-wa" href="https://wa.me/573142444580?text=Hola%20CJ%20Coimport%2C%20quiero%20informaci%C3%B3n%20comercial." target="_blank" rel="noopener"><svg class="ico"><use href="#i-wa"/></svg>Escribir por WhatsApp</a><span class="phone">+57 314 244 4580</span></div>
-</section></div>
+<!-- 6. quiénes somos -->
+<section class="sec about" id="nosotros"><div class="wrap">
+ <div class="about-top">
+  <div><span class="eyebrow">Quiénes somos</span><h2>Un solo estándar de calidad, dos catálogos de confianza</h2></div>
+  <p class="lead">CJ Coimport S.A.S. es una empresa importadora que distribuye al por mayor artículos para el deporte y el hogar en Colombia, con la propuesta de siempre: <b>calidad en productos por un precio asequible</b>.</p>
+ </div>
+ <div class="mv">
+  <article class="mv-card dark"><span class="mv-ic">M</span><h3>Misión</h3><p>Distribuir artículos para el hogar y el deporte con calidad verificable y precios accesibles, ofreciendo a distribuidores mayoristas y comercios minoristas un respaldo comercial directo y confiable para hacer crecer su negocio.</p></article>
+  <article class="mv-card"><span class="mv-ic">V</span><h3>Visión</h3><p>Ser reconocidos en Colombia como el distribuidor mayorista de referencia en hogar y deporte, consolidando nuestras marcas como marcas de confianza para comercios de todo el país.</p></article>
+ </div>
+ <div class="about-grid">
+  <div>
+   <h3 class="sub-h">Nuestra historia</h3>
+   <ol class="timeline">
+    <li><span class="tl-k">Origen</span><h4>Nace CJ Coimport S.A.S.</h4><p>Inicia operaciones en Bogotá enfocada en la venta al por mayor de artículos de hogar y deporte, con relaciones comerciales directas con comercios de la ciudad.</p></li>
+    <li><span class="tl-k">Consolidación</span><h4>Se estructura la marca CJ Housewares</h4><p>La línea de hogar toma identidad propia: cocina, organización y menaje en un catálogo pensado para alta rotación en punto de venta.</p></li>
+    <li><span class="tl-k">Expansión</span><h4>Crece el portafolio deportivo</h4><p>Se incorporan patines, implementos deportivos y la línea de juguetería, ampliando la propuesta hacia distribuidores especializados.</p></li>
+    <li><span class="tl-k">Hoy</span><h4>Un catálogo digital</h4><p>Damos el salto digital para acercarnos a más distribuidores y comercios en todo el país, con el mismo trato directo de siempre.</p></li>
+   </ol>
+  </div>
+  <div>
+   <h3 class="sub-h">Lo que nos guía</h3>
+   <div class="values">
+    <div class="val"><span>01</span><h4>Calidad real</h4><p>Cada referencia se verifica antes de llegar a tu negocio.</p></div>
+    <div class="val"><span>02</span><h4>Precio justo</h4><p>Escalas de precio pensadas para que el mayorista y el minorista ganen margen.</p></div>
+    <div class="val"><span>03</span><h4>Trato directo</h4><p>Relación comercial cercana, sin intermediarios ni letra pequeña.</p></div>
+   </div>
+  </div>
+ </div>
+</div></section>
+
+<!-- 7. contacto -->
+<section class="sec contact" id="contacto"><div class="wrap">
+ <div class="band">
+  <div><span class="eyebrow">Contacto</span><h2>¿Compras por volumen o buscas una referencia específica?</h2><p>Escríbenos y un asesor te confirma disponibilidad, precios por mayor y tiempos de entrega.</p>
+   <ul class="cinfo"><li><b>WhatsApp</b>+57 314 244 4580 · +57 313 395 5634</li><li><b>Correo</b>comercial@cjcoimport.com</li><li><b>Ciudad</b>Bogotá, Colombia</li></ul></div>
+  <div class="acts"><a class="btn btn-wa" href="https://wa.me/573142444580?text=Hola%20CJ%20Coimport%2C%20quiero%20informaci%C3%B3n%20comercial." target="_blank" rel="noopener"><svg class="ico"><use href="#i-wa"/></svg>Escribir por WhatsApp</a><button class="btn btn-ghost" data-open-cart>Ver mi cotización</button></div>
+ </div>
+</div></section>
 </main>
 
 <footer class="footer"><div class="wrap">
- <div><a class="logo logo-foot" href="#inicio" aria-label="CJ Coimport, inicio"><img class="logo-img" src="logo.jpg" alt="CJ Coimport S.A.S." width="170" height="62"></a><p style="margin-top:14px;max-width:38ch">Importación y distribución al por mayor de productos para deportes, juguetería y hogar.</p></div>
- <div><h4>Líneas</h4><a href="#catalogo" data-go="deportes">Deportes</a><br><a href="#catalogo" data-go="jugueteria">Juguetería</a><br><a href="#catalogo" data-go="hogar">Hogar</a></div>
- <div><h4>Catálogo</h4><a href="#categorias">Categorías</a><br><a href="#catalogo">Todas las referencias</a><br><a href="#" data-open-cart>Mi cotización</a></div>
- <div><h4>Contacto</h4><p>WhatsApp: 314 244 4580</p><p>comercial@cjcoimport.com</p></div>
+ <div><a class="logo logo-foot" href="#inicio" aria-label="CJ Coimport, inicio"><img class="logo-img" src="logo.jpg" alt="CJ Coimport S.A.S." width="170" height="62"></a><p style="margin-top:14px;max-width:38ch">Catálogo digital mayorista de artículos para el deporte y el hogar. Calidad en productos por un precio asequible.</p></div>
+ <div><h4>Catálogos</h4><a href="#catalogo" data-go="deportes">Deportes y juguetería</a><br><a href="#catalogo" data-go="hogar">Hogar</a></div>
+ <div><h4>Secciones</h4><a href="#catalogos">Catálogos</a><br><a href="#catalogo">Productos</a><br><a href="#nosotros">Quiénes somos</a><br><a href="#" data-open-cart>Mi cotización</a></div>
+ <div><h4>Contacto</h4><p>WhatsApp: 314 244 4580</p><p>WhatsApp: 313 395 5634</p><p>comercial@cjcoimport.com</p></div>
 </div><div class="wrap legal">© 2026 CJ Coimport S.A.S. · Precios y disponibilidad sujetos a confirmación del asesor comercial. · <a href="admin.html" style="color:inherit;text-decoration:underline">Administración</a></div></footer>
 
 <button class="fab" data-open-cart aria-label="Abrir mi cotización"><svg class="ico" style="width:22px;height:22px"><use href="#i-wa"/></svg><span class="lbl">Mi cotización</span><span class="cart-count" data-count></span></button>
@@ -479,7 +636,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
 <div class="overlay" id="overlay"></div>
 
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mName"><div class="mbox">
- <div class="mgal"><div class="mmain"><img id="mImg" alt=""></div><div class="thumbs" id="mThumbs"></div></div>
+ <div class="mgal"><div class="mmain"><img id="mImg" alt=""><span class="gtag" id="mGTag" hidden>Embalaje</span></div><div class="thumbs" id="mThumbs"></div></div>
  <div class="minfo">
   <button class="x" id="mClose" aria-label="Cerrar"><svg class="ico"><use href="#i-x"/></svg></button>
   <span class="eyebrow" id="mPath"></span>
@@ -488,8 +645,10 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
   <span class="ag" id="mAg" hidden>Agotado por ahora</span>
   <p class="desc" id="mDesc"></p>
   <ul class="feats" id="mFeats"></ul>
-  <div class="specs" id="mSpecs"><div class="spec" id="mRefRow"><span>Referencia</span><strong class="mono" id="mRef"></strong></div><div class="spec"><span>Categoría</span><strong id="mCat"></strong></div><div class="spec"><span>Subcategoría</span><strong id="mSub"></strong></div><div class="spec"><span>Modalidad</span><strong>Venta por mayor</strong></div></div>
-  <div class="mact"><div class="qty"><button data-step="-1" aria-label="Menos">−</button><input id="mQty" type="number" min="1" value="1" aria-label="Cantidad"><button data-step="1" aria-label="Más">+</button></div><button class="add" id="mAdd">Agregar a la cotización</button></div>
+  <div class="vars" id="mVars"></div>
+  <div class="embx" id="mEmb"></div>
+  <div class="specs" id="mSpecs"><div class="spec" id="mRefRow"><span>Referencia</span><strong class="mono" id="mRef"></strong></div><div class="spec"><span>Catálogo</span><strong id="mCat"></strong></div><div class="spec"><span>Categoría</span><strong id="mSub"></strong></div><div class="spec"><span>Modalidad</span><strong>Venta por mayor</strong></div></div>
+  <div class="mact"><div class="qwrap"><span class="qlbl" id="mQLbl">Cajas</span><div class="qty"><button data-step="-1" aria-label="Menos">−</button><input id="mQty" type="number" min="1" value="1" aria-label="Cantidad de embalajes"><button data-step="1" aria-label="Más">+</button></div></div><button class="add" id="mAdd">Agregar a la cotización</button></div>
   <p class="note" id="mNote">Precio y disponibilidad se confirman por WhatsApp.</p>
  </div>
 </div></div>
@@ -498,7 +657,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
  <div class="dhead"><div><h3>Mi cotización</h3><span>Se envía a nuestro asesor por WhatsApp</span></div><button class="x" style="position:static" id="dClose" aria-label="Cerrar"><svg class="ico"><use href="#i-x"/></svg></button></div>
  <div class="dlist" id="dlist"></div>
  <div class="dfoot">
-  <div class="totals"><div><span>Referencias</span><b id="tRefs">0</b></div><div><span>Unidades totales</span><b id="tUnits">0</b></div></div>
+  <div class="totals"><div><span>Productos</span><b id="tRefs">0</b></div><div><span>Cajas / embalajes</span><b id="tUnits">0</b></div></div>
   <div class="fields"><input id="fName" placeholder="Tu nombre" autocomplete="name"><input id="fCity" placeholder="Empresa / ciudad"><textarea id="fNote" placeholder="Comentarios (opcional)"></textarea></div>
   <a class="btn btn-wa" id="sendWa" href="#" target="_blank" rel="noopener" aria-disabled="true"><svg class="ico"><use href="#i-wa"/></svg>Enviar cotización por WhatsApp</a>
   <button class="clear" id="clearCart">Vaciar cotización</button>
@@ -510,30 +669,41 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
 <script src="catalogo.js"></script>
 <script>
 const WA="573142444580";
-const CATS={deportes:{label:"Deportes",c:"var(--dep)",desc:"Patines, monopatines, patinetas, balones, protecciones, linternas y más."},jugueteria:{label:"Juguetería",c:"var(--jug)",desc:"Montables inflables, carpas de juego y sets de arte."},hogar:{label:"Hogar",c:"var(--hog)",desc:"Cocina, baño, mesa y textiles para cada espacio."}};
-const ORDER=["deportes","jugueteria","hogar"];
-const NOPHOTO="data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect width="400" height="400" fill="#f7f0ef"/><text x="200" y="210" font-family="Arial" font-size="26" fill="#a8323a" text-anchor="middle">Foto próximamente</text></svg>');
-function prep(p,i){if(!p.g&&!(p.u&&p.u.length)){p.u=[NOPHOTO];p.real=1}p.k=p.k||[];p.x=p.x||[];p.fam=p.fam||p.n;p.i=i;p.key="id:"+p.id;p.imgs=p.g?p.g.map(id=>TH+id+"&sz=w1000"):p.u;p.small=p.g?TH+p.g[0]+"&sz=w500":p.u[0];p.tiny=p.g?TH+p.g[0]+"&sz=w160":p.u[0];p.photo=!p.g&&!p.real}
+const CATS={deportes:{label:"Deportes",c:"var(--dep)",title:"Catálogo Deportes",desc:"Patines, monopatines, patinetas, balones, protecciones, linternas, herramientas y la línea de juguetería: montables, carpas y sets de arte."},
+ hogar:{label:"Hogar",c:"var(--hog)",title:"Catálogo Hogar",desc:"Tapetes, cortinas de baño, individuales, coladores, cubiertos, cuchillos, tablas, termos, ollas y vajillas."}};
+const ORDER=["deportes","hogar"];
+/* orden de categorías dentro de cada catálogo (la juguetería va al final de Deportes) */
+const SUBORDER=["Patines","Monopatines","Patinetas","Protecciones","Llantas y rodamientos","Repuestos y accesorios","Balones","Tenis y ping pong","Fitness","Soporte deportivo","Linternas","Luces para bicicleta","Multiherramientas","Montables","Carpas y túneles","Arte y manualidades","Tapetes","Baño","Mesa","Cocina"];
+const NOPHOTO="data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect width="400" height="400" fill="#f4f4f4"/><text x="200" y="210" font-family="Arial" font-size="26" fill="#E31E24" text-anchor="middle">Foto próximamente</text></svg>');
+const pl=(p,n)=>n===1?p.emb.toLowerCase():(EMB_PL[p.emb]||"cajas");
+const embTxt=p=>p.emb+(p.embq?` x ${p.embq}`:"");
+const isToy=p=>p.c==="deportes"&&TOYS.includes(p.s);
+const lineOf=p=>isToy(p)?"Juguetería":CATS[p.c].label;
+function prep(p,i){if(p.c==="jugueteria")p.c="deportes";if(!p.g&&!(p.u&&p.u.length)){p.u=[NOPHOTO];p.real=1}
+ p.k=p.k||[];p.x=p.x||[];p.fam=p.fam||p.n;p.op=(p.op||[]).filter(o=>o&&o.n&&o.v&&o.v.length);p.vr=p.vr||[];p.pk=p.pk||[];deriveEmb(p);
+ if(p.vr.length&&p.vr.every(v=>v.q!==""&&v.q!=null&&+v.q<=0))p.ag=1;
+ p.i=i;p.key="id:"+p.id;p.imgs=p.g?p.g.map(id=>TH+id+"&sz=w1000"):p.u;p.small=p.g?TH+p.g[0]+"&sz=w500":p.u[0];p.tiny=p.g?TH+p.g[0]+"&sz=w160":p.u[0];p.photo=!p.g&&!p.real}
 products.forEach(baseInfo);
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const title=p=>p.r?`${p.n} · Ref. ${p.r}`:p.n;
 const imgTag=(src,p,extra="")=>`<img loading="lazy" src="${src}" alt="${esc(title(p))}" class="${p.photo?"cover":""}" ${extra}>`;
 
-/* ---------- cotización (estado) ---------- */
+/* ---------- cotización (estado): clave = producto[::variante], valor = cantidad de embalajes ---------- */
 let cart={};
 try{cart=JSON.parse(localStorage.getItem("cj_cot")||"{}")||{}}catch(e){cart={}}
-function cleanCart(){Object.keys(cart).forEach(k=>{if(!products.some(p=>p.key===k))delete cart[k]})}
+const VSEP="::";
+const parseKey=k=>{const i=k.indexOf(VSEP);return{p:products.find(x=>x.key===(i<0?k:k.slice(0,i))),v:i<0?"":k.slice(i+VSEP.length)}};
+function cleanCart(){Object.keys(cart).forEach(k=>{if(!parseKey(k).p)delete cart[k]})}
 function save(){try{localStorage.setItem("cj_cot",JSON.stringify(cart))}catch(e){}}
-const byKey=k=>products.find(p=>p.key===k);
-function addToCart(p,q){q=Math.max(1,parseInt(q)||1);cart[p.key]=(cart[p.key]||0)+q;save();updateCart();toast(`Agregado: ${q} und. de ${title(p)}`)}
+function addToCart(p,q,v){q=Math.max(1,parseInt(q)||1);const k=p.key+(v?VSEP+v:"");cart[k]=(cart[k]||0)+q;save();updateCart();toast(`Agregado: ${q} ${pl(p,q)} de ${p.n}${v?" ("+v+")":""}`)}
 function setQty(k,q){q=parseInt(q);if(!q||q<1){delete cart[k]}else cart[k]=q;save();updateCart()}
 function totals(){const ks=Object.keys(cart);return{refs:ks.length,units:ks.reduce((a,k)=>a+cart[k],0)}}
 function buildMessage(){
  const ks=Object.keys(cart);const t=totals();
  const lines=["Hola CJ Coimport, quiero solicitar una cotización por mayor:",""];
- ks.forEach((k,n)=>{const p=byKey(k);lines.push(`${n+1}. ${p.n}${p.r?` - Ref. ${p.r}`:""} (${CATS[p.c].label} / ${p.s}): ${cart[k]} und.`)});
- lines.push("",`Total: ${t.refs} ${t.refs===1?"referencia":"referencias"} - ${t.units} unidades`);
+ ks.forEach((k,n)=>{const {p,v}=parseKey(k),q=cart[k];lines.push(`${n+1}. ${p.n}${p.r?` - Ref. ${p.r}`:""}${v?` [${v}]`:""} (${lineOf(p)} / ${p.s}): ${q} ${pl(p,q)}${p.embq?` (${embTxt(p)})`:""}`)});
+ lines.push("",`Total: ${t.refs} ${t.refs===1?"producto":"productos"} - ${t.units} ${t.units===1?"embalaje":"embalajes"}`);
  const nm=$("#fName").value.trim(),ct=$("#fCity").value.trim(),nt=$("#fNote").value.trim();
  if(nm||ct||nt)lines.push("");
  if(nm)lines.push(`Nombre: ${nm}`);if(ct)lines.push(`Empresa / ciudad: ${ct}`);if(nt)lines.push(`Comentarios: ${nt}`);
@@ -544,77 +714,94 @@ function updateCart(){
  $$("[data-count]").forEach(e=>e.textContent=t.refs?t.units:"");
  $("#tRefs").textContent=t.refs;$("#tUnits").textContent=t.units;
  const ks=Object.keys(cart);
- $("#dlist").innerHTML=ks.length?ks.map(k=>{const p=byKey(k);return `<div class="ditem" data-k="${esc(k)}">${imgTag(p.tiny,p)}<div><b>${esc(p.n)}</b><span class="mono">${p.r?"Ref. "+esc(p.r):esc(p.s)}</span><div class="row"><div class="qty"><button data-d="-1" aria-label="Menos">−</button><input type="number" min="1" value="${cart[k]}" aria-label="Cantidad"><button data-d="1" aria-label="Más">+</button></div></div></div><button class="rm">Quitar</button></div>`}).join(""):`<div class="dempty"><span class="ic"><svg class="ico" style="width:28px;height:28px"><use href="#i-list"/></svg></span><b>Tu cotización está vacía</b>Agrega productos desde el catálogo con la cantidad que necesitas.</div>`;
+ $("#dlist").innerHTML=ks.length?ks.map(k=>{const {p,v}=parseKey(k);return `<div class="ditem" data-k="${esc(k)}">${imgTag(p.tiny,p)}<div><b>${esc(p.n)}</b><span class="mono">${p.r?"Ref. "+esc(p.r):esc(p.s)}${v?` · ${esc(v)}`:""}</span><div class="row"><div class="qty"><button data-d="-1" aria-label="Menos">−</button><input type="number" min="1" value="${cart[k]}" aria-label="Cantidad de ${esc(EMB_PL[p.emb]||"cajas")}"><button data-d="1" aria-label="Más">+</button></div><span class="qu">${esc(EMB_PL[p.emb]||"cajas")}</span></div></div><button class="rm">Quitar</button></div>`}).join(""):`<div class="dempty"><span class="ic"><svg class="ico" style="width:28px;height:28px"><use href="#i-list"/></svg></span><b>Tu cotización está vacía</b>Abre la ficha de un producto e indica cuántas cajas necesitas.</div>`;
  $$("#dlist .ditem").forEach(row=>{const k=row.dataset.k,inp=row.querySelector("input");
   row.querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>setQty(k,(cart[k]||0)+ +b.dataset.d));
   inp.onchange=()=>setQty(k,inp.value);row.querySelector(".rm").onclick=()=>setQty(k,0)});
  $("#sendWa").setAttribute("aria-disabled",ks.length?"false":"true");
- $$(".card").forEach(c=>{const p=products[+c.dataset.i];const b=c.querySelector(".add");if(b){const n=cart[p.key];b.classList.toggle("in",!!n);b.textContent=n?`Agregado · ${n}`:"Agregar"}});
 }
 $("#sendWa").addEventListener("click",e=>{if(!Object.keys(cart).length){e.preventDefault();return}$("#sendWa").href=`https://wa.me/${WA}?text=${encodeURIComponent(buildMessage())}`});
 $("#clearCart").onclick=()=>{cart={};save();updateCart()};
 
-/* ---------- drawer / modal ---------- */
+/* ---------- drawer / ficha ---------- */
 const overlay=$("#overlay");
 function openCart(){closeModal(true);$("#drawer").classList.add("open");overlay.classList.add("open")}
 function closeAll(){$("#drawer").classList.remove("open");closeModal(true);overlay.classList.remove("open")}
 $$("[data-open-cart]").forEach(b=>b.addEventListener("click",e=>{e.preventDefault();openCart()}));
 $("#openCart").onclick=openCart;$("#dClose").onclick=closeAll;overlay.onclick=closeAll;
-let cur=null;
-function showImg(k){const im=$("#mImg"),alt=cur.g?TH+cur.g[k]+"&sz=w500":null;im.onerror=alt?()=>{im.onerror=null;im.src=alt}:null;im.src=cur.imgs[k];$("#mImg").className=cur.photo?"cover":"";$("#mImg").alt=title(cur);$$("#mThumbs button").forEach((b,j)=>b.classList.toggle("on",j===k))}
+let cur=null,gal=[],sel=[];
+/* galería: fotos del producto + fotos del embalaje completo */
+function showImg(k){const g=gal[k],im=$("#mImg");im.onerror=g.alt?()=>{im.onerror=null;im.src=g.alt}:null;im.src=g.src;im.className=cur.photo&&!g.pk?"cover":"";im.alt=g.pk?`Embalaje de ${title(cur)}`:title(cur);
+ $("#mGTag").hidden=!g.pk;$$("#mThumbs button").forEach((b,j)=>b.classList.toggle("on",j===k))}
+const variant=()=>cur.op.length?cur.vr.find(v=>(v.o||[]).join("|")===sel.join("|")):null;
+function drawVars(){const p=cur;if(!p.op.length){$("#mVars").innerHTML="";return}
+ $("#mVars").innerHTML=p.op.map((o,i)=>`<div class="vopt"><span class="vlbl">${esc(o.n)}: <b>${esc(sel[i])}</b></span><div class="vbtns">${o.v.map(v=>`<button type="button" class="${sel[i]===v?"on":""}" data-i="${i}" data-v="${esc(v)}">${esc(v)}</button>`).join("")}</div></div>`).join("")+`<p class="vstock" id="mStock"></p>`;
+ $$("#mVars .vbtns button").forEach(b=>b.onclick=()=>{sel[+b.dataset.i]=b.dataset.v;drawVars()});
+ const v=variant(),st=$("#mStock"),add=$("#mAdd");let out=false;
+ if(v&&v.q!==""&&v.q!=null){out=+v.q<=0;st.textContent=out?"Esta combinación está agotada":`${v.q} unidades disponibles`;st.className="vstock"+(out?" out":" ok")}
+ else{st.textContent="Disponibilidad: se confirma con el asesor";st.className="vstock"}
+ add.disabled=out;add.textContent=out?"Combinación agotada":"Agregar a la cotización"}
 function openModal(p){
- cur=p;$("#mPath").textContent=`${CATS[p.c].label} / ${p.s}`;$("#mName").textContent=p.n;$("#mSubT").textContent=p.fam!==p.n?p.fam:"";$("#mSubT").hidden=p.fam===p.n;$("#mAg").hidden=!p.ag;$("#mDesc").textContent=p.d;
+ cur=p;$("#mPath").textContent=`${CATS[p.c].title} / ${p.s}`;$("#mName").textContent=p.n;$("#mSubT").textContent=p.fam!==p.n?p.fam:"";$("#mSubT").hidden=p.fam===p.n;$("#mAg").hidden=!p.ag;$("#mDesc").textContent=p.d;
  $("#mFeats").innerHTML=p.k.map(f=>`<li>${esc(f)}</li>`).join("");
- $$("#mSpecs .spec.sx").forEach(e=>e.remove());$("#mSpecs").insertAdjacentHTML("beforeend",p.x.map(([l,v])=>`<div class="spec sx"><span>${esc(l)}</span><strong>${esc(v)}</strong></div>`).join(""));
- $("#mRefRow").hidden=!p.r;$("#mRef").textContent=p.r;$("#mCat").textContent=CATS[p.c].label;$("#mSub").textContent=p.s;
- $("#mThumbs").innerHTML=p.imgs.length>1?p.imgs.map((u,k)=>`<button aria-label="Foto ${k+1}"><img loading="lazy" src="${p.g?TH+p.g[k]+"&sz=w160":u}" alt=""></button>`).join(""):"";
+ sel=p.op.map(o=>o.v[0]);drawVars();if(!p.op.length){$("#mAdd").disabled=false;$("#mAdd").textContent="Agregar a la cotización"}
+ $("#mEmb").innerHTML=`<h4><svg class="ico"><use href="#i-box"/></svg>Embalaje</h4><div class="erow"><span>Se vende por</span><strong>${esc(embTxt(p))}</strong></div><div class="erow"><span>Contenido</span><strong>${p.cont?esc(p.cont):"Consulta el contenido con el asesor comercial"}</strong></div>${p.pk.length?`<button type="button" class="elink" id="mPkBtn">Ver ${p.pk.length===1?"foto":"fotos"} del embalaje completo →</button>`:""}`;
+ const rest=p.x.filter(([l])=>!/^Presentaci/i.test(l));
+ $("#mRefRow").hidden=!p.r;$("#mRef").textContent=p.r;$("#mCat").textContent=lineOf(p)==="Juguetería"?"Deportes · Juguetería":CATS[p.c].label;$("#mSub").textContent=p.s;
+ $$("#mSpecs .spec.sx").forEach(e=>e.remove());$("#mSpecs").insertAdjacentHTML("beforeend",rest.map(([l,v])=>`<div class="spec sx"><span>${esc(l)}</span><strong>${esc(v)}</strong></div>`).join(""));
+ gal=p.imgs.map((u,k)=>({src:u,alt:p.g?TH+p.g[k]+"&sz=w500":null,th:p.g?TH+p.g[k]+"&sz=w160":u})).concat(p.pk.map(u=>({src:u,th:u,pk:1})));
+ $("#mThumbs").innerHTML=gal.length>1?gal.map((g,k)=>`<button class="${g.pk?"pkt":""}" aria-label="${g.pk?"Foto del embalaje":"Foto "+(k+1)}"><img loading="lazy" src="${g.th}" alt=""></button>`).join(""):"";
  $$("#mThumbs button").forEach((b,k)=>b.onclick=()=>showImg(k));showImg(0);
- $("#mQty").value=1;$("#mNote").textContent=p.photo?"Foto ilustrativa. Precio y disponibilidad se confirman por WhatsApp.":"Precio y disponibilidad se confirman por WhatsApp.";
- $("#modal").classList.add("open");overlay.classList.add("open");
+ const pkb=$("#mPkBtn");if(pkb)pkb.onclick=()=>showImg(p.imgs.length);
+ $("#mQty").value=1;$("#mQLbl").textContent=`Cantidad de ${EMB_PL[p.emb]||"cajas"}${p.embq?` (${embTxt(p)})`:""}`;
+ $("#mNote").textContent=p.photo?"Foto ilustrativa. Precio y disponibilidad se confirman por WhatsApp.":"Precio y disponibilidad se confirman por WhatsApp.";
+ $("#modal").classList.add("open");overlay.classList.add("open");$(".minfo").scrollTop=0;
 }
 function closeModal(keepOverlay){$("#modal").classList.remove("open");if(!keepOverlay&&!$("#drawer").classList.contains("open"))overlay.classList.remove("open")}
 $("#mClose").onclick=()=>closeModal();$("#modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal()});
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAll()});
 $$(".mact [data-step]").forEach(b=>b.onclick=()=>{const i=$("#mQty");i.value=Math.max(1,(parseInt(i.value)||1)+ +b.dataset.step)});
-$("#mAdd").onclick=()=>{addToCart(cur,$("#mQty").value);closeModal()};
+$("#mAdd").onclick=()=>{const v=cur.op.length?cur.op.map((o,i)=>`${o.n}: ${sel[i]}`).join(" / "):"";addToCart(cur,$("#mQty").value,v);closeModal()};
 
-/* ---------- catálogo ---------- */
+/* ---------- catálogo por categorías ---------- */
 let fCat="todos",fSub="todos";
 const count=c=>products.filter(p=>c==="todos"||p.c===c).length;
+const subsOf=c=>[...new Set(products.filter(p=>p.c===c).map(p=>p.s))].sort((a,b)=>{const ia=SUBORDER.indexOf(a),ib=SUBORDER.indexOf(b);return(ia<0?99:ia)-(ib<0?99:ib)||a.localeCompare(b,"es")});
 function renderSide(){
- let h=`<h4>Categorías</h4><button class="fbtn ${fCat==="todos"?"on":""}" data-c="todos">Todos los productos<small>${products.length}</small></button>`;
+ let h=`<h4>Catálogos</h4><button class="fbtn ${fCat==="todos"?"on":""}" data-c="todos">Todos los productos<small>${products.length}</small></button>`;
  ORDER.forEach(c=>{h+=`<button class="fbtn ${fCat===c&&fSub==="todos"?"on":""}" data-c="${c}" style="--c:${CATS[c].c}"><span><i></i>${CATS[c].label}</span><small>${count(c)}</small></button>`;
-  if(fCat===c){const subs=[...new Set(products.filter(p=>p.c===c).map(p=>p.s))];h+=`<div class="subs">`+subs.map(s=>`<button class="fbtn ${fSub===s?"on":""}" data-c="${c}" data-s="${esc(s)}">${esc(s)}<small>${products.filter(p=>p.c===c&&p.s===s).length}</small></button>`).join("")+`</div>`}});
+  if(fCat===c){let toyHead=false;h+=`<div class="subs">`+subsOf(c).map(s=>{const pre=c==="deportes"&&TOYS.includes(s)&&!toyHead?(toyHead=true,`<span class="subh">Juguetería</span>`):"";
+   return pre+`<button class="fbtn ${fSub===s?"on":""}" data-c="${c}" data-s="${esc(s)}">${esc(s)}<small>${products.filter(p=>p.c===c&&p.s===s).length}</small></button>`}).join("")+`</div>`}});
  $("#side").innerHTML=h;
  $$("#side .fbtn").forEach(b=>b.onclick=()=>{fCat=b.dataset.c;fSub=b.dataset.s||"todos";render()});
  let m=`<button class="${fCat==="todos"?"on":""}" data-c="todos">Todos</button>`+ORDER.map(c=>`<button class="${fCat===c&&fSub==="todos"?"on":""}" data-c="${c}">${CATS[c].label}</button>`).join("");
- if(fCat!=="todos")m+=[...new Set(products.filter(p=>p.c===fCat).map(p=>p.s))].map(s=>`<button class="${fSub===s?"on":""}" data-c="${fCat}" data-s="${esc(s)}">${esc(s)}</button>`).join("");
+ if(fCat!=="todos")m+=subsOf(fCat).map(s=>`<button class="${fSub===s?"on":""}" data-c="${fCat}" data-s="${esc(s)}">${esc(s)}</button>`).join("");
  $("#mchips").innerHTML=m;$$("#mchips button").forEach(b=>b.onclick=()=>{fCat=b.dataset.c;fSub=b.dataset.s||"todos";render()});
 }
+const optSum=p=>p.op.map(o=>`${o.v.length} ${o.v.length===1?o.n.toLowerCase():o.n.toLowerCase()+(/[aeiou]$/i.test(o.n)?"s":"es")}`).join(" · ");
 function card(p){
- return `<article class="card rv" data-tilt data-i="${p.i}"><div class="media">${imgTag(p.small,p)}<span class="pill" style="--c:${CATS[p.c].c}">${CATS[p.c].label}</span>${p.photo?`<span class="illus">Foto ilustrativa</span>`:p.imgs.length>1?`<span class="nphotos">${p.imgs.length} fotos</span>`:""}${p.ag?`<span class="ag">Agotado</span>`:p.nuevo?`<span class="ag nw">Nuevo</span>`:""}</div>
- <div class="info"><span class="ref mono">${p.r?"REF. "+esc(p.r):"&nbsp;"}</span><h3>${esc(p.n)}</h3><span class="sub">${esc(p.s)}</span><p class="sdesc">${esc(p.d)}</p>
- <div class="act"><div class="qty"><button data-d="-1" aria-label="Menos">−</button><input type="number" min="1" value="1" aria-label="Cantidad"><button data-d="1" aria-label="Más">+</button></div><button class="add">Agregar</button></div></div></article>`;
+ return `<article class="card rv" data-tilt data-i="${p.i}" tabindex="0" role="button" aria-label="Ver ficha de ${esc(title(p))}"><div class="media">${imgTag(p.small,p)}<span class="pill" style="--c:${isToy(p)?"var(--ink)":CATS[p.c].c}">${lineOf(p)}</span>${p.photo?`<span class="illus">Foto ilustrativa</span>`:p.imgs.length>1?`<span class="nphotos">${p.imgs.length} fotos</span>`:""}${p.ag?`<span class="ag">Agotado</span>`:p.nuevo?`<span class="ag nw">Nuevo</span>`:""}</div>
+ <div class="info"><span class="ref mono">${p.r?"REF. "+esc(p.r):"&nbsp;"}</span><h3>${esc(p.n)}</h3><p class="sdesc">${esc(p.d)}</p>
+ <div class="cmeta"><span><svg class="ico"><use href="#i-box"/></svg>${esc(embTxt(p))}</span>${p.op.length?`<span class="ov">${esc(optSum(p))}</span>`:""}</div>
+ <span class="more">Ver ficha <b>→</b></span></div></article>`;
 }
-function bindCards(root){root.querySelectorAll(".card").forEach(c=>{const p=products[+c.dataset.i],inp=c.querySelector(".qty input");
- c.querySelector(".media").onclick=()=>openModal(p);c.querySelector("h3").onclick=()=>openModal(p);
- c.querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>{inp.value=Math.max(1,(parseInt(inp.value)||1)+ +b.dataset.d)});
- c.querySelector(".add").onclick=()=>{addToCart(p,inp.value);inp.value=1}})}
+function bindCards(root){root.querySelectorAll(".card").forEach(c=>{const p=products[+c.dataset.i];c.onclick=()=>openModal(p);c.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openModal(p)}}})}
+const sortKey=p=>{const i=SUBORDER.indexOf(p.s);return ORDER.indexOf(p.c)*100+(i<0?90:i)};
 function render(){
  const q=$("#search").value.toLowerCase().trim();
- let arr=products.filter(p=>(fCat==="todos"||p.c===fCat)&&(fSub==="todos"||p.s===fSub)&&(!q||`${p.n} ${CATS[p.c].label} ${p.s} ${p.fam} ${p.k.join(" ")} ${p.d} ${p.r} ref ${p.r} ref. ${p.r}`.toLowerCase().includes(q)));
- const s=$("#sort").value;
- if(s==="cat"){const pr=["Patines","Monopatines","Patinetas","Protecciones","Balones","Linternas","Luces para bicicleta","Multiherramientas","Tenis y ping pong","Fitness","Soporte deportivo","Llantas y rodamientos","Repuestos y accesorios","Montables","Carpas y túneles","Arte y manualidades"];const o=x=>{const i=pr.indexOf(x.s);return (ORDER.indexOf(x.c))*100+(i<0?50:i)};arr.sort((a,b)=>o(a)-o(b)||a.i-b.i)}
- if(s==="az")arr.sort((a,b)=>title(a).localeCompare(title(b),"es"));
- if(s==="ref")arr.sort((a,b)=>(a.r||"zzz").localeCompare(b.r||"zzz","es",{numeric:true}));
- $("#grid").innerHTML=arr.length?arr.map(card).join(""):`<div class="empty">No encontramos productos con esa búsqueda. Prueba con otra palabra o número de referencia.</div>`;
- $("#count").innerHTML=`<b>${arr.length}</b> ${arr.length===1?"producto":"productos"}`;
+ const arr=products.filter(p=>(fCat==="todos"||p.c===fCat)&&(fSub==="todos"||p.s===fSub)&&(!q||`${p.n} ${p.fam} ${CATS[p.c].label} ${lineOf(p)} ${p.s} ${p.k.join(" ")} ${p.d} ${p.emb} ${p.op.map(o=>o.v.join(" ")).join(" ")} ${p.r} ref ${p.r} ref. ${p.r}`.toLowerCase().includes(q)))
+  .sort((a,b)=>sortKey(a)-sortKey(b)||a.s.localeCompare(b.s,"es")||a.n.localeCompare(b.n,"es"));
+ let html="",last="";
+ arr.forEach(p=>{const g=p.c+"|"+p.s;if(g!==last){last=g;const n=arr.filter(x=>x.c===p.c&&x.s===p.s).length;
+   html+=`<h3 class="ghead" style="--c:${isToy(p)?"var(--ink)":CATS[p.c].c}"><span>${CATS[p.c].label}${isToy(p)?" · Juguetería":""}</span>${esc(p.s)}<small>${n} ${n===1?"referencia":"referencias"}</small></h3>`}
+  html+=card(p)});
+ $("#grid").innerHTML=arr.length?html:`<div class="empty">No encontramos productos con esa búsqueda. Prueba con otra palabra o número de referencia.</div>`;
+ $("#count").innerHTML=`<b>${arr.length}</b> ${arr.length===1?"producto":"productos"}${fCat!=="todos"?` en ${CATS[fCat].title}`:""}${fSub!=="todos"?` · ${esc(fSub)}`:""}`;
  bindCards($("#grid"));renderSide();updateCart();if(typeof reveal==="function")reveal();
 }
 $("#search").addEventListener("input",()=>{render()});
 $("#search").addEventListener("keydown",e=>{if(e.key==="Enter")$("#catalogo").scrollIntoView()});
-$("#sort").onchange=render;
-function goCat(c){fCat=c;fSub="todos";$("#search").value="";render();$("#catalogo").scrollIntoView()}
+function goCat(c,s){fCat=c;fSub=s||"todos";$("#search").value="";render();$("#catalogo").scrollIntoView()}
 $$("[data-go]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();goCat(a.dataset.go)}));
 
 /* ---------- portada ---------- */
@@ -630,15 +817,15 @@ $("#ring").innerHTML=ringP.map((p,k)=>`<button class="face" data-i="${p.i}" styl
  addEventListener("pointerup",()=>{drag=null});
  ring.addEventListener("click",e=>{const f=e.target.closest(".face");if(f&&moved<6)openModal(products[+f.dataset.i])});
 })();
-const catImgs={deportes:["207","211M","FT5711"],jugueteria:["250-3","H801","208"],hogar:["YA20","GLS-01G","CJ-8788"]};
-const C2={deportes:["#b8454c","#6e1b23"],jugueteria:["#c56f4a","#7e3520"],hogar:["#97606a","#4d222a"]};
+const catImgs={deportes:["207","211M","CP22"],hogar:["YA20","GLS-01G","CJ-8788"]};
 function renderHome(){
-$("#cats").innerHTML=ORDER.map(c=>{const ims=(catImgs[c]?catImgs[c].map(pick).filter(Boolean):products.filter(p=>p.c===c).slice(0,3));return `<button class="cat rv" data-tilt data-c="${c}" style="--c1:${C2[c][0]};--c2:${C2[c][1]}"><span class="kicker">${count(c)} productos</span><h3>${CATS[c].label}</h3><p>${CATS[c].desc}</p><span class="go">→</span><div class="cat-imgs">${ims.map(p=>imgTag(p.small,p)).join("")}</div></button>`}).join("");
+$("#cats").innerHTML=ORDER.map(c=>{const ims=catImgs[c].map(pick).filter(Boolean);if(ims.length<3)ims.push(...products.filter(p=>p.c===c&&!ims.includes(p)).slice(0,3-ims.length));
+ return `<button class="cat cat-${c} rv" data-tilt data-c="${c}"><span class="kicker">${count(c)} referencias</span><h3>${CATS[c].title}</h3><p>${CATS[c].desc}</p>
+ <span class="csubs">${subsOf(c).slice(0,8).map(s=>`<i>${esc(s)}</i>`).join("")}${subsOf(c).length>8?`<i>+${subsOf(c).length-8}</i>`:""}</span><span class="go">Ver catálogo →</span><div class="cat-imgs">${ims.map(p=>imgTag(p.small,p)).join("")}</div></button>`}).join("");
 $$("#cats .cat").forEach(b=>b.onclick=()=>goCat(b.dataset.c));
 $("#stRefs").textContent=products.filter(p=>p.r).length;
 $("#stSubs").textContent=new Set(products.map(p=>p.c+p.s)).size;
 }
-
 const featRefs=["207","H0","211M","HD-2","A100","250-3","MT629PG","H801","913","X900"];
 function initRail(){$("#rail").innerHTML=featRefs.map(pick).filter(Boolean).map(card).join("");bindCards($("#rail"))}
 $("#railPrev").onclick=()=>$("#rail").scrollBy({left:-$("#rail").clientWidth*.8,behavior:"smooth"});
@@ -648,18 +835,21 @@ let tt;function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("sh
 const canTilt=matchMedia("(hover:hover) and (prefers-reduced-motion:no-preference)").matches;
 document.addEventListener("pointermove",e=>{if(!canTilt)return;const el=e.target.closest&&e.target.closest("[data-tilt]");
  $$("[data-tilt].tilting").forEach(o=>{if(o!==el){o.classList.remove("tilting");o.style.removeProperty("--rx");o.style.removeProperty("--ry")}});
- if(!el)return;const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height,m=el.classList.contains("cat")?6:10;
+ if(!el)return;const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height,m=el.classList.contains("cat")?5:10;
  el.classList.add("tilting");el.style.setProperty("--rx",((.5-y)*m).toFixed(2)+"deg");el.style.setProperty("--ry",((x-.5)*m).toFixed(2)+"deg");el.style.setProperty("--gx",x*100+"%");el.style.setProperty("--gy",y*100+"%")});
 const io="IntersectionObserver" in window?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const t=e.target;t.classList.add("in");io.unobserve(t);setTimeout(()=>t.style.transitionDelay="",1300)}}),{rootMargin:"0px 0px -40px"}):null;
 function reveal(){$$(".rv:not(.in)").forEach((el,k)=>{el.style.transitionDelay=(k%6)*60+"ms";io?io.observe(el):el.classList.add("in")})}
+/* sección activa en el menú */
+const navLinks=$$(".nav a");if("IntersectionObserver" in window){const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)navLinks.forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id))}),{rootMargin:"-45% 0px -50% 0px"});
+ ["inicio","catalogos","catalogo","nosotros","contacto"].forEach(id=>{const el=document.getElementById(id);if(el)so.observe(el)})}
 /* productos agregados (data/nuevos.json) y cambios hechos desde el panel administrativo (data/cambios.json) */
 const RAW="https://raw.githubusercontent.com/lorena1324/TIENDA/main/";
 const getJSON=u=>fetch(u,{cache:"no-store"}).then(r=>{if(!r.ok)throw r.status;return r.json()});
 const loadData=f=>getJSON(f+"?v="+Date.now()).then(x=>[x,""]).catch(()=>getJSON(RAW+f+"?v="+Date.now()).then(x=>[x,RAW])).catch(()=>[null,""]);
 const fixU=(u,base)=>u.map(x=>/^(https?:|data:)/.test(x)||!base?x:base+x);
 Promise.all([loadData("data/nuevos.json"),loadData("data/cambios.json")]).then(([[extra,b1],[chg,b2]])=>{
- if(chg&&typeof chg==="object")products.forEach(p=>{const c=chg[p.id];if(c){applyChange(p,c);if(c.u)p.u=fixU(c.u,b2)}});
- if(Array.isArray(extra))extra.forEach(p=>{if(p&&p.n&&p.id&&CATS[p.c]){p.nuevo=1;if(p.u)p.u=fixU(p.u,b1);products.push(p)}});
+ if(chg&&typeof chg==="object")products.forEach(p=>{const c=chg[p.id];if(c){applyChange(p,c);if(c.u)p.u=fixU(c.u,b2);if(c.pk)p.pk=fixU(c.pk,b2)}});
+ if(Array.isArray(extra))extra.forEach(p=>{if(p&&p.n&&p.id){if(p.c==="jugueteria")p.c="deportes";if(!CATS[p.c])return;p.nuevo=1;if(p.u)p.u=fixU(p.u,b1);if(p.pk)p.pk=fixU(p.pk,b1);products.push(p)}});
  const vis=products.filter(p=>!p.oculto&&CATS[p.c]);products.length=0;products.push(...vis);
 }).finally(()=>{products.forEach(prep);initRing();initRail();cleanCart();renderHome();render();reveal()});
 </script>
