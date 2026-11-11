@@ -166,6 +166,20 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;margin:0}
 .pr b{display:block;font-size:14px;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .pr span.m{display:block;font-size:12.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .pr .badges{margin-top:4px}
+.fgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}
+.fsel{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.fsel .pr{grid-template-columns:28px 52px minmax(0,1fr) auto}
+.fsel .pr img,.fpick .pr img{width:52px;height:52px}
+.fnum{width:28px;height:28px;border-radius:50%;background:var(--brand);color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center}
+.fbtns{display:flex;gap:4px}
+.fbtns button{width:34px;height:34px;border-radius:9px;border:1px solid var(--line-2);background:var(--surface);font-weight:800;font-size:15px}
+.fbtns button:hover:not(:disabled){border-color:var(--ink)}.fbtns button:disabled{opacity:.35;cursor:default}
+.fbtns .rm{color:var(--brand)}
+.fpick{display:flex;flex-direction:column;gap:8px;margin-top:10px;max-height:620px;overflow-y:auto;padding-right:4px}
+.fpick .pr{grid-template-columns:52px minmax(0,1fr) auto}
+.fcount{font-weight:800;font-size:14px}.fcount.full{color:var(--brand)}
+.factions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;margin-top:16px}
+@media (max-width:900px){.fgrid{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:600px){.plist{grid-template-columns:1fr}.tabs{width:100%}.tabs button{flex:1}.xrow{grid-template-columns:1fr 36px}.xrow input:first-child{grid-column:1/-1}.sp2{width:100%}}
 
 @media (max-width:900px){.grid{grid-template-columns:minmax(0,1fr)}.sticky{position:static}}
@@ -216,7 +230,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;margin:0}
 <!-- 3. panel -->
 <main class="panel" id="vPanel" hidden><div class="wrap">
  <div class="ph"><div><span class="eyebrow">Catálogo</span><h1 id="pTitle">Agregar un producto nuevo</h1><p>Los cambios se publican en la tienda en unos minutos.</p></div>
-  <div class="tabs" role="tablist"><button type="button" role="tab" id="tAdd" class="on" aria-selected="true">Agregar producto</button><button type="button" role="tab" id="tEdit" aria-selected="false">Editar catálogo</button></div></div>
+  <div class="tabs" role="tablist"><button type="button" role="tab" id="tAdd" class="on" aria-selected="true">Agregar producto</button><button type="button" role="tab" id="tEdit" aria-selected="false">Editar catálogo</button><button type="button" role="tab" id="tFeat" aria-selected="false">Destacados</button></div></div>
  <div class="msg" id="mTop"></div>
 
  <div class="grid" id="vForm">
@@ -241,7 +255,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;margin:0}
     <button type="button" class="link" id="bAddRow" style="align-self:flex-start">+ Agregar dato</button>
    </div>
    <label class="chk"><input type="checkbox" id="pAg"> Marcar como agotado</label>
-   <div class="f"><label>Fotos <small>(hasta 6 · la primera es la principal)</small></label>
+   <div class="f"><label>Fotos <small>(hasta 16 · la primera es la principal; deja de última la foto con todos los diseños juntos)</small></label>
     <div class="drop" id="drop" tabindex="0" role="button"><b>Toca para elegir fotos o arrástralas aquí</b>JPG o PNG · se optimizan automáticamente</div>
     <input type="file" id="pFiles" accept="image/*" multiple hidden>
     <div class="thumbs" id="thumbs"></div>
@@ -277,6 +291,21 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;margin:0}
   <div class="lt"><input id="q" type="search" placeholder="Buscar por nombre o referencia" aria-label="Buscar producto"><div class="chips" id="fc"></div></div>
   <p class="hint" id="lc"></p>
   <div class="plist" id="plist"><div class="empty">Cargando…</div></div>
+ </div>
+
+ <div class="fgrid" id="vFeat" hidden>
+  <div class="box">
+   <h2>Productos destacados <span class="fcount" id="fCount"></span></h2>
+   <p class="hint">Se muestran en la sección “Productos destacados” de la tienda, en este orden. Usa ↑ ↓ para ordenarlos y × para quitarlos.</p>
+   <div class="msg" id="mFeat"></div>
+   <div class="fsel" id="fSel"><div class="empty">Cargando…</div></div>
+   <div class="factions"><button type="button" class="btn btn-l" id="bFeatDef">Usar los sugeridos</button><button type="button" class="btn btn-p" id="bFeatSave">Guardar destacados</button></div>
+  </div>
+  <div class="box">
+   <h2>Agregar a destacados</h2>
+   <div class="lt"><input id="fq" type="search" placeholder="Buscar por nombre o referencia" aria-label="Buscar producto para destacar"></div>
+   <div class="fpick" id="fPick"></div>
+  </div>
  </div>
 </div></main>
 
@@ -411,7 +440,7 @@ async function shrink(file){const img=await new Promise((res,rej)=>{const i=new 
  const s=Math.min(1,1000/Math.max(img.naturalWidth,img.naturalHeight)),c=document.createElement("canvas");c.width=Math.round(img.naturalWidth*s);c.height=Math.round(img.naturalHeight*s);
  const x=c.getContext("2d");x.fillStyle="#fff";x.fillRect(0,0,c.width,c.height);x.drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(img.src);
  const blob=await new Promise(r=>c.toBlob(r,"image/jpeg",.84));return{blob,url:URL.createObjectURL(blob)}}
-async function addFiles(list){const m=$("#mProd");for(const f of list){if(files.length>=6){msg(m,"Máximo 6 fotos por producto.");break}
+async function addFiles(list){const m=$("#mProd");for(const f of list){if(files.length>=16){msg(m,"Máximo 16 fotos por producto (15 + la foto con todos juntos).");break}
  if(!/^image\//.test(f.type)){msg(m,`“${f.name}” no es una imagen.`);continue}
  try{files.push(await shrink(f))}catch(e){msg(m,`No se pudo leer “${f.name}”.`)}}drawThumbs();preview()}
 const drop=$("#drop");drop.onclick=()=>$("#pFiles").click();drop.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();$("#pFiles").click()}};
@@ -488,13 +517,13 @@ function renderList(){const q=$("#q").value.toLowerCase().trim(),ord=["deportes"
 $("#q").addEventListener("input",renderList);
 
 /* ---------- pestañas y modo edición ---------- */
-function tab(t){$("#tAdd").classList.toggle("on",t==="add");$("#tEdit").classList.toggle("on",t!=="add");$("#tAdd").setAttribute("aria-selected",t==="add");$("#tEdit").setAttribute("aria-selected",t!=="add");
- $("#vForm").hidden=t==="list";$("#vList").hidden=t!=="list"}
+function tab(t){[["#tAdd",t==="add"],["#tEdit",t==="edit"||t==="list"],["#tFeat",t==="feat"]].forEach(([s,on])=>{$(s).classList.toggle("on",on);$(s).setAttribute("aria-selected",on)});
+ $("#vForm").hidden=t==="list"||t==="feat";$("#vList").hidden=t!=="list";$("#vFeat").hidden=t!=="feat"}
 function startAdd(){MODE=null;clearForm();msg($("#mProd"),"");msg($("#mTop"),"");$("#editBar").hidden=$("#editActs").hidden=true;$("#bSave").textContent="Publicar producto";$("#bClear").textContent="Limpiar";$("#pTitle").textContent="Agregar un producto nuevo";tab("add")}
 function showList(okMsg){MODE=null;$("#editBar").hidden=$("#editActs").hidden=true;$("#bSave").textContent="Publicar producto";$("#bClear").textContent="Limpiar";
  msg($("#mTop"),okMsg||"","ok");$("#pTitle").textContent="Editar catálogo";tab("list");
  if(!loaded)loadCatalog().catch(e=>{$("#plist").innerHTML=`<div class="empty">${esc(ghErr(e))}</div>`});else renderList();scrollTo({top:0,behavior:"smooth"})}
-$("#tAdd").onclick=startAdd;$("#tEdit").onclick=()=>showList();
+$("#tAdd").onclick=startAdd;$("#tEdit").onclick=()=>showList();$("#tFeat").onclick=()=>showFeat();
 function startEdit(id){const p=CAT.find(x=>x.id===id);if(!p)return;clearForm();msg($("#mProd"),"");msg($("#mTop"),"");
  MODE={id,nuevo:!!p.nuevo,prev:[...p.photos,...(p.pk||[])]};
  $("#pName").value=p.n||"";$("#pRef").value=p.r||"";const rb=document.querySelector(`input[name=cat][value="${p.c}"]`);if(rb)rb.checked=true;fillSubs();$("#pSub").value=p.s||"";
@@ -519,6 +548,36 @@ $("#bRestore").onclick=()=>{const {id}=MODE,o=ORIG[id],c=CHG[id]||{};
 $("#bDelete").onclick=()=>{const {id}=MODE,p=CAT.find(x=>x.id===id);
  if(!confirm(`¿Eliminar “${p.n}” de la tienda? Esta acción no se puede deshacer.`))return;
  act(async()=>{await updateJSON(NUEVOS,[],list=>list.filter(x=>x.id!==id),`Eliminar producto: ${p.n}`);await dropUploaded(p.photos,[],p.n)},"Eliminando…",`“${p.n}” se eliminó de la tienda.`)};
+
+/* ---------- productos destacados (data/destacados.json: lista de ids en orden) ---------- */
+const DESTACADOS="data/destacados.json";
+let FEAT=null,featDirty=false;
+async function loadFeat(){const f=await readJSON(DESTACADOS,[]);const ids=Array.isArray(f.data)?f.data.filter(x=>typeof x==="string"):[];
+ FEAT=(ids.length?ids:FEAT_DEF).slice(0,FEAT_MAX);featDirty=false}
+const byId=id=>CAT.find(p=>p.id===id);
+function featRow(p,i){const nm=p?esc(p.n):"Producto eliminado",meta=p?`${p.r?"Ref. "+esc(p.r)+" · ":""}${CATL[p.c]||""} / ${esc(p.s)}`:"Ya no existe; quítalo de la lista";
+ return `<div class="pr${p&&p.oculto?" hid":""}"><span class="fnum">${i+1}</span><img src="${p&&p.photos[0]?src(p.photos[0],200):NOPHOTO}" alt="" loading="lazy"><div><b title="${nm}">${nm}</b><span class="m">${meta}</span>${p&&p.oculto?`<span class="badges"><span class="bd oc">Oculto: no se verá</span></span>`:""}</div>
+ <div class="fbtns"><button type="button" data-mv="-1" data-i="${i}" aria-label="Subir" ${i?"":"disabled"}>↑</button><button type="button" data-mv="1" data-i="${i}" aria-label="Bajar" ${i<FEAT.length-1?"":"disabled"}>↓</button><button type="button" class="rm" data-rm="${i}" aria-label="Quitar de destacados">×</button></div></div>`}
+function renderFeat(){if(!FEAT)return;const full=FEAT.length>=FEAT_MAX;
+ $("#fCount").textContent=`${FEAT.length} de ${FEAT_MAX}`;$("#fCount").className="fcount"+(full?" full":"");
+ $("#fSel").innerHTML=FEAT.length?FEAT.map((id,i)=>featRow(byId(id),i)).join(""):`<div class="empty">No hay destacados. Agrégalos desde la lista de la derecha.</div>`;
+ $("#fSel").querySelectorAll("[data-mv]").forEach(b=>b.onclick=()=>{const i=+b.dataset.i,j=i+ +b.dataset.mv;[FEAT[i],FEAT[j]]=[FEAT[j],FEAT[i]];featDirty=true;renderFeat()});
+ $("#fSel").querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>{FEAT.splice(+b.dataset.rm,1);featDirty=true;renderFeat()});
+ const q=$("#fq").value.toLowerCase().trim(),ord=["deportes","hogar"];
+ const arr=CAT.filter(p=>!p.oculto&&!FEAT.includes(p.id)&&(!q||`${p.n} ${p.r} ${p.s} ref ${p.r}`.toLowerCase().includes(q)))
+  .sort((a,b)=>ord.indexOf(a.c)-ord.indexOf(b.c)||subIdx(a.s)-subIdx(b.s)||a.n.localeCompare(b.n,"es"));
+ $("#fPick").innerHTML=arr.length?arr.map(p=>`<div class="pr"><img src="${p.photos[0]?src(p.photos[0],200):NOPHOTO}" alt="" loading="lazy"><div><b title="${esc(p.n)}">${esc(p.n)}</b><span class="m">${p.r?"Ref. "+esc(p.r)+" · ":""}${CATL[p.c]||""} / ${esc(p.s)}</span></div><button type="button" class="btn btn-l btn-s" data-add="${esc(p.id)}" ${full?"disabled":""}>Destacar</button></div>`).join("")
+  :`<div class="empty">No hay más productos con esa búsqueda.</div>`;
+ $("#fPick").querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>{if(FEAT.length>=FEAT_MAX)return msg($("#mFeat"),`Ya tienes ${FEAT_MAX} destacados. Quita uno para agregar otro.`);FEAT.push(b.dataset.add);featDirty=true;msg($("#mFeat"),"");renderFeat()})}
+$("#fq").addEventListener("input",renderFeat);
+async function showFeat(){MODE=null;msg($("#mTop"),"");msg($("#mFeat"),"");$("#pTitle").textContent="Productos destacados";tab("feat");scrollTo({top:0,behavior:"smooth"});
+ try{if(!loaded)await loadCatalog();if(!FEAT||!featDirty)await loadFeat();renderFeat()}catch(e){$("#fSel").innerHTML=`<div class="empty">${esc(ghErr(e))}</div>`}}
+$("#bFeatDef").onclick=()=>{if(!confirm("¿Reemplazar la lista por los 15 destacados sugeridos?"))return;FEAT=FEAT_DEF.slice(0,FEAT_MAX);featDirty=true;msg($("#mFeat"),"");renderFeat()};
+$("#bFeatSave").onclick=async()=>{const m=$("#mFeat"),list=FEAT.filter(id=>byId(id));
+ if(!list.length)return msg(m,"Agrega al menos un producto destacado.");
+ $("#bFeatSave").disabled=true;busy(true,"Guardando destacados…","Actualizando la tienda en GitHub");
+ try{await updateJSON(DESTACADOS,[],()=>list,`Destacados: ${list.length} productos`);FEAT=list;featDirty=false;renderFeat();msg(m,`Se guardaron ${list.length} destacados. Se verán en la tienda en unos minutos.`,"ok")}
+ catch(err){msg(m,ghErr(err))}finally{busy(false);$("#bFeatSave").disabled=false}};
 
 boot();
 </script>

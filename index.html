@@ -466,6 +466,10 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
 .gtag{position:absolute;left:16px;top:16px;background:var(--ink);color:#fff;font-size:12px;font-weight:800;padding:5px 10px;border-radius:8px}
 .mmain{position:relative}
 .thumbs button.pkt{position:relative}.thumbs button.pkt::after{content:"Caja";position:absolute;left:3px;bottom:3px;font-size:9.5px;font-weight:800;background:var(--ink);color:#fff;padding:1px 4px;border-radius:4px}
+.thumbs button.allt{position:relative}.thumbs button.allt::after{content:"Todos";position:absolute;left:3px;bottom:3px;font-size:9.5px;font-weight:800;background:var(--brand);color:#fff;padding:1px 4px;border-radius:4px}
+.gnav{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:#fff;color:var(--ink);box-shadow:var(--sh-1);font-size:20px;font-weight:800;display:grid;place-items:center;border:1px solid var(--line)}
+.gnav:hover{color:var(--brand)}.gnav.pv{left:12px}.gnav.nx{right:12px}
+.gcount{position:absolute;right:16px;top:16px;background:rgba(17,17,17,.72);color:#fff;font-size:12px;font-weight:700;padding:4px 9px;border-radius:8px}
 .qwrap{display:flex;flex-direction:column;gap:4px}
 .qlbl{font-size:12px;font-weight:700;color:var(--muted)}
 .add[disabled]{opacity:.5;pointer-events:none}
@@ -636,7 +640,7 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;mar
 <div class="overlay" id="overlay"></div>
 
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mName"><div class="mbox">
- <div class="mgal"><div class="mmain"><img id="mImg" alt=""><span class="gtag" id="mGTag" hidden>Embalaje</span></div><div class="thumbs" id="mThumbs"></div></div>
+ <div class="mgal"><div class="mmain" id="mMain"><img id="mImg" alt=""><span class="gtag" id="mGTag" hidden>Embalaje</span><span class="gcount" id="mGCount" hidden></span><button type="button" class="gnav pv" id="mPrev" aria-label="Foto anterior" hidden>‹</button><button type="button" class="gnav nx" id="mNext" aria-label="Foto siguiente" hidden>›</button></div><div class="thumbs" id="mThumbs"></div></div>
  <div class="minfo">
   <button class="x" id="mClose" aria-label="Cerrar"><svg class="ico"><use href="#i-x"/></svg></button>
   <span class="eyebrow" id="mPath"></span>
@@ -729,10 +733,16 @@ function openCart(){closeModal(true);$("#drawer").classList.add("open");overlay.
 function closeAll(){$("#drawer").classList.remove("open");closeModal(true);overlay.classList.remove("open")}
 $$("[data-open-cart]").forEach(b=>b.addEventListener("click",e=>{e.preventDefault();openCart()}));
 $("#openCart").onclick=openCart;$("#dClose").onclick=closeAll;overlay.onclick=closeAll;
-let cur=null,gal=[],sel=[];
-/* galería: fotos del producto + fotos del embalaje completo */
-function showImg(k){const g=gal[k],im=$("#mImg");im.onerror=g.alt?()=>{im.onerror=null;im.src=g.alt}:null;im.src=g.src;im.className=cur.photo&&!g.pk?"cover":"";im.alt=g.pk?`Embalaje de ${title(cur)}`:title(cur);
- $("#mGTag").hidden=!g.pk;$$("#mThumbs button").forEach((b,j)=>b.classList.toggle("on",j===k))}
+let cur=null,gal=[],sel=[],gk=0;
+/* galería: fotos del producto (la última de Deportes muestra todos los diseños juntos) + fotos del embalaje completo */
+function showImg(k){k=(k+gal.length)%gal.length;gk=k;const g=gal[k],im=$("#mImg");im.onerror=g.alt?()=>{im.onerror=null;im.src=g.alt}:null;im.src=g.src;im.className=cur.photo&&!g.pk?"cover":"";
+ im.alt=g.pk?`Embalaje de ${title(cur)}`:g.all?`${title(cur)}: todos los diseños juntos`:title(cur);
+ $("#mGTag").hidden=!g.pk&&!g.all;$("#mGTag").textContent=g.pk?"Embalaje":"Todos juntos";
+ const many=gal.length>1;$("#mPrev").hidden=$("#mNext").hidden=$("#mGCount").hidden=!many;$("#mGCount").textContent=`${k+1} / ${gal.length}`;
+ $$("#mThumbs button").forEach((b,j)=>{b.classList.toggle("on",j===k);if(j===k)b.scrollIntoView({block:"nearest",inline:"nearest"})})}
+$("#mPrev").onclick=()=>showImg(gk-1);$("#mNext").onclick=()=>showImg(gk+1);
+(function(){let x0=null;const m=$("#mMain");m.addEventListener("touchstart",e=>{x0=e.touches[0].clientX},{passive:true});
+ m.addEventListener("touchend",e=>{if(x0===null||gal.length<2)return;const dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>40)showImg(gk+(dx<0?1:-1))})})();
 const variant=()=>cur.op.length?cur.vr.find(v=>(v.o||[]).join("|")===sel.join("|")):null;
 function drawVars(){const p=cur;if(!p.op.length){$("#mVars").innerHTML="";return}
  $("#mVars").innerHTML=p.op.map((o,i)=>`<div class="vopt"><span class="vlbl">${esc(o.n)}: <b>${esc(sel[i])}</b></span><div class="vbtns">${o.v.map(v=>`<button type="button" class="${sel[i]===v?"on":""}" data-i="${i}" data-v="${esc(v)}">${esc(v)}</button>`).join("")}</div></div>`).join("")+`<p class="vstock" id="mStock"></p>`;
@@ -749,8 +759,8 @@ function openModal(p){
  const rest=p.x.filter(([l])=>!/^Presentaci/i.test(l));
  $("#mRefRow").hidden=!p.r;$("#mRef").textContent=p.r;$("#mCat").textContent=lineOf(p)==="Juguetería"?"Deportes · Juguetería":CATS[p.c].label;$("#mSub").textContent=p.s;
  $$("#mSpecs .spec.sx").forEach(e=>e.remove());$("#mSpecs").insertAdjacentHTML("beforeend",rest.map(([l,v])=>`<div class="spec sx"><span>${esc(l)}</span><strong>${esc(v)}</strong></div>`).join(""));
- gal=p.imgs.map((u,k)=>({src:u,alt:p.g?TH+p.g[k]+"&sz=w1000":null,th:smallOf(u)})).concat(p.pk.map(u=>({src:u,th:smallOf(u),pk:1})));
- $("#mThumbs").innerHTML=gal.length>1?gal.map((g,k)=>`<button class="${g.pk?"pkt":""}" aria-label="${g.pk?"Foto del embalaje":"Foto "+(k+1)}"><img loading="lazy" src="${g.th}" alt=""></button>`).join(""):"";
+ gal=p.imgs.map((u,k)=>({src:u,alt:p.g?TH+p.g[k]+"&sz=w1000":null,th:smallOf(u),all:!!(p.j&&String(u).includes(p.j))})).concat(p.pk.map(u=>({src:u,th:smallOf(u),pk:1})));
+ $("#mThumbs").innerHTML=gal.length>1?gal.map((g,k)=>`<button class="${g.pk?"pkt":g.all?"allt":""}" aria-label="${g.pk?"Foto del embalaje":g.all?"Foto con todos los diseños juntos":"Foto "+(k+1)}"><img loading="lazy" src="${g.th}" alt=""></button>`).join(""):"";
  $$("#mThumbs button").forEach((b,k)=>b.onclick=()=>showImg(k));showImg(0);
  const pkb=$("#mPkBtn");if(pkb)pkb.onclick=()=>showImg(p.imgs.length);
  $("#mQty").value=1;$("#mQLbl").textContent=`Cantidad de ${EMB_PL[p.emb]||"cajas"}${p.embq?` (${embTxt(p)})`:""}`;
@@ -759,7 +769,8 @@ function openModal(p){
 }
 function closeModal(keepOverlay){$("#modal").classList.remove("open");if(!keepOverlay&&!$("#drawer").classList.contains("open"))overlay.classList.remove("open")}
 $("#mClose").onclick=()=>closeModal();$("#modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal()});
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAll()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAll();
+ else if($("#modal").classList.contains("open")&&gal.length>1&&(e.key==="ArrowLeft"||e.key==="ArrowRight")&&!/INPUT|TEXTAREA/.test(document.activeElement.tagName))showImg(gk+(e.key==="ArrowRight"?1:-1))});
 $$(".mact [data-step]").forEach(b=>b.onclick=()=>{const i=$("#mQty");i.value=Math.max(1,(parseInt(i.value)||1)+ +b.dataset.step)});
 $("#mAdd").onclick=()=>{const v=cur.op.length?cur.op.map((o,i)=>`${o.n}: ${sel[i]}`).join(" / "):"";addToCart(cur,$("#mQty").value,v);closeModal()};
 
@@ -826,8 +837,11 @@ $$("#cats .cat").forEach(b=>b.onclick=()=>goCat(b.dataset.c));
 $("#stRefs").textContent=products.filter(p=>p.r).length;
 $("#stSubs").textContent=new Set(products.map(p=>p.c+p.s)).size;
 }
-const featRefs=["207","H0","211M","HD-2","A100","250-3","MT629PG","H801","913","X900"];
-function initRail(){$("#rail").innerHTML=featRefs.map(pick).filter(Boolean).map(card).join("");bindCards($("#rail"))}
+/* destacados: los elige el administrador (data/destacados.json); si no hay lista, se usan los sugeridos */
+let featIds=FEAT_DEF.slice();
+function initRail(){const byId=id=>products.find(p=>p.id===id);let list=featIds.map(byId).filter(Boolean);
+ if(!list.length)list=FEAT_DEF.map(byId).filter(Boolean);
+ $("#rail").innerHTML=list.slice(0,FEAT_MAX).map(card).join("");bindCards($("#rail"))}
 $("#railPrev").onclick=()=>$("#rail").scrollBy({left:-$("#rail").clientWidth*.8,behavior:"smooth"});
 $("#railNext").onclick=()=>$("#rail").scrollBy({left:$("#rail").clientWidth*.8,behavior:"smooth"});
 let tt;function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("show"),2200)}
@@ -847,7 +861,8 @@ const RAW="https://raw.githubusercontent.com/lorena1324/TIENDA/main/";
 const getJSON=u=>fetch(u,{cache:"no-store"}).then(r=>{if(!r.ok)throw r.status;return r.json()});
 const loadData=f=>getJSON(f+"?v="+Date.now()).then(x=>[x,""]).catch(()=>getJSON(RAW+f+"?v="+Date.now()).then(x=>[x,RAW])).catch(()=>[null,""]);
 const fixU=(u,base)=>u.map(x=>/^(https?:|data:)/.test(x)||!base?x:base+x);
-Promise.all([loadData("data/nuevos.json"),loadData("data/cambios.json")]).then(([[extra,b1],[chg,b2]])=>{
+Promise.all([loadData("data/nuevos.json"),loadData("data/cambios.json"),loadData("data/destacados.json")]).then(([[extra,b1],[chg,b2],[feat]])=>{
+ if(Array.isArray(feat)&&feat.length)featIds=feat.filter(x=>typeof x==="string");
  if(chg&&typeof chg==="object")products.forEach(p=>{const c=chg[p.id];if(c){applyChange(p,c);if(c.u)p.u=fixU(c.u,b2);if(c.pk)p.pk=fixU(c.pk,b2)}});
  if(Array.isArray(extra))extra.forEach(p=>{if(p&&p.n&&p.id){if(p.c==="jugueteria")p.c="deportes";if(!CATS[p.c])return;p.nuevo=1;if(p.u)p.u=fixU(p.u,b1);if(p.pk)p.pk=fixU(p.pk,b1);products.push(p)}});
  const vis=products.filter(p=>!p.oculto&&CATS[p.c]);products.length=0;products.push(...vis);
