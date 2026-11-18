@@ -320,5 +320,30 @@
  },
  "b-h812l": {
   "ag": 1
+ },
+ "b-h801": {
+  "op": [
+   {
+    "n": "Color",
+    "v": [
+     "Azul mágico",
+     "rosado brillante"
+    ]
+   }
+  ],
+  "vr": [
+   {
+    "o": [
+     "Azul mágico"
+    ],
+    "q": 40
+   },
+   {
+    "o": [
+     "rosado brillante"
+    ],
+    "q": 0
+   }
+  ]
  }
 }
