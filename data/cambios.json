@@ -176,6 +176,44 @@
   ]
  },
  "b-set-de-pocillo-plato": {
+  "r": "REF 12 PCS",
+  "op": [
+   {
+    "n": "Color",
+    "v": [
+     "Blanco",
+     "líneas negras",
+     "líneas rojas",
+     "puntos negros"
+    ]
+   }
+  ],
+  "vr": [
+   {
+    "o": [
+     "Blanco"
+    ],
+    "q": 0
+   },
+   {
+    "o": [
+     "líneas negras"
+    ],
+    "q": 0
+   },
+   {
+    "o": [
+     "líneas rojas"
+    ],
+    "q": 0
+   },
+   {
+    "o": [
+     "puntos negros"
+    ],
+    "q": 0
+   }
+  ],
   "u": [
    "img/nuevos/mw584pfs-pocillo-plato-en-vitroceramica-1.jpg",
    "img/nuevos/mw584pfs-pocillo-plato-en-vitroceramica-2.jpg",
