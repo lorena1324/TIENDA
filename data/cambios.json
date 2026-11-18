@@ -391,5 +391,44 @@
     "q": 0
    }
   ]
+ },
+ "b-207": {
+  "op": [
+   {
+    "n": "Color",
+    "v": [
+     "Morado Fucsia",
+     "Rosado Morado",
+     "Azul",
+     "Rojo"
+    ]
+   }
+  ],
+  "vr": [
+   {
+    "o": [
+     "Morado Fucsia"
+    ],
+    "q": 0
+   },
+   {
+    "o": [
+     "Rosado Morado"
+    ],
+    "q": 0
+   },
+   {
+    "o": [
+     "Azul"
+    ],
+    "q": 100
+   },
+   {
+    "o": [
+     "Rojo"
+    ],
+    "q": 100
+   }
+  ]
  }
 }
