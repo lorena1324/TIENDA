@@ -85,6 +85,44 @@
   ]
  },
  "b-20-set": {
+  "d": "Vajilla en vitrocerámica configurada para 4 puestos, pensada para comercios que buscan incorporar una alternativa completa de mesa en un formato compacto '. Se ofrece en diferentes diseños decorativos, incluyendo combinaciones en blanco con puntos negros, rayas negras y detalles en rojo, permitiendo manejar variedad estética dentro de una misma referencia.",
+  "op": [
+   {
+    "n": "Color",
+    "v": [
+     "Blanca",
+     "líneas negras",
+     "puntos negros",
+     "líneas rojas"
+    ]
+   }
+  ],
+  "vr": [
+   {
+    "o": [
+     "Blanca"
+    ],
+    "q": 50
+   },
+   {
+    "o": [
+     "líneas negras"
+    ],
+    "q": 0
+   },
+   {
+    "o": [
+     "puntos negros"
+    ],
+    "q": 0
+   },
+   {
+    "o": [
+     "líneas rojas"
+    ],
+    "q": 0
+   }
+  ],
   "u": [
    "img/nuevos/mw581ogz-vajilla-en-vitroceramica-4-puestos-1.jpg",
    "img/nuevos/mw581ogz-vajilla-en-vitroceramica-4-puestos-2.jpg",
