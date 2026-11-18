@@ -93,6 +93,43 @@
   ]
  },
  "b-30-set": {
+  "op": [
+   {
+    "n": "Color",
+    "v": [
+     "Negra",
+     "Puntos negra",
+     "líneas rojas",
+     "blanca"
+    ]
+   }
+  ],
+  "vr": [
+   {
+    "o": [
+     "Negra"
+    ],
+    "q": 0
+   },
+   {
+    "o": [
+     "Puntos negra"
+    ],
+    "q": 0
+   },
+   {
+    "o": [
+     "líneas rojas"
+    ],
+    "q": 0
+   },
+   {
+    "o": [
+     "blanca"
+    ],
+    "q": 50
+   }
+  ],
   "u": [
    "img/nuevos/mw582wm5-vajilla-en-vitroceramica-6-puestos-1.jpg",
    "img/nuevos/mw582wm5-vajilla-en-vitroceramica-6-puestos-2.jpg",
